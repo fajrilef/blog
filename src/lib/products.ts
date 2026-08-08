@@ -69,7 +69,7 @@ export const PRODUCTS: Record<string, Product> = {
     name: 'Switch Tester Keyboard',
     description: 'Set sampel berbagai switch untuk mencoba rasa merah, cokelat, biru, dan lainnya sebelum membeli.',
     price: null, merchant: null,
-    affiliateUrl: null, image: null, category: 'tech',
+    affiliateUrl: null, image: 'affiliate-keyboard-hotswap.webp', category: 'tech',
   },
   'keyboard-mechanical-entry': {
     id: 'keyboard-mechanical-entry',
@@ -83,7 +83,7 @@ export const PRODUCTS: Record<string, Product> = {
     name: 'Keyboard Mechanical 60%',
     description: 'Keyboard compact 60% — ringkas, hemat tempat meja, tetap nyaman untuk mengetik.',
     price: null, merchant: null,
-    affiliateUrl: null, image: null, category: 'tech',
+    affiliateUrl: null, image: 'affiliate-keyboard-brown-switch.webp', category: 'tech',
   },
 
   // === Windows / Gadget (tech) ===
@@ -92,7 +92,7 @@ export const PRODUCTS: Record<string, Product> = {
     name: 'SSD Laptop',
     description: 'Upgrade SSD untuk mempercepat booting dan loading aplikasi secara signifikan.',
     price: null, merchant: null,
-    affiliateUrl: null, image: null, category: 'tech',
+    affiliateUrl: null, image: 'affiliate-keyboard-mechanical-entry.webp', category: 'tech',
   },
   'ram-laptop': {
     id: 'ram-laptop',
