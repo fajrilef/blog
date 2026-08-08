@@ -60,23 +60,6 @@ const DISCLOSURE =
               <h3 class="text-[16px] font-semibold leading-snug text-ink dark:text-ink-dark">
                 {p.name}
               </h3>
-              {p.description && (
-                <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink-soft dark:text-ink-soft-dark">
-                  {p.description}
-                </p>
-              )}
-
-              {/* Harga + merchant (jika ada) */}
-              {(p.price != null || p.merchant) && (
-                <div class="mt-3 flex items-baseline gap-2">
-                  {p.price != null && (
-                    <span class="text-[14px] font-semibold text-ink dark:text-ink-dark">
-                      Rp{p.price.toLocaleString('id-ID')}
-                    </span>
-                  )}
-                  {p.merchant && <span class="text-xs text-ink-faint">{p.merchant}</span>}
-                </div>
-              )}
 
               {/* CTA — jelas tapi tidak agresif */}
               <div class="mt-auto pt-4">
