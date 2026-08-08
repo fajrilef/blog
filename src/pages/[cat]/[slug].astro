@@ -53,8 +53,8 @@ const prevLabel = prev ? catLabel[prev.data.category] : null;
 const nextLabel = next ? catLabel[next.data.category] : null;
 const publishedISO = post.data.pubDate.toISOString();
 const modifiedISO = post.data.updatedDate ? post.data.updatedDate.toISOString() : publishedISO;
-// Produk rekomendasi — maks 3, hanya dari frontmatter recommendedProducts
-const recommended = getRecommendedProducts(post.data.recommendedProducts, 3);
+// Produk rekomendasi — SELALU 3 produk: spesifik dari frontmatter, fallback kategori tech/living
+const recommended = getRecommendedProducts(post.data.recommendedProducts, cat === 'tech' ? 'tech' : 'living', 3);
 
 // JSON-LD: BlogPosting + BreadcrumbList
 const breadcrumbLd = {
