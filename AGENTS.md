@@ -1,7 +1,7 @@
 # AGENTS.md — Web Blog Lofa (Astro + Tailwind)
 
 ## Project
-Blog statis "Lofa" — teknologi & kehidupan sehari-hari. Live di https://fajrilef.github.io/blog/ (repo fajrilef/blog).
+Blog statis "Lofa" — teknologi & kehidupan sehari-hari. Live di https://lofa.web.id (repo fajrilef/blog, branch main=dist, source=source). URL lama fajrilef.github.io/blog/... otomatis 301 ke lofa.web.id/... (jangan ubah CNAME di repo main).
 
 ## Tech Stack
 - Astro 7 (static output, base `/blog`)
@@ -43,4 +43,6 @@ Blog statis "Lofa" — teknologi & kehidupan sehari-hari. Live di https://fajril
 - Jangan ubah URL artikel existing (breaking SEO) — slug harus stabil
 - Jangan hapus `data-search`/`data-title` attributes di card (dipakai search overlay)
 - Setiap deploy: `npm run build` → push `dist/` ke branch `main` (Pages serve dari sana) → push source ke branch `source`
+- **PENTING deploy main**: copy pakai `cp -r dist/. /tmp/mainroot/` (bukan `dist/*` — itu skip file dot!). WAJIB ada `.nojekyll` + `CNAME` (isi `lofa.web.id`) di root repo main, kalau tidak folder `_astro/` disembunyikan Jekyll → aset 404
+- `base: '/'` di astro.config.mjs (bukan /blog — domain serve di root)
 - Jangan tambah dependency berat tanpa alasan (proyek ini ringan)
