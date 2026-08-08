@@ -8,27 +8,43 @@ interface Props {
   excerpt: string;
   tags: string[];
   cover?: string;
+  large?: boolean;
 }
-const { title, url, date, readTime, categoryLabel, excerpt, tags, cover } = Astro.props;
-const accent = 'text-[color:var(--accent)]';
+const { title, url, date, readTime, categoryLabel, excerpt, tags, cover, large = false } = Astro.props;
+const searchText = [title, excerpt, categoryLabel, ...tags].join(' ').replace(/"/g, '&quot;');
 ---
-<article data-card class="reveal group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-  {cover && (
-    <a href={url} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
-      <img src={`/blog/assets/img/${cover}`} alt="" loading="lazy" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-    </a>
-  )}
-  <div class="flex flex-1 flex-col p-5">
-    <div class="mb-2 flex items-center gap-2 text-xs font-semibold">
-      <span class={`rounded-full px-2.5 py-1 ${accent} bg-[color-mix(in_srgb,var(--accent)_10%,transparent)]`}>{categoryLabel}</span>
-      <span class="text-slate-400">{date} · {readTime} mnt baca</span>
+<article
+  data-search={searchText}
+  data-title={title}
+  data-cat={categoryLabel}
+  data-url={url}
+  data-img={cover ? `/blog/assets/img/${cover}` : ''}
+  class={`reveal group relative flex flex-col overflow-hidden rounded-[24px] border border-line bg-surface transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_16px_40px_-16px_rgba(26,24,21,0.18)] dark:border-line-dark dark:bg-surface-dark dark:hover:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.6)] ${large ? 'md:col-span-2' : ''}`}>
+  <a href={url} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
+    {cover ? (
+      <img
+        src={`/blog/assets/img/${cover}`}
+        alt=""
+        loading="lazy"
+        class={`w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] ${large ? 'aspect-[16/8.5] md:aspect-[16/7]' : 'aspect-[16/9.5]'}`}
+      />
+    ) : (
+      <div class={`flex w-full items-center justify-center bg-surface-2 text-4xl dark:bg-surface-2-dark ${large ? 'aspect-[16/7]' : 'aspect-[16/9.5]'}`} aria-hidden="true">
+        <span class="text-ink/20 dark:text-ink-dark/20">📄</span>
+      </div>
+    )}
+  </a>
+  <div class={`flex flex-1 flex-col ${large ? 'p-7 md:p-9' : 'p-6'}`}>
+    <div class="mb-3 flex flex-wrap items-center gap-2.5 text-[13px]">
+      <span class="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent dark:bg-accent-soft-dark dark:text-accent-dark">{categoryLabel}</span>
+      <span class="text-ink-faint">{date} · {readTime} mnt baca</span>
     </div>
-    <h3 class="mb-2 text-lg font-bold leading-snug text-slate-900">
-      <a href={url} class="transition hover:text-[color:var(--accent)]">{title}</a>
+    <h3 class={`mb-3 font-bold leading-snug tracking-tight text-ink transition-colors duration-300 dark:text-ink-dark ${large ? 'text-2xl md:text-[34px] md:leading-[1.15]' : 'text-[19px]'}`}>
+      <a href={url} class="transition-colors duration-300 hover:text-accent dark:hover:text-accent-dark">{title}</a>
     </h3>
-    <p class="mb-4 line-clamp-3 text-sm leading-relaxed text-slate-500">{excerpt}</p>
+    <p class={`mb-5 leading-relaxed text-ink-soft dark:text-ink-soft-dark ${large ? 'text-[15.5px] md:text-base' : 'text-sm'}`}>{excerpt}</p>
     <div class="mt-auto flex flex-wrap gap-1.5">
-      {tags.map((t) => <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-500">{t}</span>)}
+      {tags.map((t) => <span class="rounded-full border border-line px-2.5 py-0.5 text-xs text-ink-faint dark:border-line-dark dark:text-ink-faint-dark">{t}</span>)}
     </div>
   </div>
 </article>

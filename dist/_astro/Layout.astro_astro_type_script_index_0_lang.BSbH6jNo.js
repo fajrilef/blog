@@ -1,1 +1,0 @@
-import{t as e}from"./rolldown-runtime.D9-fqq9M.js";var t=e((()=>{document.documentElement.classList.add(`js`)}));export default t();

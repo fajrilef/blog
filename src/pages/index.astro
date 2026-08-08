@@ -8,46 +8,94 @@ const all = (await getCollection('blog')).filter((p) => !p.data.draft).sort(
 );
 const catLabel = { tech: 'Teknologi', living: 'Kehidupan' };
 const fmt = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-const readTime = (p) => Math.max(1, Math.round(p.body ? p.body.split(/\s+/).length / 200 : 3));
+const readTime = (p) => Math.max(1, Math.round((p.body || '').split(/\s+/).length / 200));
 const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, '');
-const techCount = all.filter((p) => p.data.category === 'tech').length;
-const livingCount = all.filter((p) => p.data.category === 'living').length;
+const featured = all[0];
+const rest = all.slice(1);
 ---
-<Layout title="Lofa — Teknologi & kehidupan sehari-hari" description="Catatan ringkas, panduan praktis, dan rekomendasi yang jujur." theme="portal">
-  <div class="pt-10 sm:pt-14">
-    <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--accent)]">Blog</p>
-    <h1 class="max-w-2xl text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl">
-      Teknologi & kehidupan sehari-hari<span class="text-[color:var(--accent)]">.</span>
+<Layout title="Lofa — Teknologi & kehidupan sehari-hari" description="Catatan ringkas, panduan praktis, dan rekomendasi yang jujur tentang teknologi dan kehidupan sehari-hari." theme="portal">
+  <!-- Hero -->
+  <section class="pt-16 sm:pt-24 md:pt-28">
+    <p class="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-accent dark:text-accent-dark">Blog · Lofa</p>
+    <h1 class="display max-w-4xl text-[44px] leading-[1.04] sm:text-[64px] md:text-[76px] lg:text-[88px]">
+      Teknologi &amp; kehidupan sehari-hari<span class="text-accent dark:text-accent-dark">.</span>
     </h1>
-    <p class="mt-4 max-w-xl text-lg text-slate-500">Catatan ringkas, panduan praktis, dan rekomendasi yang jujur dari Lofa.</p>
-  </div>
-
-  <!-- Kategori -->
-  <section class="mt-10 grid gap-5 sm:grid-cols-2">
-    <a href="/blog/tech/" class="reveal group relative overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-100 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100">
-      <span class="text-3xl">⚙️</span>
-      <h2 class="mt-3 text-xl font-bold text-slate-900">Teknologi</h2>
-      <p class="mt-1.5 text-sm leading-relaxed text-slate-500">Review, tutorial, dan tips produk teknologi — keyboard, gadget, perangkat kerja.</p>
-      <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600">Lihat {techCount} artikel <span class="transition-transform group-hover:translate-x-1">→</span></span>
-      <div class="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full bg-blue-200/40 blur-2xl"></div>
-    </a>
-    <a href="/blog/living/" class="reveal group relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-lime-100 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-100">
-      <span class="text-3xl">🏠</span>
-      <h2 class="mt-3 text-xl font-bold text-slate-900">Kehidupan</h2>
-      <p class="mt-1.5 text-sm leading-relaxed text-slate-500">Rumah tangga, produktivitas, dan hal-hal sehari-hari yang berguna.</p>
-      <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-600">Lihat {livingCount} artikel <span class="transition-transform group-hover:translate-x-1">→</span></span>
-      <div class="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full bg-emerald-200/40 blur-2xl"></div>
-    </a>
+    <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft dark:text-ink-soft-dark sm:text-xl">
+      Catatan ringkas, panduan praktis, dan rekomendasi yang jujur dari Lofa.
+    </p>
   </section>
 
-  <!-- All posts -->
-  <section class="mt-14">
-    <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
-      <h2 class="text-2xl font-bold tracking-tight text-slate-900">All posts</h2>
-      <input type="search" id="searchInput" placeholder="Cari artikel… (misal: keyboard, sayuran)" aria-label="Cari artikel" class="w-full max-w-xs rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--accent)_20%,transparent)]" />
+  <!-- Featured article -->
+  {featured && (
+    <section class="mt-14 sm:mt-20">
+      <a
+        href={`/blog/${featured.data.category}/${slugOf(featured)}/`}
+        data-search={[featured.data.title, featured.data.description, catLabel[featured.data.category], ...featured.data.tags].join(' ').replace(/"/g, '&quot;')}
+        data-title={featured.data.title}
+        data-cat={catLabel[featured.data.category]}
+        data-url={`/blog/${featured.data.category}/${slugOf(featured)}/`}
+        data-img={featured.data.cover ? `/blog/assets/img/${featured.data.cover}` : ''}
+        class="reveal group relative block overflow-hidden rounded-[28px] border border-line bg-surface transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(26,24,21,0.25)] dark:border-line-dark dark:bg-surface-dark dark:hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)]"
+      >
+        {featured.data.cover ? (
+          <img
+            src={`/blog/assets/img/${featured.data.cover}`}
+            alt={featured.data.title}
+            fetchpriority="high"
+            class="aspect-[16/9] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] sm:aspect-[16/8] md:aspect-[16/6.5]"
+          />
+        ) : (
+          <div class="flex aspect-[16/7] w-full items-center justify-center bg-surface-2 text-5xl dark:bg-surface-2-dark" aria-hidden="true">📄</div>
+        )}
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" aria-hidden="true"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8 md:p-12">
+          <div class="mb-3 flex flex-wrap items-center gap-2.5 text-[13px]">
+            <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">{catLabel[featured.data.category]}</span>
+            <span class="text-white/80">{fmt(featured.data.pubDate)} · {readTime(featured)} mnt baca</span>
+          </div>
+          <h2 class="display max-w-3xl text-2xl leading-tight text-white sm:text-3xl md:text-[42px] md:leading-[1.1]">{featured.data.title}</h2>
+          <p class="mt-4 hidden max-w-2xl text-[15.5px] leading-relaxed text-white/85 md:block">{featured.data.description}</p>
+        </div>
+      </a>
+    </section>
+  )}
+
+  <!-- Category pills -->
+  <section class="mt-12 sm:mt-16">
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter kategori">
+      <a href="/blog/" class="rounded-full border border-ink bg-ink px-5 py-2.5 text-sm font-semibold text-canvas transition hover:opacity-85 dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark">Semua</a>
+      <a href="/blog/tech/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">⚙️ Teknologi</a>
+      <a href="/blog/living/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">🏠 Kehidupan</a>
     </div>
-    <div id="cardsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {all.map((p) => (
+  </section>
+
+  <!-- All posts — editorial grid -->
+  <section class="mt-10 sm:mt-14">
+    <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+      <h2 class="display text-2xl tracking-tight sm:text-3xl">Semua artikel</h2>
+      <input
+        id="liveSearchInput"
+        type="search"
+        placeholder="Cari artikel…"
+        aria-label="Cari artikel"
+        class="w-full max-w-[280px] rounded-full border border-line bg-surface px-4 py-2.5 text-sm text-ink outline-none transition placeholder:text-ink-faint focus:border-accent/50 focus:ring-2 focus:ring-accent/15 sm:w-64 dark:border-line-dark dark:bg-surface-dark dark:text-ink-dark dark:placeholder:text-ink-faint-dark"
+      />
+    </div>
+    <div id="cardsGrid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 md:gap-8">
+      {rest.length > 0 && (
+        <PostCard
+          title={rest[0].data.title}
+          url={`/blog/${rest[0].data.category}/${slugOf(rest[0])}/`}
+          date={fmt(rest[0].data.pubDate)}
+          readTime={readTime(rest[0])}
+          categoryLabel={catLabel[rest[0].data.category]}
+          excerpt={rest[0].data.description}
+          tags={rest[0].data.tags}
+          cover={rest[0].data.cover}
+          large
+        />
+      )}
+      {rest.slice(1).map((p) => (
         <PostCard
           title={p.data.title}
           url={`/blog/${p.data.category}/${slugOf(p)}/`}
@@ -62,14 +110,18 @@ const livingCount = all.filter((p) => p.data.category === 'living').length;
     </div>
   </section>
 
-  <!-- Newsletter -->
-  <section class="reveal mt-16 overflow-hidden rounded-3xl border p-8 text-center sm:p-12" style="border-color: color-mix(in srgb, var(--accent) 20%, transparent); background: color-mix(in srgb, var(--accent) 6%, white);">
-    <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Jangan lewatkan update</h2>
-    <p class="mx-auto mt-2 max-w-md text-slate-500">Artikel baru dikirim langsung ke inbox-mu. Tanpa spam.</p>
-    <form id="newsletterForm" class="mx-auto mt-6 flex max-w-md flex-col gap-3 sm:flex-row">
-      <input type="email" id="newsletterEmail" placeholder="Masukkan email kamu" required aria-label="Email" class="flex-1 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm outline-none transition focus:border-[color:var(--accent)]" />
-      <button type="submit" class="rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">Berlangganan</button>
-    </form>
-    <p id="newsletterOk" class="mt-4 font-medium text-[color:var(--accent)]" hidden>✅ Terima kasih! Kamu akan mendapat update artikel terbaru.</p>
+  <!-- Newsletter CTA -->
+  <section class="reveal mt-20 sm:mt-28">
+    <div class="relative overflow-hidden rounded-[28px] border border-line bg-surface-2 px-6 py-14 text-center sm:px-12 md:py-20 dark:border-line-dark dark:bg-surface-2-dark">
+      <div class="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/8 blur-3xl dark:bg-accent-dark/8" aria-hidden="true"></div>
+      <p class="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-accent dark:text-accent-dark">Newsletter</p>
+      <h2 class="display mx-auto max-w-2xl text-3xl leading-tight sm:text-4xl md:text-[44px]">Jangan lewatkan update<span class="text-accent dark:text-accent-dark">.</span></h2>
+      <p class="mx-auto mt-4 max-w-md text-[15.5px] leading-relaxed text-ink-soft dark:text-ink-soft-dark">Artikel baru dikirim langsung ke inbox-mu. Tanpa spam.</p>
+      <form id="newsletterForm" class="mx-auto mt-9 flex max-w-md flex-col gap-3 sm:flex-row">
+        <input type="email" id="newsletterEmail" placeholder="Masukkan email kamu" required aria-label="Email" class="flex-1 rounded-full border border-line bg-surface px-5 py-3.5 text-[15px] text-ink outline-none transition placeholder:text-ink-faint focus:border-accent/50 focus:ring-2 focus:ring-accent/15 dark:border-line-dark dark:bg-surface-dark dark:text-ink-dark dark:placeholder:text-ink-faint-dark" />
+        <button type="submit" class="rounded-full bg-ink px-8 py-3.5 text-[15px] font-semibold text-canvas transition hover:opacity-85 dark:bg-ink-dark dark:text-canvas-dark">Berlangganan</button>
+      </form>
+      <p id="newsletterOk" class="mt-5 font-medium text-accent dark:text-accent-dark" hidden>✅ Terima kasih! Kamu akan mendapat update artikel terbaru.</p>
+    </div>
   </section>
 </Layout>

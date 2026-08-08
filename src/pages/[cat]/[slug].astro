@@ -19,56 +19,93 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, '');
-const all = (await getCollection('blog')).filter((p) => !p.data.draft && p.data.category === post.data.category && slugOf(p) !== slugOf(post)).sort(
+const all = (await getCollection('blog')).filter((p) => !p.data.draft).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const catLabel = { tech: 'Teknologi', living: 'Kehidupan' };
 const fmt = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 const readTime = Math.max(1, Math.round((post.body || '').split(/\s+/).length / 200));
 const tags = post.data.tags || [];
-const related = all.slice(0, 2);
-const pageUrl = `https://fajrilef.github.io/blog/${post.data.category}/${post.slug}/`;
+const related = all.filter((p) => p.data.category === post.data.category && slugOf(p) !== slugOf(post)).slice(0, 2);
+const pageUrl = `https://fajrilef.github.io/blog/${post.data.category}/${slugOf(post)}/`;
 const cat = post.data.category;
 const theme = cat === 'tech' ? 'tech' : 'living';
+// Prev/next navigation (berdasarkan urutan tanggal)
+const idx = all.findIndex((p) => slugOf(p) === slugOf(post));
+const prev = idx > 0 ? all[idx - 1] : null;
+const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
+const prevLabel = prev ? catLabel[prev.data.category] : null;
+const nextLabel = next ? catLabel[next.data.category] : null;
 ---
 <Layout title={`${post.data.title} — Lofa`} description={post.data.description} theme={theme} image={`/assets/img/${post.data.cover}`}>
-  <article class="mx-auto max-w-3xl pt-10 sm:pt-14">
-    <nav class="mb-6 text-sm text-slate-400">
-      <a href="/blog/" class="transition hover:text-[color:var(--accent)]">Beranda</a>
-      <span class="mx-2">/</span>
-      <a href={`/blog/${cat}/`} class="transition hover:text-[color:var(--accent)]">{catLabel[cat]}</a>
+  <article class="mx-auto max-w-[760px] pt-12 sm:pt-16 md:pt-20">
+    <!-- Meta atas -->
+    <nav class="mb-8 flex items-center gap-2 text-sm text-ink-faint" aria-label="Breadcrumb">
+      <a href="/blog/" class="transition hover:text-ink dark:hover:text-ink-dark">Beranda</a>
+      <span aria-hidden="true">/</span>
+      <a href={`/blog/${cat}/`} class="transition hover:text-ink dark:hover:text-ink-dark">{catLabel[cat]}</a>
     </nav>
 
-    {post.data.cover && (
-      <img src={`/blog/assets/img/${post.data.cover}`} alt={post.data.title} fetchpriority="high" class="mb-8 w-full rounded-2xl object-cover shadow-lg" style="max-height: 420px;" />
-    )}
-
-    <h1 class="text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl">{post.data.title}</h1>
-    <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-400">
-      <span class="rounded-full px-3 py-1 font-semibold text-[color:var(--accent)] bg-[color-mix(in_srgb,var(--accent)_10%,transparent)]">{catLabel[cat]}</span>
-      <span>{fmt(post.data.pubDate)} · {readTime} menit baca</span>
+    <div class="mb-5 flex flex-wrap items-center gap-3 text-sm">
+      <span class="rounded-full bg-accent-soft px-3.5 py-1.5 text-[13px] font-semibold text-accent dark:bg-accent-soft-dark dark:text-accent-dark">{catLabel[cat]}</span>
+      <span class="text-ink-faint">{fmt(post.data.pubDate)} · {readTime} menit baca</span>
     </div>
 
-    <div class="prose-blog mt-8">
+    <h1 class="display text-[32px] leading-[1.12] sm:text-[44px] md:text-[52px]">{post.data.title}</h1>
+
+    <p class="mt-6 border-l-2 border-accent pl-5 text-lg leading-relaxed text-ink-soft dark:border-accent-dark dark:text-ink-soft-dark">{post.data.description}</p>
+
+    <!-- Hero image -->
+    {post.data.cover && (
+      <img
+        src={`/blog/assets/img/${post.data.cover}`}
+        alt={post.data.title}
+        fetchpriority="high"
+        class="mt-10 aspect-[16/9] w-full rounded-[24px] object-cover"
+      />
+    )}
+
+    <!-- Body -->
+    <div class="prose-blog mt-12">
       <Content />
     </div>
 
+    <!-- Tags -->
     {tags.length > 0 && (
-      <div class="mt-8 flex flex-wrap gap-2">
-        {tags.map((t) => <span class="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-500">{t}</span>)}
+      <div class="mt-12 flex flex-wrap gap-2">
+        {tags.map((t) => <span class="rounded-full border border-line px-3.5 py-1.5 text-[13px] text-ink-faint dark:border-line-dark dark:text-ink-faint-dark">#{t}</span>)}
       </div>
     )}
 
-    <div class="mt-10 flex flex-wrap gap-3 border-t border-slate-200 pt-6">
-      <button class="btn-copy rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]" data-url={pageUrl}>🔗 Salin link</button>
-      <a class="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]" target="_blank" rel="noopener" href={`https://t.me/share/url?url=${pageUrl}&text=${encodeURIComponent(post.data.title)}`}>📨 Bagikan ke Telegram</a>
+    <!-- Share -->
+    <div class="mt-10 flex flex-wrap items-center gap-3 border-t border-line pt-8 dark:border-line-dark">
+      <span class="text-sm font-semibold text-ink dark:text-ink-dark">Bagikan:</span>
+      <button class="btn-copy flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-ink-soft transition hover:border-accent/50 hover:text-accent dark:border-line-dark dark:text-ink-soft-dark dark:hover:border-accent-dark/50 dark:hover:text-accent-dark" data-url={pageUrl}>🔗 Salin link</button>
+      <a class="flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-ink-soft transition hover:border-accent/50 hover:text-accent dark:border-line-dark dark:text-ink-soft-dark dark:hover:border-accent-dark/50 dark:hover:text-accent-dark" target="_blank" rel="noopener" href={`https://t.me/share/url?url=${pageUrl}&text=${encodeURIComponent(post.data.title)}`}>📨 Telegram</a>
     </div>
   </article>
 
+  <!-- Prev / Next -->
+  <nav class="mx-auto mt-14 grid max-w-[760px] gap-4 sm:grid-cols-2" aria-label="Navigasi artikel">
+    {prev ? (
+      <a href={`/blog/${prev.data.category}/${slugOf(prev)}/`} class="group rounded-[20px] border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/40">
+        <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">← Sebelumnya · {prevLabel}</span>
+        <span class="mt-2 block text-[15px] font-semibold leading-snug text-ink transition group-hover:text-accent dark:text-ink-dark dark:group-hover:text-accent-dark">{prev.data.title}</span>
+      </a>
+    ) : <span></span>}
+    {next ? (
+      <a href={`/blog/${next.data.category}/${slugOf(next)}/`} class="group rounded-[20px] border border-line bg-surface p-6 text-right transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/40">
+        <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">Selanjutnya · {nextLabel} →</span>
+        <span class="mt-2 block text-[15px] font-semibold leading-snug text-ink transition group-hover:text-accent dark:text-ink-dark dark:group-hover:text-accent-dark">{next.data.title}</span>
+      </a>
+    ) : <span></span>}
+  </nav>
+
+  <!-- Related -->
   {related.length > 0 && (
-    <section class="mx-auto mt-16 max-w-6xl">
-      <h2 class="mb-5 text-2xl font-bold tracking-tight text-slate-900">Baca juga</h2>
-      <div class="grid gap-6 sm:grid-cols-2">
+    <section class="mx-auto mt-20 max-w-7xl">
+      <h2 class="display mb-8 text-2xl tracking-tight sm:text-3xl">Baca juga</h2>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8">
         {related.map((r) => (
           <PostCard
             title={r.data.title}

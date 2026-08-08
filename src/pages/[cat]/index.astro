@@ -15,25 +15,59 @@ const all = (await getCollection('blog')).filter((p) => !p.data.draft && p.id.st
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const meta = {
-  tech: { label: 'Teknologi', emoji: '⚙️', desc: 'Review, tutorial, dan tips produk teknologi — keyboard, gadget, perangkat kerja.', theme: 'tech', grad: 'from-blue-50 via-white to-sky-100', accentText: 'text-blue-600' },
-  living: { label: 'Kehidupan', emoji: '🏠', desc: 'Rumah tangga, produktivitas, dan hal-hal sehari-hari yang berguna.', theme: 'living', grad: 'from-emerald-50 via-white to-lime-100', accentText: 'text-emerald-600' },
+  tech: { label: 'Teknologi', emoji: '⚙️', desc: 'Review, tutorial, dan tips produk teknologi — keyboard, gadget, perangkat kerja.', theme: 'tech' },
+  living: { label: 'Kehidupan', emoji: '🏠', desc: 'Rumah tangga, produktivitas, dan hal-hal sehari-hari yang berguna.', theme: 'living' },
 }[cat];
+const other = cat === 'tech' ? 'living' : 'tech';
 const catLabel = { tech: 'Teknologi', living: 'Kehidupan' };
 const fmt = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-const readTime = (p) => Math.max(1, Math.round(p.body ? p.body.split(/\s+/).length / 200 : 3));
+const readTime = (p) => Math.max(1, Math.round((p.body || '').split(/\s+/).length / 200));
 const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, '');
 ---
 <Layout title={`${meta.label} — Lofa`} description={meta.desc} theme={meta.theme}>
-  <div class="pt-10 sm:pt-14">
-    <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--accent)]">{meta.emoji} Kategori</p>
-    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">{meta.label}</h1>
-    <p class="mt-4 max-w-xl text-lg text-slate-500">{meta.desc}</p>
-  </div>
+  <!-- Header kategori -->
+  <section class="pt-14 sm:pt-20 md:pt-24">
+    <p class="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-accent dark:text-accent-dark">{meta.emoji} Kategori</p>
+    <h1 class="display text-[42px] leading-[1.05] sm:text-[56px] md:text-[68px]">{meta.label}</h1>
+    <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft dark:text-ink-soft-dark">{meta.desc}</p>
+  </section>
 
+  <!-- Category pills -->
   <section class="mt-10">
-    <input type="search" id="searchInput" placeholder={`Cari di ${meta.label.toLowerCase()}…`} aria-label="Cari artikel" class="mb-6 w-full max-w-xs rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--accent)_20%,transparent)]" />
-    <div id="cardsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {all.map((p) => (
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter kategori">
+      <a href="/blog/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">Semua</a>
+      <a href="/blog/tech/" class={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${cat === 'tech' ? 'border-ink bg-ink text-canvas dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark' : 'border-line bg-surface text-ink-soft hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark'}`}>⚙️ Teknologi</a>
+      <a href="/blog/living/" class={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${cat === 'living' ? 'border-ink bg-ink text-canvas dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark' : 'border-line bg-surface text-ink-soft hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark'}`}>🏠 Kehidupan</a>
+    </div>
+  </section>
+
+  <!-- Grid artikel -->
+  <section class="mt-10 sm:mt-12">
+    <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+      <h2 class="display text-2xl tracking-tight sm:text-3xl">{all.length} artikel</h2>
+      <input
+        id="liveSearchInput"
+        type="search"
+        placeholder={`Cari di ${meta.label.toLowerCase()}…`}
+        aria-label="Cari artikel"
+        class="w-full max-w-[280px] rounded-full border border-line bg-surface px-4 py-2.5 text-sm text-ink outline-none transition placeholder:text-ink-faint focus:border-accent/50 focus:ring-2 focus:ring-accent/15 sm:w-64 dark:border-line-dark dark:bg-surface-dark dark:text-ink-dark dark:placeholder:text-ink-faint-dark"
+      />
+    </div>
+    <div id="cardsGrid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 md:gap-8">
+      {all.length > 0 && (
+        <PostCard
+          title={all[0].data.title}
+          url={`/blog/${cat}/${slugOf(all[0])}/`}
+          date={fmt(all[0].data.pubDate)}
+          readTime={readTime(all[0])}
+          categoryLabel={catLabel[cat]}
+          excerpt={all[0].data.description}
+          tags={all[0].data.tags}
+          cover={all[0].data.cover}
+          large
+        />
+      )}
+      {all.slice(1).map((p) => (
         <PostCard
           title={p.data.title}
           url={`/blog/${cat}/${slugOf(p)}/`}
@@ -46,6 +80,6 @@ const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, 
         />
       ))}
     </div>
-    {all.length === 0 && <p class="py-10 text-center text-slate-400">Belum ada artikel di kategori ini.</p>}
+    {all.length === 0 && <p class="py-16 text-center text-ink-faint">Belum ada artikel di kategori ini.</p>}
   </section>
 </Layout>
