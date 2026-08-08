@@ -1,0 +1,116 @@
+---
+title: "Keyboard Tidak Terdeteksi di Windows? Ini Cara Mengatasinya"
+description: "Keyboard tidak terdeteksi di Windows bisa bikin panik. Simak langkah diagnosis dan solusi untuk membuat keyboard kembali berfungsi."
+pubDate: 2026-08-09
+category: tech
+tags: [keyboard, windows, tidak terdeteksi, troubleshoot]
+cover: cover-keyboard-not-detected.svg
+recommendedProducts:
+  - keyboard-hotswap
+  - keyboard-mechanical-entry
+  - keyboard-brown-switch
+---
+
+Keyboard mechanical (atau keyboard biasa) tiba-tiba tidak terdeteksi di Windows: tidak ada notifikasi suara "USB connected", tidak muncul di Device Manager, dan tombol-tombol tidak merespons sama sekali. Jangan panik — ikuti langkah diagnosis ini berurutan.
+
+## Cepat: cek fisik dulu (30 detik)
+
+| Cek | Aksi |
+|---|---|
+| **Kabel** | Cabut & colok ulang (kedua ujung). Coba port USB lain (langsung ke motherboard, bukan hub). |
+| **Kabel lain** | Pinjam kabel USB-C / Micro-USB lain yang pasti bagus. |
+| **PC lain** | Colok ke laptop/PC lain. **Terdeteksi di PC lain = masalah Windows/port. Tidak terdeteksi di mana pun = keyboard/kabel rusak.** |
+
+---
+
+## 1. Restart Windows (sering cukup)
+
+Restart penuh (bukan *Sleep* / *Hibernate*) — ini me-reset stack USB Windows.
+
+---
+
+## 2. Cek Device Manager
+
+`Win + X` → **Device Manager** → cari di:
+- **Keyboards** → apakah ada "HID Keyboard Device" / nama keyboard?
+- **Universal Serial Bus controllers** → apakah ada "Unknown Device" / tanda seru kuning?
+
+**Ada tanda seru / Unknown Device:**
+1. Klik kanan → **Uninstall device** → centang "Attempt to remove the driver" → OK.
+2. Cabut keyboard → colok ulang → Windows install driver ulang otomatis.
+
+**Tidak ada sama sekali di Device Manager:**
+- Masalahnya di **port USB / kabel / hardware keyboard** (bukan driver).
+
+---
+
+## 3. Cek *USB Selective Suspend* (power management)
+
+Windows kadang mematikan port USB untuk hemat daya.
+
+1. `Win + R` → `powercfg.cpl` → **Change plan settings** → **Change advanced power settings**.
+2. **USB settings** → **USB selective suspend setting** → **Disabled** (Plugged in & On battery).
+3. Apply → restart.
+
+---
+
+## 4. Update / reinstall driver *USB Controller*
+
+`Win + X` → **Device Manager** → **Universal Serial Bus controllers** → klik kanan setiap **"USB Root Hub"** & **"Generic USB Hub"** → **Update driver** → **Search automatically**.
+
+Atau: klik kanan → **Uninstall device** (semua Root Hub/Hub) → restart → Windows install ulang otomatis.
+
+---
+
+## 5. Cek *Filter Keys* / *Sticky Keys* (aksesibilitas)
+
+Kadang fitur aksesibilitas mengganggu input keyboard.
+
+`Settings` → **Accessibility** → **Keyboard** → matikan:
+- **Sticky keys**
+- **Filter keys**
+- **Toggle keys**
+
+---
+
+## 6. Cek BIOS/UEFI (kalau keyboard tidak jalan di BIOS pun)
+
+Restart → masuk BIOS (biasanya `Del` / `F2` / `F12` saat boot).
+- Keyboard jalan di BIOS? → Masalah Windows (driver/power management).
+- Keyboard **tidak** jalan di BIOS? → Masalah **hardware** (keyboard/kabel/port motherboard).
+
+---
+
+## 7. *System Restore* (kalau baru terjadi setelah update/install software)
+
+`Win + R` → `rstrui` → pilih restore point sebelum masalah muncul.
+
+---
+
+## 8. Clean boot (diagnosis software pihak ketiga)
+
+`Win + R` → `msconfig` → **Services** → centang **Hide all Microsoft services** → **Disable all** → **Startup** → **Open Task Manager** → disable semua startup → restart.
+
+Kalau keyboard jalan di *clean boot* → salah satu software startup yang bikin conflict (antivirus, keyboard RGB software, dll).
+
+---
+
+## Ringkasan keputusan
+
+| Gejala | Kemungkinan besar | Solusi |
+|---|---|---|
+| Tidak terdeteksi di **mana pun** (PC lain, BIOS) | Keyboard/kabel rusak | Ganti kabel → tetap tidak? Ganti keyboard |
+| Terdeteksi di PC lain, **tidak di PC ini** | Driver / port USB / power management | Poin 2, 3, 4 |
+| Terdeteksi di BIOS, **tidak di Windows** | Driver Windows / Filter Keys | Poin 2, 5 |
+| Muncul "Unknown Device" di Device Manager | Driver corrupt / kabel longgar | Poin 2 + cabut colok ulang |
+
+## Kesimpulan
+
+Uruthan paling efisien: **cabut-colok kabel → cek PC lain → Device Manager uninstall driver → matikan USB Selective Suspend**. 90% kasus terselesaikan di 4 langkah pertama.
+
+---
+
+**Artikel terkait:**
+- [Cara Mengatasi Keyboard Mechanical Double Input](/blog/tech/cara-mengatasi-keyboard-mechanical-double-input/)
+- [Cara Mengatasi Tombol Keyboard Mechanical Tidak Berfungsi](/blog/tech/cara-mengatasi-tombol-keyboard-mechanical-tidak-berfungsi/)
+- [Apa Itu Hot-Swap pada Keyboard Mechanical?](/blog/tech/apa-itu-hot-swap-keyboard-mechanical/)
