@@ -68,16 +68,37 @@ function parseIds(url) {
   return m ? { shopid: m[1], itemid: m[2] } : null;
 }
 
+async function getAnonymousCookie() {
+  // Buka homepage → ambil Set-Cookie (SPC_F dkk) — cookie anonim, BUKAN login
+  try {
+    const res = await fetchUrl('https://shopee.co.id/', {
+      method: 'GET',
+      headers: buildHeaders({ 'Accept': 'text/html' }),
+    });
+    const setCookies = res.headers['set-cookie'] || [];
+    const cookies = setCookies.map((c) => c.split(';')[0]).filter(Boolean);
+    return cookies.join('; ');
+  } catch {
+    return '';
+  }
+}
+
 async function fetchProduct(shortUrl) {
   try {
     const resolved = await resolveShortLink(shortUrl);
     const ids = parseIds(resolved);
     if (!ids) return { shortUrl, error: true, reason: 'tidak bisa parse shopid/itemid' };
+    // Ambil cookie anonim (SPC_F) — sering diperlukan agar API tidak 403
+    const anonCookie = await getAnonymousCookie();
     const apiUrl = `https://shopee.co.id/api/v4/item/get?itemid=${ids.itemid}&shopid=${ids.shopid}`;
     const res = await fetchUrl(apiUrl, {
-      headers: buildHeaders({ 'Accept': 'application/json', 'Referer': 'https://shopee.co.id/' }),
+      headers: buildHeaders({
+        'Accept': 'application/json',
+        'Referer': 'https://shopee.co.id/',
+        ...(anonCookie ? { 'Cookie': anonCookie } : {}),
+      }),
     });
-    if (res.status !== 200) return { shortUrl, shopid: ids.shopid, itemid: ids.itemid, error: true, reason: `API HTTP ${res.status}` };
+    if (res.status !== 200) return { shortUrl, shopid: ids.shopid, itemid: ids.itemid, error: true, reason: `API HTTP ${res.status}${anonCookie ? ' (cookie: ok)' : ' (tanpa cookie)'}` };
     let json = null;
     try { json = JSON.parse(res.body); } catch {}
     if (!json || json.error) return { shortUrl, shopid: ids.shopid, itemid: ids.itemid, error: true, reason: `API error ${json?.error ?? 'parse'}` };

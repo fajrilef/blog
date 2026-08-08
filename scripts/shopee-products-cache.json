@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-08-08T11:51:49.567Z",
+  "products": {
+    "https://s.shopee.co.id/2BDuxZTDcv": {
+      "shortUrl": "https://s.shopee.co.id/2BDuxZTDcv",
+      "shopid": "920928141",
+      "itemid": "23311645306",
+      "error": true,
+      "reason": "API HTTP 403"
+    }
+  }
+}
