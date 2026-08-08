@@ -336,6 +336,12 @@ const pagePath = path || Astro.url.pathname;
               if (list.indexOf(email) === -1) list.push(email);
               localStorage.setItem('lofa_newsletter', JSON.stringify(list));
             } catch (err) {}
+            // Kirim ke kontak@lofa.web.id via FormSubmit AJAX
+            var fd = new FormData();
+            fd.append('Email', email);
+            fd.append('_subject', 'Berlangganan Newsletter Lofa');
+            fd.append('_captcha', 'false');
+            fetch('https://formsubmit.co/ajax/kontak@lofa.web.id', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(function () {});
           }
           nf.style.display = 'none';
           document.getElementById('newsletterOk').hidden = false;

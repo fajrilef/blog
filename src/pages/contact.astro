@@ -22,23 +22,25 @@ import StaticPage from '../layouts/StaticPage.astro';
 
   <h2>Formulir kontak</h2>
   <p>
-    Formulir di bawah ini <strong>hanya tampilan (UI placeholder)</strong> — belum terhubung ke server email mana pun.
-    Untuk saat ini, silakan gunakan alamat email di atas (klik untuk membuka aplikasi email kamu).
+    Isi formulir di bawah ini — pesan akan langsung dikirim ke kontak@lofa.web.id.
   </p>
-  <form class="mt-6 space-y-4 rounded-[20px] border border-line bg-surface p-6 dark:border-line-dark dark:bg-surface-dark" aria-label="Formulir kontak (placeholder)">
+  <form class="mt-6 space-y-4 rounded-[20px] border border-line bg-surface p-6 dark:border-line-dark dark:bg-surface-dark" action="https://formsubmit.co/kontak@lofa.web.id" method="POST" aria-label="Formulir kontak">
+    <input type="hidden" name="_subject" value="Pesan dari halaman Kontak Lofa" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
     <div>
       <label for="contactName" class="mb-1.5 block text-sm font-medium text-ink dark:text-ink-dark">Nama</label>
-      <input id="contactName" type="text" class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="Nama kamu" />
+      <input id="contactName" name="Nama" type="text" required class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="Nama kamu" />
     </div>
     <div>
       <label for="contactEmail" class="mb-1.5 block text-sm font-medium text-ink dark:text-ink-dark">Email</label>
-      <input id="contactEmail" type="email" class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="email@contoh.com" />
+      <input id="contactEmail" name="Email" type="email" required class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="email@contoh.com" />
     </div>
     <div>
       <label for="contactMessage" class="mb-1.5 block text-sm font-medium text-ink dark:text-ink-dark">Pesan</label>
-      <textarea id="contactMessage" rows="4" class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="Tulis pesan kamu…"></textarea>
+      <textarea id="contactMessage" name="Pesan" rows="4" required class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="Tulis pesan kamu…"></textarea>
     </div>
-    <button type="button" class="rounded-full bg-ink px-7 py-3 text-sm font-semibold text-canvas transition hover:opacity-85 dark:bg-ink-dark dark:text-canvas-dark" disabled>Kirim (nonaktif — placeholder)</button>
-    <p class="text-xs text-ink-faint">⚠️ Formulir ini belum aktif. Gunakan email di atas untuk menghubungi kami.</p>
+    <button type="submit" class="rounded-full bg-ink px-7 py-3 text-sm font-semibold text-canvas transition hover:opacity-85 dark:bg-ink-dark dark:text-canvas-dark">Kirim</button>
+    <p class="text-xs text-ink-faint">Pesan akan dikirim ke kontak@lofa.web.id.</p>
   </form>
 </StaticPage>

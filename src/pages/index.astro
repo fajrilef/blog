@@ -122,8 +122,11 @@ const rest = all.slice(1);
       <p class="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-accent dark:text-accent-dark">Newsletter</p>
       <h2 class="display mx-auto max-w-2xl text-3xl leading-tight sm:text-4xl md:text-[44px]">Jangan lewatkan update<span class="text-accent dark:text-accent-dark">.</span></h2>
       <p class="mx-auto mt-4 max-w-md text-[15.5px] leading-relaxed text-ink-soft dark:text-ink-soft-dark">Artikel baru dikirim langsung ke inbox-mu. Tanpa spam.</p>
-      <form id="newsletterForm" class="mx-auto mt-9 flex max-w-md flex-col gap-3 sm:flex-row">
-        <input type="email" id="newsletterEmail" placeholder="Masukkan email kamu" required aria-label="Email" class="flex-1 rounded-full border border-line bg-surface px-5 py-3.5 text-[15px] text-ink outline-none transition placeholder:text-ink-faint focus:border-accent/50 focus:ring-2 focus:ring-accent/15 dark:border-line-dark dark:bg-surface-dark dark:text-ink-dark dark:placeholder:text-ink-faint-dark" />
+      <form id="newsletterForm" class="mx-auto mt-9 flex max-w-md flex-col gap-3 sm:flex-row" action="https://formsubmit.co/kontak@lofa.web.id" method="POST">
+        <input type="hidden" name="_subject" value="Berlangganan Newsletter Lofa" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://lofa.web.id/?langganan=1" />
+        <input type="email" id="newsletterEmail" name="Email" placeholder="Masukkan email kamu" required aria-label="Email" class="flex-1 rounded-full border border-line bg-surface px-5 py-3.5 text-[15px] text-ink outline-none transition placeholder:text-ink-faint focus:border-accent/50 focus:ring-2 focus:ring-accent/15 dark:border-line-dark dark:bg-surface-dark dark:text-ink-dark dark:placeholder:text-ink-faint-dark" />
         <button type="submit" class="rounded-full bg-ink px-8 py-3.5 text-[15px] font-semibold text-canvas transition hover:opacity-85 dark:bg-ink-dark dark:text-canvas-dark">Berlangganan</button>
       </form>
       <p id="newsletterOk" class="mt-5 font-medium text-accent dark:text-accent-dark" hidden>✅ Terima kasih! Kamu akan mendapat update artikel terbaru.</p>
