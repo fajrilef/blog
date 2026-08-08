@@ -52,17 +52,17 @@ export const PRODUCTS: Record<string, Product> = {
   },
   'keyboard-hotswap': {
     id: 'keyboard-hotswap',
-    name: 'Keyboard mechanical hot-swap',
+    name: 'ZIFRIEND KA646 Mechanical Keyboard RGB Gaming 65% Hot Swap Red/Blue Switch Wired Keyboard',
     description: 'Keyboard mechanical dengan dudukan hot-swap — switch bisa diganti tanpa solder.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/2BDuxZTDcv', image: null, category: 'tech',
+    affiliateUrl: 'https://s.shopee.co.id/2BDuxZTDcv', image: 'affiliate-keyboard-hotswap.webp', category: 'tech',
   },
   'keyboard-brown-switch': {
     id: 'keyboard-brown-switch',
-    name: 'Keyboard mechanical switch brown',
+    name: 'Wired Keyboard Mechanical Keyboard Gaming RGB',
     description: 'Switch tactile dengan benjolan halus — kompromi nyaman untuk mengetik dan bermain.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/2VqlMDDBdr', image: null, category: 'tech',
+    affiliateUrl: 'https://s.shopee.co.id/2VqlMDDBdr', image: 'affiliate-keyboard-brown-switch.webp', category: 'tech',
   },
   'switch-tester': {
     id: 'switch-tester',
@@ -73,10 +73,10 @@ export const PRODUCTS: Record<string, Product> = {
   },
   'keyboard-mechanical-entry': {
     id: 'keyboard-mechanical-entry',
-    name: 'Keyboard mechanical entry (under 500rb)',
+    name: 'Keyboard dan Mouse Gaming MENGMA dengan Lampu RGB Cahaya / Termasuk Mouse dan Keyboard',
     description: 'Keyboard mechanical ramah kantong untuk pemula yang ingin merasakan perbedaan dari keyboard biasa.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/19QNdm0k6', image: null, category: 'tech',
+    affiliateUrl: 'https://s.shopee.co.id/19QNdm0k6', image: 'affiliate-keyboard-mechanical-entry.webp', category: 'tech',
   },
   'keyboard-60': {
     id: 'keyboard-60',
@@ -140,40 +140,40 @@ export const PRODUCTS: Record<string, Product> = {
   },
   'storage-box': {
     id: 'storage-box',
-    name: 'Kotak penyimpanan',
+    name: 'Kotak Penyimpanan Serbaguna Set Isi 6 Storage Box Organizer',
     description: 'Kotak penyimpanan serbaguna untuk merapikan barang di rumah.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/AKZcgjEuYU', image: null, category: 'living',
+    affiliateUrl: 'https://s.shopee.co.id/AKZcgjEuYU', image: 'affiliate-storage-box.webp', category: 'living',
   },
   'microfiber-cloth': {
     id: 'microfiber-cloth',
-    name: 'Lap microfiber',
+    name: 'Kain Lap Microfiber 2 in 1',
     description: 'Lap microfiber lembut untuk membersihkan perangkat tanpa meninggalkan goresan.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/9ANfIbaXzX', image: null, category: 'living',
+    affiliateUrl: 'https://s.shopee.co.id/9ANfIbaXzX', image: 'affiliate-microfiber-cloth.webp', category: 'living',
   },
 
   // === Dapur / Food Storage (living) ===
   'food-storage-container': {
     id: 'food-storage-container',
-    name: 'Wadah penyimpanan sayuran',
+    name: 'Fresh Guard Double Seal Ziplock / Plastik Klip Zip Lock / Kantong Penyimpanan Makanan Serbaguna',
     description: 'Wadah kedap udara untuk menyimpan sayuran agar tetap segar lebih lama di kulkas.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/2qTbl2K0FB', image: null, category: 'living',
+    affiliateUrl: 'https://s.shopee.co.id/2qTbl2K0FB', image: 'affiliate-food-storage-container.webp', category: 'living',
   },
   'ziplock-bag': {
     id: 'ziplock-bag',
-    name: 'Kantong ziplock',
+    name: 'Plastik Ziplock Pouch reusable fresh bag kantong kulkas penyimpanan makanan',
     description: 'Kantong plastik kedap udara — praktis untuk menyimpan sayur, bumbu, dan bahan makanan.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/2gABYicEBR', image: null, category: 'living',
+    affiliateUrl: 'https://s.shopee.co.id/2gABYicEBR', image: 'affiliate-ziplock-bag.webp', category: 'living',
   },
   'airtight-container': {
     id: 'airtight-container',
-    name: 'Wadah kedap udara',
+    name: 'Food Box Container Set 10pcs Stainless Steel Wadah Makanan Food Prep Food Container Kulkas Serbaguna',
     description: 'Wadah kedap udara untuk menyimpan bumbu dan bahan makanan agar awet.',
     price: null, merchant: null,
-    affiliateUrl: 'https://s.shopee.co.id/60QdWsbitD', image: null, category: 'living',
+    affiliateUrl: 'https://s.shopee.co.id/60QdWsbitD', image: 'affiliate-airtight-container.webp', category: 'living',
   },
 };
 
