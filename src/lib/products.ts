@@ -46,14 +46,14 @@ export const PRODUCTS: Record<string, Product> = {
   },
   'keyboard-hotswap': {
     id: 'keyboard-hotswap',
-    name: 'Keyboard Mechanical Hot-Swap',
+    name: 'Keyboard mechanical hot-swap',
     description: 'Keyboard mechanical dengan dudukan hot-swap — switch bisa diganti tanpa solder.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/2BDuxZTDcv', image: null, category: 'tech',
   },
   'keyboard-brown-switch': {
     id: 'keyboard-brown-switch',
-    name: 'Keyboard Switch Brown (Tactile)',
+    name: 'Keyboard mechanical switch brown',
     description: 'Switch tactile dengan benjolan halus — kompromi nyaman untuk mengetik dan bermain.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/2VqlMDDBdr', image: null, category: 'tech',
@@ -67,7 +67,7 @@ export const PRODUCTS: Record<string, Product> = {
   },
   'keyboard-mechanical-entry': {
     id: 'keyboard-mechanical-entry',
-    name: 'Keyboard Mechanical Entry',
+    name: 'Keyboard mechanical entry (under 500rb)',
     description: 'Keyboard mechanical ramah kantong untuk pemula yang ingin merasakan perbedaan dari keyboard biasa.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/19QNdm0k6', image: null, category: 'tech',
@@ -90,7 +90,7 @@ export const PRODUCTS: Record<string, Product> = {
   },
   'ram-laptop': {
     id: 'ram-laptop',
-    name: 'RAM Laptop',
+    name: 'RAM laptop',
     description: 'Tambah RAM laptop untuk multitasking yang lebih lancar, terutama saat banyak tab terbuka.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/19QNiAeik', image: null, category: 'tech',
@@ -134,14 +134,14 @@ export const PRODUCTS: Record<string, Product> = {
   },
   'storage-box': {
     id: 'storage-box',
-    name: 'Kotak Penyimpanan',
+    name: 'Kotak penyimpanan',
     description: 'Kotak penyimpanan serbaguna untuk merapikan barang di rumah.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/AKZcgjEuYU', image: null, category: 'living',
   },
   'microfiber-cloth': {
     id: 'microfiber-cloth',
-    name: 'Lap Microfiber',
+    name: 'Lap microfiber',
     description: 'Lap microfiber lembut untuk membersihkan perangkat tanpa meninggalkan goresan.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/9ANfIbaXzX', image: null, category: 'living',
@@ -150,21 +150,21 @@ export const PRODUCTS: Record<string, Product> = {
   // === Dapur / Food Storage (living) ===
   'food-storage-container': {
     id: 'food-storage-container',
-    name: 'Wadah Penyimpanan Sayuran',
+    name: 'Wadah penyimpanan sayuran',
     description: 'Wadah kedap udara untuk menyimpan sayuran agar tetap segar lebih lama di kulkas.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/2qTbl2K0FB', image: null, category: 'living',
   },
   'ziplock-bag': {
     id: 'ziplock-bag',
-    name: 'Kantong Ziplock',
+    name: 'Kantong ziplock',
     description: 'Kantong plastik kedap udara — praktis untuk menyimpan sayur, bumbu, dan bahan makanan.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/2gABYicEBR', image: null, category: 'living',
   },
   'airtight-container': {
     id: 'airtight-container',
-    name: 'Wadah Kedap Udara',
+    name: 'Wadah kedap udara',
     description: 'Wadah kedap udara untuk menyimpan bumbu dan bahan makanan agar awet.',
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/60QdWsbitD', image: null, category: 'living',

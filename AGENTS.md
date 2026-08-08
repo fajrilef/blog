@@ -27,7 +27,10 @@ Blog statis "Lofa" — teknologi & kehidupan sehari-hari. Live di https://fajril
 - `src/layouts/StaticPage.astro` — layout halaman statis (about/contact/privacy/disclaimer)
 - `src/lib/article.ts` — helper slugOf/readTimeOf/fmtDate/findRelated (related: kategori → tag → terbaru)
 - `src/lib/author.ts` — default author object (Lofa) + authorLd()
-- `src/content.config.ts` — glob loader `{ pattern: '**/*.{md,mdx}', base: './src/content/blog' }`
+- `src/lib/products.ts` — katalog produk affiliate (affiliateUrl dari Google Sheets "Produk Affiliate" via `scripts/sync_shopee_products.py`)
+- `scripts/sync_shopee_products.py` — sync otomatis: baca sheet → resolve s.shopee.co.id → parse shop_id/item_id → fetch foto+judul via Shopee Affiliate Open API (butuh SHOPEE_APP_ID/SECRET env; tanpa itu resolve+affiliate tetap jalan)
+- `scripts/fetch_shopee_product.py` — fetch 1 produk (debug/tool)
+- `src/content.config.ts` — glob loader `{ pattern: '**/*.{md,mdx}', base: './src/content/blog' }'`
 
 ## Konvensi
 - Slug artikel = nama file (tanpa ekstensi); di getStaticPaths parse dari `p.id` (`p.id.split('/').slice(1).join('/')`), jangan pakai `p.slug`
