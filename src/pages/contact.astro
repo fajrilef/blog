@@ -1,0 +1,46 @@
+---
+import StaticPage from '../layouts/StaticPage.astro';
+---
+<StaticPage
+  title="Kontak"
+  description="Hubungi tim Lofa — saran, koreksi, atau pertanyaan."
+  path="/blog/contact/"
+>
+  <h2>Hubungi kami</h2>
+  <p>
+    Punya saran topik, menemukan koreksi, atau sekadar ingin menyapa? Kirim pesan melalui email di bawah — kami baca
+    dan balas sebisanya.
+  </p>
+
+  <p>
+    <strong>Email:</strong>{' '}
+    <a href="mailto:halo@lofa.example">halo@lofa.example</a>
+    <br />
+    <em>(alamat email placeholder — akan diperbarui saat email resmi aktif)</em>
+  </p>
+
+  <h2>Formulir kontak</h2>
+  <p>
+    Formulir di bawah ini <strong>hanya tampilan (UI placeholder)</strong> — belum terhubung ke server email mana pun.
+    Untuk saat ini, silakan gunakan alamat email di atas.
+  </p>
+  <form class="mt-6 space-y-4 rounded-[20px] border border-line bg-surface p-6 dark:border-line-dark dark:bg-surface-dark" aria-label="Formulir kontak (placeholder)">
+    <div>
+      <label for="contactName" class="mb-1.5 block text-sm font-medium text-ink dark:text-ink-dark">Nama</label>
+      <input id="contactName" type="text" class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="Nama kamu" />
+    </div>
+    <div>
+      <label for="contactEmail" class="mb-1.5 block text-sm font-medium text-ink dark:text-ink-dark">Email</label>
+      <input id="contactEmail" type="email" class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="email@contoh.com" />
+    </div>
+    <div>
+      <label for="contactMessage" class="mb-1.5 block text-sm font-medium text-ink dark:text-ink-dark">Pesan</label>
+      <textarea id="contactMessage" rows="4" class="w-full rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink outline-none focus:border-accent/50 dark:border-line-dark dark:bg-canvas-dark dark:text-ink-dark" placeholder="Tulis pesan kamu…"></textarea>
+    </div>
+    <button type="button" class="rounded-full bg-ink px-7 py-3 text-sm font-semibold text-canvas transition hover:opacity-85 dark:bg-ink-dark dark:text-canvas-dark" disabled>Kirim (nonaktif — placeholder)</button>
+    <p class="text-xs text-ink-faint">⚠️ Formulir ini belum aktif. Gunakan email di atas untuk menghubungi kami.</p>
+  </form>
+
+  <h2>Media sosial</h2>
+  <p>Akun media sosial resmi belum tersedia. Halaman ini akan diperbarui saat sudah ada.</p>
+</StaticPage>

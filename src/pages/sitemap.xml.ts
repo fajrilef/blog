@@ -3,7 +3,16 @@ import path from 'node:path';
 
 export async function GET(context) {
   const base = 'https://fajrilef.github.io/blog';
-  const urls = [`${base}/`, `${base}/tech/`, `${base}/living/`];
+  // Halaman statis + kategori
+  const urls = [
+    `${base}/`,
+    `${base}/tech/`,
+    `${base}/living/`,
+    `${base}/about/`,
+    `${base}/contact/`,
+    `${base}/privacy/`,
+    `${base}/disclaimer/`,
+  ];
   const contentDir = path.join(process.cwd(), 'src/content/blog');
   for (const cat of ['tech', 'living']) {
     const dir = path.join(contentDir, cat);

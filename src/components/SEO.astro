@@ -1,0 +1,83 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  /** Halaman: website | article */
+  type?: 'website' | 'article';
+  /** Path absolut termasuk base, mis. /blog/tech/slug/ */
+  path: string;
+  /** Nama file gambar di public/assets/img/ */
+  image?: string;
+  /** Metadata artikel */
+  publishedTime?: string;
+  modifiedTime?: string;
+  authorName?: string;
+  /** JSON-LD tambahan (array object) */
+  jsonLd?: any[];
+}
+const { title, description, type = 'website', path, image, publishedTime, modifiedTime, authorName, jsonLd = [] } = Astro.props;
+const SITE = 'https://fajrilef.github.io';
+const BASE = '/blog';
+const url = SITE + path;
+const imageUrl = image ? `${SITE}${BASE}/assets/img/${image}` : `${SITE}${BASE}/favicon.svg`;
+const defaultAuthor = 'Lofa';
+const siteName = 'Lofa';
+const twitterHandle = '@lofablog';
+---
+<!-- Primary -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+<meta name="robots" content="index, follow" />
+<meta name="generator" content="Astro" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={twitterHandle} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- Article meta -->
+{type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{type === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{type === 'article' && authorName && <meta property="article:author" content={authorName} />}
+
+<!-- JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': type === 'article' ? 'BlogPosting' : 'WebSite',
+    ...(type === 'article'
+      ? {
+          headline: title,
+          description,
+          image: imageUrl,
+          author: { '@type': 'Person', name: authorName || defaultAuthor },
+          publisher: {
+            '@type': 'Organization',
+            name: siteName,
+            logo: { '@type': 'ImageObject', url: `${SITE}${BASE}/favicon.svg` },
+          },
+          datePublished: publishedTime,
+          dateModified: modifiedTime || publishedTime,
+          mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+          url,
+        }
+      : {
+          name: siteName,
+          description,
+          url: SITE + BASE + '/',
+        }),
+  },
+  ...jsonLd,
+])} />

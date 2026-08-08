@@ -1,26 +1,38 @@
 ---
 import '../styles/global.css';
+import SEO from '../components/SEO.astro';
 interface Props {
   title: string;
   description: string;
   theme?: 'portal' | 'tech' | 'living';
+  /** SEO */
+  path?: string;
+  type?: 'website' | 'article';
   image?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  authorName?: string;
+  jsonLd?: any[];
 }
-const { title, description, theme = 'portal', image } = Astro.props;
-const site = 'https://fajrilef.github.io/blog';
+const { title, description, theme = 'portal', path, type = 'website', image, publishedTime, modifiedTime, authorName, jsonLd } = Astro.props;
+const pagePath = path || Astro.url.pathname;
 ---
 <!doctype html>
 <html lang="id" class={`theme-${theme}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={site + Astro.url.pathname} />
-    {image && <meta property="og:image" content={site + image} />}
+    <SEO
+      title={title}
+      description={description}
+      type={type}
+      path={pagePath}
+      image={image}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      authorName={authorName}
+      jsonLd={jsonLd}
+    />
     <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e0d0b" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/blog/favicon.svg" type="image/svg+xml" />
@@ -103,6 +115,15 @@ const site = 'https://fajrilef.github.io/blog';
               <ul class="space-y-2.5 text-[15px]">
                 <li><a href="/blog/tech/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Teknologi</a></li>
                 <li><a href="/blog/living/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kehidupan</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">Informasi</p>
+              <ul class="space-y-2.5 text-[15px]">
+                <li><a href="/blog/about/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Tentang</a></li>
+                <li><a href="/blog/contact/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kontak</a></li>
+                <li><a href="/blog/privacy/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Privasi</a></li>
+                <li><a href="/blog/disclaimer/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Disclaimer</a></li>
               </ul>
             </div>
           </div>

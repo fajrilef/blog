@@ -13,7 +13,12 @@ const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, 
 const featured = all[0];
 const rest = all.slice(1);
 ---
-<Layout title="Lofa — Teknologi & kehidupan sehari-hari" description="Catatan ringkas, panduan praktis, dan rekomendasi yang jujur tentang teknologi dan kehidupan sehari-hari." theme="portal">
+<Layout
+  title="Lofa — Teknologi & kehidupan sehari-hari"
+  description="Catatan ringkas, panduan praktis, dan rekomendasi yang jujur tentang teknologi dan kehidupan sehari-hari."
+  theme="portal"
+  path="/blog/"
+>
   <!-- Hero -->
   <section class="pt-16 sm:pt-24 md:pt-28">
     <p class="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-accent dark:text-accent-dark">Blog · Lofa</p>

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { getCollection, render } from 'astro:content';
+import { AUTHOR, authorLd } from '../../lib/author';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -26,8 +27,15 @@ const catLabel = { tech: 'Teknologi', living: 'Kehidupan' };
 const fmt = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 const readTime = Math.max(1, Math.round((post.body || '').split(/\s+/).length / 200));
 const tags = post.data.tags || [];
-const related = all.filter((p) => p.data.category === post.data.category && slugOf(p) !== slugOf(post)).slice(0, 2);
+// Related: kategori sama dulu, lalu tag cocok, sisanya terbaru — maks 3, tanpa artikel ini
+const sameCat = all.filter((p) => p.data.category === post.data.category && slugOf(p) !== slugOf(post));
+const related = [
+  ...sameCat.filter((p) => tags.some((t) => p.data.tags.includes(t))),
+  ...sameCat,
+  ...all.filter((p) => p.data.category !== post.data.category && slugOf(p) !== slugOf(post)),
+].filter((p, i, arr) => arr.findIndex((x) => slugOf(x) === slugOf(p)) === i).slice(0, 3);
 const pageUrl = `https://fajrilef.github.io/blog/${post.data.category}/${slugOf(post)}/`;
+const pagePath = `/blog/${post.data.category}/${slugOf(post)}/`;
 const cat = post.data.category;
 const theme = cat === 'tech' ? 'tech' : 'living';
 // Prev/next navigation (berdasarkan urutan tanggal)
@@ -36,19 +44,46 @@ const prev = idx > 0 ? all[idx - 1] : null;
 const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 const prevLabel = prev ? catLabel[prev.data.category] : null;
 const nextLabel = next ? catLabel[next.data.category] : null;
+const publishedISO = post.data.pubDate.toISOString();
+const modifiedISO = post.data.updatedDate ? post.data.updatedDate.toISOString() : publishedISO;
+
+// JSON-LD: BlogPosting + BreadcrumbList
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://fajrilef.github.io/blog/' },
+    { '@type': 'ListItem', position: 2, name: catLabel[cat], item: `https://fajrilef.github.io/blog/${cat}/` },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: pageUrl },
+  ],
+};
 ---
-<Layout title={`${post.data.title} — Lofa`} description={post.data.description} theme={theme} image={`/assets/img/${post.data.cover}`}>
+<Layout
+  title={`${post.data.title} — Lofa`}
+  description={post.data.description}
+  theme={theme}
+  path={pagePath}
+  type="article"
+  image={`assets/img/${post.data.cover}`}
+  publishedTime={publishedISO}
+  modifiedTime={modifiedISO}
+  authorName={AUTHOR.name}
+  jsonLd={[breadcrumbLd, authorLd()]}
+>
   <article class="mx-auto max-w-[760px] pt-12 sm:pt-16 md:pt-20">
     <!-- Meta atas -->
-    <nav class="mb-8 flex items-center gap-2 text-sm text-ink-faint" aria-label="Breadcrumb">
+    <nav class="mb-8 flex flex-wrap items-center gap-2 text-sm text-ink-faint" aria-label="Breadcrumb">
       <a href="/blog/" class="transition hover:text-ink dark:hover:text-ink-dark">Beranda</a>
       <span aria-hidden="true">/</span>
       <a href={`/blog/${cat}/`} class="transition hover:text-ink dark:hover:text-ink-dark">{catLabel[cat]}</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-ink-soft dark:text-ink-soft-dark" aria-current="page">{post.data.title}</span>
     </nav>
 
     <div class="mb-5 flex flex-wrap items-center gap-3 text-sm">
       <span class="rounded-full bg-accent-soft px-3.5 py-1.5 text-[13px] font-semibold text-accent dark:bg-accent-soft-dark dark:text-accent-dark">{catLabel[cat]}</span>
       <span class="text-ink-faint">{fmt(post.data.pubDate)} · {readTime} menit baca</span>
+      <span class="text-ink-faint" aria-label="Penulis">· oleh <span class="font-medium text-ink-soft dark:text-ink-soft-dark">{AUTHOR.name}</span></span>
     </div>
 
     <h1 class="display text-[32px] leading-[1.12] sm:text-[44px] md:text-[52px]">{post.data.title}</h1>

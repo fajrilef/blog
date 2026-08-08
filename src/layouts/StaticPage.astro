@@ -1,0 +1,18 @@
+---
+import Layout from './Layout.astro';
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+}
+const { title, description, path } = Astro.props;
+---
+<Layout title={title} description={description} theme="portal" path={path}>
+  <article class="mx-auto max-w-[720px] pt-12 sm:pt-16 md:pt-20">
+    <p class="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-accent dark:text-accent-dark">Lofa</p>
+    <h1 class="display text-[36px] leading-[1.1] sm:text-[48px]">{title}</h1>
+    <div class="prose-blog mt-10">
+      <slot />
+    </div>
+  </article>
+</Layout>

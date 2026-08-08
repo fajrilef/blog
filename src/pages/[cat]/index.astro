@@ -24,7 +24,12 @@ const fmt = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short
 const readTime = (p) => Math.max(1, Math.round((p.body || '').split(/\s+/).length / 200));
 const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, '');
 ---
-<Layout title={`${meta.label} — Lofa`} description={meta.desc} theme={meta.theme}>
+<Layout
+  title={`${meta.label} — Lofa`}
+  description={meta.desc}
+  theme={meta.theme}
+  path={`/blog/${cat}/`}
+>
   <!-- Header kategori -->
   <section class="pt-14 sm:pt-20 md:pt-24">
     <p class="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-accent dark:text-accent-dark">{meta.emoji} Kategori</p>

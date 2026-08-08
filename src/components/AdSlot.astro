@@ -1,0 +1,10 @@
+---
+interface Props {
+  /** position: article-top | article-middle | article-bottom | homepage */
+  position?: 'article-top' | 'article-middle' | 'article-bottom' | 'homepage';
+}
+const { position = 'article-bottom' } = Astro.props;
+---
+<!-- AdSlot: placeholder pengembangan. Tidak menampilkan apa pun ke pengunjung.
+     Aktifkan saat integrasi AdSense: ganti konten dengan unit iklan. -->
+{/* sengaja kosong — jangan tampilkan iklan palsu */}
