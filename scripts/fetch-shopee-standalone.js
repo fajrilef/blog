@@ -19,7 +19,24 @@ const https = require('https');
 
 const RATE_LIMIT_MS = Number(process.env.SHOPEE_RATE_LIMIT_MS || 1200);
 const TIMEOUT_MS = Number(process.env.SHOPEE_TIMEOUT_MS || 15000);
+// Header LENGKAP ala browser asli — penting, karena Shopee cek fingerprint header
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
+const BROWSER_HEADERS = {
+  'User-Agent': UA,
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+  'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+  'Accept-Encoding': 'gzip, deflate, br',
+  'Cache-Control': 'no-cache',
+  'Pragma': 'no-cache',
+  'Sec-Ch-Ua': '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+  'Sec-Ch-Ua-Mobile': '?0',
+  'Sec-Ch-Ua-Platform': '"Windows"',
+  'Sec-Fetch-Dest': 'document',
+  'Sec-Fetch-Mode': 'navigate',
+  'Sec-Fetch-Site': 'same-origin',
+  'Sec-Fetch-User': '?1',
+  'Upgrade-Insecure-Requests': '1',
+};
 
 function fetchUrl(url, options = {}) {
   return new Promise((resolve, reject) => {
@@ -34,8 +51,15 @@ function fetchUrl(url, options = {}) {
   });
 }
 
+function buildHeaders(extra = {}) {
+  // Tanpa Accept-Encoding gzip (Node tidak auto-decompress) — sisanya ala browser
+  const h = { ...BROWSER_HEADERS };
+  delete h['Accept-Encoding'];
+  return { ...h, ...extra };
+}
+
 async function resolveShortLink(url) {
-  const r = await fetchUrl(url, { method: 'HEAD', headers: { 'User-Agent': UA } });
+  const r = await fetchUrl(url, { method: 'HEAD', headers: buildHeaders() });
   return r.headers.location || url;
 }
 
@@ -51,9 +75,9 @@ async function fetchProduct(shortUrl) {
     if (!ids) return { shortUrl, error: true, reason: 'tidak bisa parse shopid/itemid' };
     const apiUrl = `https://shopee.co.id/api/v4/item/get?itemid=${ids.itemid}&shopid=${ids.shopid}`;
     const res = await fetchUrl(apiUrl, {
-      headers: { 'User-Agent': UA, 'Referer': 'https://shopee.co.id/', 'Accept': 'application/json' },
+      headers: buildHeaders({ 'Accept': 'application/json', 'Referer': 'https://shopee.co.id/' }),
     });
-    if (res.status !== 200) return { shortUrl, shopid: ids.shopid, itemid: ids.itemid, error: true, reason: `HTTP ${res.status}` };
+    if (res.status !== 200) return { shortUrl, shopid: ids.shopid, itemid: ids.itemid, error: true, reason: `API HTTP ${res.status}` };
     let json = null;
     try { json = JSON.parse(res.body); } catch {}
     if (!json || json.error) return { shortUrl, shopid: ids.shopid, itemid: ids.itemid, error: true, reason: `API error ${json?.error ?? 'parse'}` };
