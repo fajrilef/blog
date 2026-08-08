@@ -1,0 +1,40 @@
+---
+import PostCard from './PostCard.astro';
+
+interface RelatedItem {
+  title: string;
+  url: string;
+  date: string;
+  readTime: number;
+  categoryLabel: string;
+  excerpt: string;
+  tags: string[];
+  cover?: string;
+}
+
+interface Props {
+  /** Artikel terkait: kategori sama → tag cocok → terbaru (maks 3) */
+  items: RelatedItem[];
+  title?: string;
+}
+const { items, title = 'Baca juga' } = Astro.props;
+---
+{items.length > 0 && (
+  <section class="mx-auto mt-20 max-w-7xl" aria-label="Artikel terkait">
+    <h2 class="display mb-8 text-2xl tracking-tight sm:text-3xl">{title}</h2>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      {items.map((r) => (
+        <PostCard
+          title={r.title}
+          url={r.url}
+          date={r.date}
+          readTime={r.readTime}
+          categoryLabel={r.categoryLabel}
+          excerpt={r.excerpt}
+          tags={r.tags}
+          cover={r.cover}
+        />
+      ))}
+    </div>
+  </section>
+)}

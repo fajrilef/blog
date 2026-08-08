@@ -14,15 +14,18 @@ import StaticPage from '../layouts/StaticPage.astro';
 
   <p>
     <strong>Email:</strong>{' '}
-    <a href="mailto:halo@lofa.example">halo@lofa.example</a>
+    <a href="mailto:halo@lofa.example?subject=Kontak%20Lofa">halo@lofa.example</a>
     <br />
     <em>(alamat email placeholder — akan diperbarui saat email resmi aktif)</em>
   </p>
 
+  <h2>Media sosial</h2>
+  <p>Akun media sosial resmi belum tersedia. Halaman ini akan diperbarui saat sudah ada.</p>
+
   <h2>Formulir kontak</h2>
   <p>
     Formulir di bawah ini <strong>hanya tampilan (UI placeholder)</strong> — belum terhubung ke server email mana pun.
-    Untuk saat ini, silakan gunakan alamat email di atas.
+    Untuk saat ini, silakan gunakan alamat email di atas (klik untuk membuka aplikasi email kamu).
   </p>
   <form class="mt-6 space-y-4 rounded-[20px] border border-line bg-surface p-6 dark:border-line-dark dark:bg-surface-dark" aria-label="Formulir kontak (placeholder)">
     <div>
@@ -40,7 +43,4 @@ import StaticPage from '../layouts/StaticPage.astro';
     <button type="button" class="rounded-full bg-ink px-7 py-3 text-sm font-semibold text-canvas transition hover:opacity-85 dark:bg-ink-dark dark:text-canvas-dark" disabled>Kirim (nonaktif — placeholder)</button>
     <p class="text-xs text-ink-faint">⚠️ Formulir ini belum aktif. Gunakan email di atas untuk menghubungi kami.</p>
   </form>
-
-  <h2>Media sosial</h2>
-  <p>Akun media sosial resmi belum tersedia. Halaman ini akan diperbarui saat sudah ada.</p>
 </StaticPage>

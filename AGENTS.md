@@ -21,6 +21,12 @@ Blog statis "Lofa" — teknologi & kehidupan sehari-hari. Live di https://fajril
 - `src/pages/[cat]/index.astro` — halaman kategori (tech/living)
 - `src/pages/[cat]/[slug].astro` — halaman artikel: prev/next, related, share
 - `src/components/PostCard.astro` — card artikel dengan `data-search` attributes
+- `src/components/RelatedArticles.astro` — reusable "Baca juga" (pakai `findRelated` di lib/article.ts)
+- `src/components/SEO.astro` — meta canonical/OG/Twitter + JSON-LD (WebSite/BlogPosting)
+- `src/components/AdSlot.astro` — placeholder iklan (tidak render apa pun)
+- `src/layouts/StaticPage.astro` — layout halaman statis (about/contact/privacy/disclaimer)
+- `src/lib/article.ts` — helper slugOf/readTimeOf/fmtDate/findRelated (related: kategori → tag → terbaru)
+- `src/lib/author.ts` — default author object (Lofa) + authorLd()
 - `src/content.config.ts` — glob loader `{ pattern: '**/*.{md,mdx}', base: './src/content/blog' }`
 
 ## Konvensi

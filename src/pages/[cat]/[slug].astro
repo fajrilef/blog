@@ -1,8 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import PostCard from '../../components/PostCard.astro';
+import RelatedArticles from '../../components/RelatedArticles.astro';
 import { getCollection, render } from 'astro:content';
 import { AUTHOR, authorLd } from '../../lib/author';
+import { slugOf, readTimeOf, fmtDate, CAT_LABELS, findRelated } from '../../lib/article';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -19,21 +20,25 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, '');
 const all = (await getCollection('blog')).filter((p) => !p.data.draft).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-const catLabel = { tech: 'Teknologi', living: 'Kehidupan' };
-const fmt = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-const readTime = Math.max(1, Math.round((post.body || '').split(/\s+/).length / 200));
+const catLabel = CAT_LABELS;
+const fmt = fmtDate;
+const readTime = readTimeOf(post.body);
 const tags = post.data.tags || [];
-// Related: kategori sama dulu, lalu tag cocok, sisanya terbaru — maks 3, tanpa artikel ini
-const sameCat = all.filter((p) => p.data.category === post.data.category && slugOf(p) !== slugOf(post));
-const related = [
-  ...sameCat.filter((p) => tags.some((t) => p.data.tags.includes(t))),
-  ...sameCat,
-  ...all.filter((p) => p.data.category !== post.data.category && slugOf(p) !== slugOf(post)),
-].filter((p, i, arr) => arr.findIndex((x) => slugOf(x) === slugOf(p)) === i).slice(0, 3);
+// Related: kategori sama → tag cocok → terbaru — maks 3, tanpa artikel ini
+const relatedPosts = findRelated(all, post, 3);
+const related = relatedPosts.map((p) => ({
+  title: p.data.title,
+  url: `/blog/${p.data.category}/${slugOf(p)}/`,
+  date: fmt(p.data.pubDate),
+  readTime: readTimeOf(p.body),
+  categoryLabel: catLabel[p.data.category],
+  excerpt: p.data.description,
+  tags: p.data.tags,
+  cover: p.data.cover,
+}));
 const pageUrl = `https://fajrilef.github.io/blog/${post.data.category}/${slugOf(post)}/`;
 const pagePath = `/blog/${post.data.category}/${slugOf(post)}/`;
 const cat = post.data.category;
@@ -137,23 +142,5 @@ const breadcrumbLd = {
   </nav>
 
   <!-- Related -->
-  {related.length > 0 && (
-    <section class="mx-auto mt-20 max-w-7xl">
-      <h2 class="display mb-8 text-2xl tracking-tight sm:text-3xl">Baca juga</h2>
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8">
-        {related.map((r) => (
-          <PostCard
-            title={r.data.title}
-            url={`/blog/${r.data.category}/${slugOf(r)}/`}
-            date={fmt(r.data.pubDate)}
-            readTime={Math.max(1, Math.round((r.body || '').split(/\s+/).length / 200))}
-            categoryLabel={catLabel[r.data.category]}
-            excerpt={r.data.description}
-            tags={r.data.tags}
-            cover={r.data.cover}
-          />
-        ))}
-      </div>
-    </section>
-  )}
+  <RelatedArticles items={related} title="Baca juga" />
 </Layout>
