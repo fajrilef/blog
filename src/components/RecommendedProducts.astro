@@ -1,0 +1,81 @@
+---
+import type { Product } from '../lib/products';
+import { hasActiveAffiliate } from '../lib/products';
+
+interface Props {
+  products: Product[];
+  /** Judul section — default "Produk yang Mungkin Berguna" */
+  title?: string;
+}
+const { products, title = 'Produk yang Mungkin Berguna' } = Astro.props;
+const showDisclosure = hasActiveAffiliate(products);
+const DISCLOSURE =
+  'Beberapa tautan produk di artikel ini merupakan tautan afiliasi. Jika kamu membeli melalui tautan tersebut, Lofa dapat menerima komisi tanpa biaya tambahan bagi kamu.';
+const fmtPrice = (p?: number | null) =>
+  p ? `Rp${p.toLocaleString('id-ID')}` : null;
+---
+{
+  products.length > 0 && (
+    <section class="mx-auto mt-16 max-w-7xl" aria-label={title}>
+      <h2 class="display mb-2 text-2xl tracking-tight sm:text-3xl">{title}</h2>
+      <p class="mb-8 text-[15px] text-ink-faint">
+        Produk yang relevan dengan topik artikel ini — dipilih karena benar-benar membantu, bukan sekadar cocok kata kunci.
+      </p>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((p) => (
+          <article
+            class="flex flex-col overflow-hidden rounded-[20px] border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/40"
+            aria-label={p.name}
+          >
+            {/* Gambar */}
+            {p.image ? (
+              <img
+                src={`/blog/assets/img/${p.image}`}
+                alt={p.name}
+                loading="lazy"
+                width="640"
+                height="360"
+                class="mb-4 aspect-[16/9] w-full rounded-xl object-cover"
+              />
+            ) : (
+              <div
+                class="mb-4 flex aspect-[16/9] w-full items-center justify-center rounded-xl border border-dashed border-line bg-canvas text-4xl dark:border-line-dark dark:bg-canvas-dark"
+                aria-hidden="true"
+              >
+                📦
+              </div>
+            )}
+            {/* Nama + deskripsi */}
+            <h3 class="text-[17px] font-bold leading-snug text-ink dark:text-ink-dark">{p.name}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-soft dark:text-ink-soft-dark">{p.description}</p>
+            {/* Harga + merchant */}
+            <div class="mt-4 flex items-baseline gap-2">
+              {fmtPrice(p.price) && <span class="text-[15px] font-bold text-ink dark:text-ink-dark">{fmtPrice(p.price)}</span>}
+              {p.merchant && <span class="text-xs text-ink-faint">{p.merchant}</span>}
+            </div>
+            {/* CTA */}
+            {p.affiliateUrl ? (
+              <a
+                href={p.affiliateUrl}
+                rel="sponsored nofollow"
+                target="_blank"
+                class="mt-5 inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-canvas transition hover:opacity-85 dark:bg-ink-dark dark:text-canvas-dark"
+              >
+                Lihat Produk
+              </a>
+            ) : (
+              <span class="mt-5 inline-flex items-center justify-center rounded-full border border-line px-6 py-3 text-sm font-medium text-ink-faint dark:border-line-dark">
+                Segera tersedia
+              </span>
+            )}
+          </article>
+        ))}
+      </div>
+      {showDisclosure && (
+        <p class="mt-6 rounded-xl bg-accent-soft/40 px-4 py-3 text-[13px] leading-relaxed text-ink-soft dark:bg-accent-soft-dark/40 dark:text-ink-soft-dark">
+          {DISCLOSURE}
+        </p>
+      )}
+    </section>
+  )
+}

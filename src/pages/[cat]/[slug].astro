@@ -1,9 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
+import RecommendedProducts from '../../components/RecommendedProducts.astro';
 import { getCollection, render } from 'astro:content';
 import { AUTHOR, authorLd } from '../../lib/author';
 import { slugOf, readTimeOf, fmtDate, CAT_LABELS, findRelated } from '../../lib/article';
+import { getRecommendedProducts } from '../../lib/products';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -51,6 +53,8 @@ const prevLabel = prev ? catLabel[prev.data.category] : null;
 const nextLabel = next ? catLabel[next.data.category] : null;
 const publishedISO = post.data.pubDate.toISOString();
 const modifiedISO = post.data.updatedDate ? post.data.updatedDate.toISOString() : publishedISO;
+// Produk rekomendasi — maks 3, hanya dari frontmatter recommendedProducts
+const recommended = getRecommendedProducts(post.data.recommendedProducts, 3);
 
 // JSON-LD: BlogPosting + BreadcrumbList
 const breadcrumbLd = {
@@ -139,6 +143,9 @@ const breadcrumbLd = {
       </div>
     </aside>
   </article>
+
+  <!-- Recommended products -->
+  <RecommendedProducts products={recommended} />
 
   <!-- Prev / Next -->
   <nav class="mx-auto mt-14 grid max-w-[760px] gap-4 sm:grid-cols-2" aria-label="Navigasi artikel">

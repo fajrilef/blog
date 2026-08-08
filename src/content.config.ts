@@ -12,6 +12,8 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
     draft: z.boolean().default(false),
+    /** ID produk dari src/lib/products.ts — tampilkan section "Produk yang Mungkin Berguna" (maks 3) */
+    recommendedProducts: z.array(z.string()).default([]),
   }),
 });
 

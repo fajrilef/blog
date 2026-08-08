@@ -37,6 +37,13 @@
       "default": false,
       "type": "boolean"
     },
+    "recommendedProducts": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "$schema": {
       "type": "string"
     }
