@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return [
+    { params: { cat: 'tech' } },
+    { params: { cat: 'living' } },
+  ];
+}
+
+const { cat } = Astro.params;
+const all = (await getCollection('blog')).filter((p) => !p.data.draft && p.id.startsWith(cat + '/')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const meta = {
+  tech: { label: 'Teknologi', emoji: '⚙️', desc: 'Review, tutorial, dan tips produk teknologi — keyboard, gadget, perangkat kerja.', theme: 'tech', grad: 'from-blue-50 via-white to-sky-100', accentText: 'text-blue-600' },
+  living: { label: 'Kehidupan', emoji: '🏠', desc: 'Rumah tangga, produktivitas, dan hal-hal sehari-hari yang berguna.', theme: 'living', grad: 'from-emerald-50 via-white to-lime-100', accentText: 'text-emerald-600' },
+}[cat];
+const catLabel = { tech: 'Teknologi', living: 'Kehidupan' };
+const fmt = (d) => d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+const readTime = (p) => Math.max(1, Math.round(p.body ? p.body.split(/\s+/).length / 200 : 3));
+const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, '');
+---
+<Layout title={`${meta.label} — Lofa`} description={meta.desc} theme={meta.theme}>
+  <div class="pt-10 sm:pt-14">
+    <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--accent)]">{meta.emoji} Kategori</p>
+    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">{meta.label}</h1>
+    <p class="mt-4 max-w-xl text-lg text-slate-500">{meta.desc}</p>
+  </div>
+
+  <section class="mt-10">
+    <input type="search" id="searchInput" placeholder={`Cari di ${meta.label.toLowerCase()}…`} aria-label="Cari artikel" class="mb-6 w-full max-w-xs rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--accent)_20%,transparent)]" />
+    <div id="cardsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {all.map((p) => (
+        <PostCard
+          title={p.data.title}
+          url={`/blog/${cat}/${slugOf(p)}/`}
+          date={fmt(p.data.pubDate)}
+          readTime={readTime(p)}
+          categoryLabel={catLabel[cat]}
+          excerpt={p.data.description}
+          tags={p.data.tags}
+          cover={p.data.cover}
+        />
+      ))}
+    </div>
+    {all.length === 0 && <p class="py-10 text-center text-slate-400">Belum ada artikel di kategori ini.</p>}
+  </section>
+</Layout>

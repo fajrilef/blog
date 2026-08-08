@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description: string;
+  theme?: 'portal' | 'tech' | 'living';
+  image?: string;
+}
+const { title, description, theme = 'portal', image } = Astro.props;
+const site = 'https://fajrilef.github.io/blog';
+---
+<!doctype html>
+<html lang="id" class={`theme-${theme}`}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site + Astro.url.pathname} />
+    {image && <meta property="og:image" content={site + image} />}
+    <link rel="icon" href="/blog/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <script>document.documentElement.classList.add('js');</script>
+    <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
+      <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+        <a href="/blog/" class="text-xl font-extrabold tracking-tight text-slate-900">
+          Lofa<span class="text-[color:var(--accent)]">.</span>
+        </a>
+        <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
+          <a href="/blog/tech/" class="transition hover:text-[color:var(--accent)]">Teknologi</a>
+          <a href="/blog/living/" class="transition hover:text-[color:var(--accent)]">Kehidupan</a>
+        </nav>
+      </div>
+    </header>
+
+    <div id="readingProgress" class="fixed left-0 top-0 z-50 h-[3px] w-0 bg-[color:var(--accent)]" aria-hidden="true"></div>
+
+    <main class="mx-auto max-w-6xl px-5 pb-20">
+      <slot />
+    </main>
+
+    <footer class="border-t border-slate-200 py-8">
+      <div class="mx-auto max-w-6xl px-5 text-center text-sm text-slate-400">
+        © 2026 Lofa — konten ditulis dengan bantuan AI & diedit manual.
+      </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white opacity-0 shadow-lg transition-all duration-300 hover:-translate-y-1" aria-label="Kembali ke atas">↑</button>
+
+    <script>
+      // Scroll reveal
+      var els = document.querySelectorAll('.reveal');
+      if (els.length) {
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+          }, { threshold: 0.1 });
+          els.forEach(function (el) { io.observe(el); });
+        } else {
+          els.forEach(function (el) { el.classList.add('visible'); });
+        }
+      }
+      // Reading progress
+      var bar = document.getElementById('readingProgress');
+      if (bar) {
+        function update() {
+          var h = document.documentElement;
+          var total = h.scrollHeight - h.clientHeight;
+          bar.style.width = (total > 0 ? (h.scrollTop / total) * 100 : 0) + '%';
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+      }
+      // Back to top
+      var top = document.getElementById('backToTop');
+      if (top) {
+        window.addEventListener('scroll', function () {
+          top.classList.toggle('opacity-0', window.scrollY < 400);
+          top.classList.toggle('opacity-100', window.scrollY >= 400);
+        }, { passive: true });
+        top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      }
+      // Live search
+      var input = document.getElementById('searchInput');
+      var grid = document.getElementById('cardsGrid');
+      if (input && grid) {
+        input.addEventListener('input', function () {
+          var q = input.value.trim().toLowerCase();
+          var cards = grid.querySelectorAll('[data-card]');
+          var visible = 0;
+          cards.forEach(function (c) {
+            var ok = !q || c.textContent.toLowerCase().indexOf(q) !== -1;
+            c.style.display = ok ? '' : 'none';
+            if (ok) visible++;
+          });
+          var empty = document.getElementById('searchEmpty');
+          if (visible === 0) {
+            if (!empty) {
+              empty = document.createElement('p');
+              empty.id = 'searchEmpty';
+              empty.className = 'py-6 text-center text-slate-400';
+              empty.textContent = 'Tidak ada artikel yang cocok.';
+              grid.appendChild(empty);
+            }
+          } else if (empty) { empty.remove(); }
+        });
+      }
+      // Salin link
+      document.querySelectorAll('.btn-copy').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var url = b.getAttribute('data-url');
+          function done() {
+            var old = b.textContent;
+            b.textContent = '✅ Link disalin!';
+            setTimeout(function () { b.textContent = old; }, 1800);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(done, function () { fallback(url, done); });
+          } else { fallback(url, done); }
+        });
+      });
+      function fallback(text, done) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+      // Newsletter
+      var nf = document.getElementById('newsletterForm');
+      if (nf) {
+        nf.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = document.getElementById('newsletterEmail').value.trim();
+          if (email) {
+            try {
+              var list = JSON.parse(localStorage.getItem('lofa_newsletter') || '[]');
+              if (list.indexOf(email) === -1) list.push(email);
+              localStorage.setItem('lofa_newsletter', JSON.stringify(list));
+            } catch (err) {}
+          }
+          nf.style.display = 'none';
+          document.getElementById('newsletterOk').hidden = false;
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fajrilef.github.io/blog/sitemap-index.xml

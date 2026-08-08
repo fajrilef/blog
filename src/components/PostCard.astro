@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  date: string;
+  readTime: number;
+  categoryLabel: string;
+  excerpt: string;
+  tags: string[];
+  cover?: string;
+}
+const { title, url, date, readTime, categoryLabel, excerpt, tags, cover } = Astro.props;
+const accent = 'text-[color:var(--accent)]';
+---
+<article data-card class="reveal group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+  {cover && (
+    <a href={url} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
+      <img src={`/blog/assets/img/${cover}`} alt="" loading="lazy" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+    </a>
+  )}
+  <div class="flex flex-1 flex-col p-5">
+    <div class="mb-2 flex items-center gap-2 text-xs font-semibold">
+      <span class={`rounded-full px-2.5 py-1 ${accent} bg-[color-mix(in_srgb,var(--accent)_10%,transparent)]`}>{categoryLabel}</span>
+      <span class="text-slate-400">{date} · {readTime} mnt baca</span>
+    </div>
+    <h3 class="mb-2 text-lg font-bold leading-snug text-slate-900">
+      <a href={url} class="transition hover:text-[color:var(--accent)]">{title}</a>
+    </h3>
+    <p class="mb-4 line-clamp-3 text-sm leading-relaxed text-slate-500">{excerpt}</p>
+    <div class="mt-auto flex flex-wrap gap-1.5">
+      {tags.map((t) => <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-500">{t}</span>)}
+    </div>
+  </div>
+</article>

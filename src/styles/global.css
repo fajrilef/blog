@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@source "../layouts/**/*.astro";
+@source "../pages/**/*.astro";
+@source "../components/**/*.astro";
+
+/* Tema per kategori via class di <html> */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html.theme-portal { --accent: #ec4899; --accent-soft: #fdf2f8; }
+html.theme-tech { --accent: #2563eb; --accent-soft: #eff6ff; }
+html.theme-living { --accent: #16a34a; --accent-soft: #f0fdf4; }
+
+/* base */
+body {
+  @apply bg-white text-slate-800 antialiased;
+  font-family: var(--font-sans);
+}
+
+::selection { background: color-mix(in srgb, var(--accent) 25%, transparent); }
+
+/* typography artikel */
+.prose-blog {
+  @apply text-[1.05rem] leading-[1.8] text-slate-700;
+}
+.prose-blog h2 {
+  @apply mt-10 mb-4 text-2xl font-bold text-slate-900;
+}
+.prose-blog h3 {
+  @apply mt-8 mb-3 text-xl font-semibold text-slate-900;
+}
+.prose-blog ul, .prose-blog ol {
+  @apply my-4 pl-6 space-y-2;
+}
+.prose-blog ul { @apply list-disc; }
+.prose-blog ol { @apply list-decimal; }
+.prose-blog li::marker { color: var(--accent); }
+.prose-blog a {
+  color: var(--accent);
+  @apply font-medium underline decoration-2 underline-offset-2;
+}
+.prose-blog code {
+  @apply rounded-md bg-slate-100 px-1.5 py-0.5 text-[0.9em] font-mono text-slate-800;
+}
+.prose-blog blockquote {
+  @apply my-6 border-l-4 pl-4 italic text-slate-500;
+  border-color: var(--accent);
+}
+
+/* scroll reveal — progressive enhancement: hanya hidden kalau JS aktif */
+html.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+html.js .reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
+}
