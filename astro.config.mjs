@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://fajrilef.github.io',
+  site: 'https://lofa.web.id',
   base: '/blog',
   output: 'static',
   integrations: [mdx()],

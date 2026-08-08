@@ -41,7 +41,7 @@ const related = relatedPosts.map((p) => ({
   tags: p.data.tags,
   cover: p.data.cover,
 }));
-const pageUrl = `https://fajrilef.github.io/blog/${post.data.category}/${slugOf(post)}/`;
+const pageUrl = `https://lofa.web.id/blog/${post.data.category}/${slugOf(post)}/`;
 const pagePath = `/blog/${post.data.category}/${slugOf(post)}/`;
 const cat = post.data.category;
 const theme = cat === 'tech' ? 'tech' : 'living';
@@ -61,8 +61,8 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://fajrilef.github.io/blog/' },
-    { '@type': 'ListItem', position: 2, name: catLabel[cat], item: `https://fajrilef.github.io/blog/${cat}/` },
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://lofa.web.id/blog/' },
+    { '@type': 'ListItem', position: 2, name: catLabel[cat], item: `https://lofa.web.id/blog/${cat}/` },
     { '@type': 'ListItem', position: 3, name: post.data.title, item: pageUrl },
   ],
 };

@@ -13,6 +13,6 @@ export function authorLd() {
     '@type': 'Person',
     name: AUTHOR.name,
     description: AUTHOR.description,
-    url: 'https://fajrilef.github.io' + AUTHOR.url,
+    url: 'https://lofa.web.id' + AUTHOR.url,
   };
 }
