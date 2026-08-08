@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://lofa.web.id',
-  base: '/blog',
+  base: '/',
   output: 'static',
   integrations: [mdx()],
   vite: {
