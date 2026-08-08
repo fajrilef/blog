@@ -41,7 +41,7 @@ const DISCLOSURE =
               {image ? (
                 <a href={p.affiliateUrl ?? undefined} rel="sponsored nofollow" target="_blank" tabindex={p.affiliateUrl ? undefined : -1} aria-hidden={!p.affiliateUrl} class="block overflow-hidden">
                   <img
-                    src={image.startsWith('http') ? image : `/blog/assets/img/${image}`}
+                    src={image.startsWith('http') ? image : `/assets/img/${image}`}
                     alt={title}
                     loading="lazy"
                     width="640"

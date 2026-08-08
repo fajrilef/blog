@@ -2,7 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export async function GET(context) {
-  const base = 'https://lofa.web.id/blog';
+  const base = 'https://lofa.web.id';
   const contentDir = path.join(process.cwd(), 'src/content/blog');
   const posts = [];
   for (const cat of ['tech', 'living']) {

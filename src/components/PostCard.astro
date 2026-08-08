@@ -18,12 +18,12 @@ const searchText = [title, excerpt, categoryLabel, ...tags].join(' ').replace(/"
   data-title={title}
   data-cat={categoryLabel}
   data-url={url}
-  data-img={cover ? `/blog/assets/img/${cover}` : ''}
+  data-img={cover ? `/assets/img/${cover}` : ''}
   class={`reveal group relative flex flex-col overflow-hidden rounded-[24px] border border-line bg-surface transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_16px_40px_-16px_rgba(26,24,21,0.18)] dark:border-line-dark dark:bg-surface-dark dark:hover:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.6)] ${large ? 'md:col-span-2' : ''}`}>
   <a href={url} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
     {cover ? (
       <img
-        src={`/blog/assets/img/${cover}`}
+        src={`/assets/img/${cover}`}
         alt=""
         loading="lazy"
         class={`w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] ${large ? 'aspect-[16/8.5] md:aspect-[16/7]' : 'aspect-[16/9.5]'}`}

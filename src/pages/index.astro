@@ -17,7 +17,7 @@ const rest = all.slice(1);
   title="Lofa — Teknologi & kehidupan sehari-hari"
   description="Catatan ringkas, panduan praktis, dan rekomendasi yang jujur tentang teknologi dan kehidupan sehari-hari."
   theme="portal"
-  path="/blog/"
+  path="/"
 >
   <!-- Hero -->
   <section class="pt-16 sm:pt-24 md:pt-28">
@@ -34,17 +34,17 @@ const rest = all.slice(1);
   {featured && (
     <section class="mt-14 sm:mt-20">
       <a
-        href={`/blog/${featured.data.category}/${slugOf(featured)}/`}
+        href={`/${featured.data.category}/${slugOf(featured)}/`}
         data-search={[featured.data.title, featured.data.description, catLabel[featured.data.category], ...featured.data.tags].join(' ').replace(/"/g, '&quot;')}
         data-title={featured.data.title}
         data-cat={catLabel[featured.data.category]}
-        data-url={`/blog/${featured.data.category}/${slugOf(featured)}/`}
-        data-img={featured.data.cover ? `/blog/assets/img/${featured.data.cover}` : ''}
+        data-url={`/${featured.data.category}/${slugOf(featured)}/`}
+        data-img={featured.data.cover ? `/assets/img/${featured.data.cover}` : ''}
         class="reveal group relative block overflow-hidden rounded-[28px] border border-line bg-surface transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(26,24,21,0.25)] dark:border-line-dark dark:bg-surface-dark dark:hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)]"
       >
         {featured.data.cover ? (
           <img
-            src={`/blog/assets/img/${featured.data.cover}`}
+            src={`/assets/img/${featured.data.cover}`}
             alt={featured.data.title}
             fetchpriority="high"
             class="aspect-[16/9] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] sm:aspect-[16/8] md:aspect-[16/6.5]"
@@ -68,9 +68,9 @@ const rest = all.slice(1);
   <!-- Category pills -->
   <section class="mt-12 sm:mt-16">
     <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter kategori">
-      <a href="/blog/" class="rounded-full border border-ink bg-ink px-5 py-2.5 text-sm font-semibold text-canvas transition hover:opacity-85 dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark">Semua</a>
-      <a href="/blog/tech/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">⚙️ Teknologi</a>
-      <a href="/blog/living/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">🏠 Kehidupan</a>
+      <a href="/" class="rounded-full border border-ink bg-ink px-5 py-2.5 text-sm font-semibold text-canvas transition hover:opacity-85 dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark">Semua</a>
+      <a href="/tech/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">⚙️ Teknologi</a>
+      <a href="/living/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">🏠 Kehidupan</a>
     </div>
   </section>
 
@@ -90,7 +90,7 @@ const rest = all.slice(1);
       {rest.length > 0 && (
         <PostCard
           title={rest[0].data.title}
-          url={`/blog/${rest[0].data.category}/${slugOf(rest[0])}/`}
+          url={`/${rest[0].data.category}/${slugOf(rest[0])}/`}
           date={fmt(rest[0].data.pubDate)}
           readTime={readTime(rest[0])}
           categoryLabel={catLabel[rest[0].data.category]}
@@ -103,7 +103,7 @@ const rest = all.slice(1);
       {rest.slice(1).map((p) => (
         <PostCard
           title={p.data.title}
-          url={`/blog/${p.data.category}/${slugOf(p)}/`}
+          url={`/${p.data.category}/${slugOf(p)}/`}
           date={fmt(p.data.pubDate)}
           readTime={readTime(p)}
           categoryLabel={catLabel[p.data.category]}

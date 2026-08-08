@@ -17,7 +17,7 @@ interface Props {
 }
 const { title, description, type = 'website', path, image, publishedTime, modifiedTime, authorName, jsonLd = [] } = Astro.props;
 const SITE = 'https://lofa.web.id';
-const BASE = '/blog';
+const BASE = '/';
 const url = SITE + path;
 const imageUrl = image ? `${SITE}${BASE}/assets/img/${image}` : `${SITE}${BASE}/favicon.svg`;
 const defaultAuthor = 'Lofa';

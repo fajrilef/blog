@@ -4,7 +4,7 @@
 Blog statis "Lofa" — teknologi & kehidupan sehari-hari. Live di https://lofa.web.id (repo fajrilef/blog, branch main=dist, source=source). URL lama fajrilef.github.io/blog/... otomatis 301 ke lofa.web.id/... (jangan ubah CNAME di repo main).
 
 ## Tech Stack
-- Astro 7 (static output, base `/blog`)
+- Astro 7 (static output, base `/`)
 - Tailwind CSS v4 (via `@tailwindcss/vite`, import di `src/styles/global.css` + `@source` directives)
 - MDX content collections (`src/content/blog/tech/*.mdx`, `src/content/blog/living/*.mdx`)
 - Font: Manrope (Google Fonts)

@@ -5,7 +5,7 @@ export const AUTHOR = {
     'Lofa adalah brand editorial yang menulis catatan ringkas, panduan praktis, dan rekomendasi jujur seputar teknologi dan kehidupan sehari-hari.',
   // Avatar belum tersedia — kosongkan, jangan pakai gambar orang lain.
   avatar: null,
-  url: '/blog/about/',
+  url: '/about/',
 };
 
 export function authorLd() {

@@ -16,7 +16,7 @@ export interface Product {
   merchant?: string | null;
   /** URL affiliate dari dashboard Shopee Affiliate — null jika belum ada */
   affiliateUrl: string | null;
-  /** Nama file gambar di /blog/assets/img/ atau URL eksternal — null jika belum ada */
+  /** Nama file gambar di /assets/img/ atau URL eksternal — null jika belum ada */
   image?: string | null;
   /** Kategori fallback: tech atau living */
   category: ProductCategory;

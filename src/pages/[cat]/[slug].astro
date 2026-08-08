@@ -33,7 +33,7 @@ const tags = post.data.tags || [];
 const relatedPosts = findRelated(all, post, 3);
 const related = relatedPosts.map((p) => ({
   title: p.data.title,
-  url: `/blog/${p.data.category}/${slugOf(p)}/`,
+  url: `/${p.data.category}/${slugOf(p)}/`,
   date: fmt(p.data.pubDate),
   readTime: readTimeOf(p.body),
   categoryLabel: catLabel[p.data.category],
@@ -41,8 +41,8 @@ const related = relatedPosts.map((p) => ({
   tags: p.data.tags,
   cover: p.data.cover,
 }));
-const pageUrl = `https://lofa.web.id/blog/${post.data.category}/${slugOf(post)}/`;
-const pagePath = `/blog/${post.data.category}/${slugOf(post)}/`;
+const pageUrl = `https://lofa.web.id/${post.data.category}/${slugOf(post)}/`;
+const pagePath = `/${post.data.category}/${slugOf(post)}/`;
 const cat = post.data.category;
 const theme = cat === 'tech' ? 'tech' : 'living';
 // Prev/next navigation (berdasarkan urutan tanggal)
@@ -61,8 +61,8 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://lofa.web.id/blog/' },
-    { '@type': 'ListItem', position: 2, name: catLabel[cat], item: `https://lofa.web.id/blog/${cat}/` },
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://lofa.web.id/' },
+    { '@type': 'ListItem', position: 2, name: catLabel[cat], item: `https://lofa.web.id/${cat}/` },
     { '@type': 'ListItem', position: 3, name: post.data.title, item: pageUrl },
   ],
 };
@@ -82,9 +82,9 @@ const breadcrumbLd = {
   <article class="mx-auto max-w-[760px] pt-12 sm:pt-16 md:pt-20">
     <!-- Meta atas -->
     <nav class="mb-8 flex flex-wrap items-center gap-2 text-sm text-ink-faint" aria-label="Breadcrumb">
-      <a href="/blog/" class="transition hover:text-ink dark:hover:text-ink-dark">Beranda</a>
+      <a href="/" class="transition hover:text-ink dark:hover:text-ink-dark">Beranda</a>
       <span aria-hidden="true">/</span>
-      <a href={`/blog/${cat}/`} class="transition hover:text-ink dark:hover:text-ink-dark">{catLabel[cat]}</a>
+      <a href={`/${cat}/`} class="transition hover:text-ink dark:hover:text-ink-dark">{catLabel[cat]}</a>
       <span aria-hidden="true">/</span>
       <span class="text-ink-soft dark:text-ink-soft-dark" aria-current="page">{post.data.title}</span>
     </nav>
@@ -102,7 +102,7 @@ const breadcrumbLd = {
     <!-- Hero image -->
     {post.data.cover && (
       <img
-        src={`/blog/assets/img/${post.data.cover}`}
+        src={`/assets/img/${post.data.cover}`}
         alt={post.data.title}
         fetchpriority="high"
         width="1600"
@@ -150,13 +150,13 @@ const breadcrumbLd = {
   <!-- Prev / Next -->
   <nav class="mx-auto mt-14 grid max-w-[760px] gap-4 sm:grid-cols-2" aria-label="Navigasi artikel">
     {prev ? (
-      <a href={`/blog/${prev.data.category}/${slugOf(prev)}/`} class="group rounded-[20px] border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/40">
+      <a href={`/${prev.data.category}/${slugOf(prev)}/`} class="group rounded-[20px] border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/40">
         <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">← Sebelumnya · {prevLabel}</span>
         <span class="mt-2 block text-[15px] font-semibold leading-snug text-ink transition group-hover:text-accent dark:text-ink-dark dark:group-hover:text-accent-dark">{prev.data.title}</span>
       </a>
     ) : <span></span>}
     {next ? (
-      <a href={`/blog/${next.data.category}/${slugOf(next)}/`} class="group rounded-[20px] border border-line bg-surface p-6 text-right transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/40">
+      <a href={`/${next.data.category}/${slugOf(next)}/`} class="group rounded-[20px] border border-line bg-surface p-6 text-right transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/40">
         <span class="text-xs font-semibold uppercase tracking-wider text-ink-faint">Selanjutnya · {nextLabel} →</span>
         <span class="mt-2 block text-[15px] font-semibold leading-snug text-ink transition group-hover:text-accent dark:text-ink-dark dark:group-hover:text-accent-dark">{next.data.title}</span>
       </a>

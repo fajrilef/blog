@@ -28,7 +28,7 @@ const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, 
   title={`${meta.label} — Lofa`}
   description={meta.desc}
   theme={meta.theme}
-  path={`/blog/${cat}/`}
+  path={`/${cat}/`}
 >
   <!-- Header kategori -->
   <section class="pt-14 sm:pt-20 md:pt-24">
@@ -40,9 +40,9 @@ const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, 
   <!-- Category pills -->
   <section class="mt-10">
     <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter kategori">
-      <a href="/blog/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">Semua</a>
-      <a href="/blog/tech/" class={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${cat === 'tech' ? 'border-ink bg-ink text-canvas dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark' : 'border-line bg-surface text-ink-soft hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark'}`}>⚙️ Teknologi</a>
-      <a href="/blog/living/" class={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${cat === 'living' ? 'border-ink bg-ink text-canvas dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark' : 'border-line bg-surface text-ink-soft hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark'}`}>🏠 Kehidupan</a>
+      <a href="/" class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink-soft transition hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark">Semua</a>
+      <a href="/tech/" class={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${cat === 'tech' ? 'border-ink bg-ink text-canvas dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark' : 'border-line bg-surface text-ink-soft hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark'}`}>⚙️ Teknologi</a>
+      <a href="/living/" class={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${cat === 'living' ? 'border-ink bg-ink text-canvas dark:border-ink-dark dark:bg-ink-dark dark:text-canvas-dark' : 'border-line bg-surface text-ink-soft hover:border-accent/40 hover:text-ink dark:border-line-dark dark:bg-surface-dark dark:text-ink-soft-dark dark:hover:text-ink-dark'}`}>🏠 Kehidupan</a>
     </div>
   </section>
 
@@ -62,7 +62,7 @@ const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, 
       {all.length > 0 && (
         <PostCard
           title={all[0].data.title}
-          url={`/blog/${cat}/${slugOf(all[0])}/`}
+          url={`/${cat}/${slugOf(all[0])}/`}
           date={fmt(all[0].data.pubDate)}
           readTime={readTime(all[0])}
           categoryLabel={catLabel[cat]}
@@ -75,7 +75,7 @@ const slugOf = (p) => p.id.split('/').slice(1).join('/').replace(/\.(md|mdx)$/, 
       {all.slice(1).map((p) => (
         <PostCard
           title={p.data.title}
-          url={`/blog/${cat}/${slugOf(p)}/`}
+          url={`/${cat}/${slugOf(p)}/`}
           date={fmt(p.data.pubDate)}
           readTime={readTime(p)}
           categoryLabel={catLabel[cat]}

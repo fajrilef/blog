@@ -35,8 +35,8 @@ const pagePath = path || Astro.url.pathname;
     />
     <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e0d0b" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="/blog/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" type="application/rss+xml" title="Lofa RSS" href="/blog/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Lofa RSS" href="/rss.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -55,14 +55,14 @@ const pagePath = path || Astro.url.pathname;
     <!-- Navbar glassmorphism -->
     <header class="sticky top-0 z-50 border-b border-line/80 bg-canvas/75 backdrop-blur-xl transition-colors dark:border-line-dark/70 dark:bg-canvas-dark/75">
       <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[72px] sm:px-8">
-        <a href="/blog/" class="flex items-center gap-1.5 text-[22px] font-extrabold tracking-tight text-ink dark:text-ink-dark" aria-label="Lofa — beranda">
+        <a href="/" class="flex items-center gap-1.5 text-[22px] font-extrabold tracking-tight text-ink dark:text-ink-dark" aria-label="Lofa — beranda">
           Lofa<span class="text-accent dark:text-accent-dark">.</span>
         </a>
 
         <nav class="hidden items-center gap-7 md:flex" aria-label="Navigasi utama">
-          <a href="/blog/tech/" class="text-[15px] font-medium text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Teknologi</a>
-          <a href="/blog/living/" class="text-[15px] font-medium text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kehidupan</a>
-          <a href="/blog/about/" class="text-[15px] font-medium text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Tentang</a>
+          <a href="/tech/" class="text-[15px] font-medium text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Teknologi</a>
+          <a href="/living/" class="text-[15px] font-medium text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kehidupan</a>
+          <a href="/about/" class="text-[15px] font-medium text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Tentang</a>
         </nav>
 
         <div class="flex items-center gap-2.5">
@@ -88,10 +88,10 @@ const pagePath = path || Astro.url.pathname;
       <!-- Mobile menu -->
       <div id="mobileMenu" class="hidden border-t border-line bg-canvas px-5 py-4 md:hidden dark:border-line-dark dark:bg-canvas-dark">
         <nav class="flex flex-col gap-1" aria-label="Navigasi mobile">
-          <a href="/blog/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Beranda</a>
-          <a href="/blog/tech/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Teknologi</a>
-          <a href="/blog/living/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Kehidupan</a>
-          <a href="/blog/about/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Tentang</a>
+          <a href="/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Beranda</a>
+          <a href="/tech/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Teknologi</a>
+          <a href="/living/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Kehidupan</a>
+          <a href="/about/" class="rounded-xl px-3 py-2.5 text-[15px] font-medium text-ink-soft hover:bg-surface-2 dark:text-ink-soft-dark dark:hover:bg-surface-2-dark">Tentang</a>
         </nav>
       </div>
     </header>
@@ -115,17 +115,17 @@ const pagePath = path || Astro.url.pathname;
             <div>
               <p class="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">Kategori</p>
               <ul class="space-y-2.5 text-[15px]">
-                <li><a href="/blog/tech/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Teknologi</a></li>
-                <li><a href="/blog/living/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kehidupan</a></li>
+                <li><a href="/tech/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Teknologi</a></li>
+                <li><a href="/living/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kehidupan</a></li>
               </ul>
             </div>
             <div>
               <p class="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">Informasi</p>
               <ul class="space-y-2.5 text-[15px]">
-                <li><a href="/blog/about/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Tentang</a></li>
-                <li><a href="/blog/contact/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kontak</a></li>
-                <li><a href="/blog/privacy/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Privasi</a></li>
-                <li><a href="/blog/disclaimer/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Disclaimer</a></li>
+                <li><a href="/about/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Tentang</a></li>
+                <li><a href="/contact/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Kontak</a></li>
+                <li><a href="/privacy/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Privasi</a></li>
+                <li><a href="/disclaimer/" class="text-ink-soft transition hover:text-ink dark:text-ink-soft-dark dark:hover:text-ink-dark">Disclaimer</a></li>
               </ul>
             </div>
           </div>

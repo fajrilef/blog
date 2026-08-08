@@ -2,7 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export async function GET(context) {
-  const base = 'https://lofa.web.id/blog';
+  const base = 'https://lofa.web.id';
   // Halaman statis + kategori
   const urls = [
     `${base}/`,
