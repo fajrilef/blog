@@ -7,6 +7,7 @@ export type ProductCategory = 'tech' | 'living';
 
 export interface Product {
   id: string;
+  /** Nama produk (title) — komponen memakai name; field title diterima sebagai alias */
   name: string;
   description: string;
   /** Harga dalam Rupiah — null jika tidak diketahui */
@@ -15,10 +16,15 @@ export interface Product {
   merchant?: string | null;
   /** URL affiliate dari dashboard Shopee Affiliate — null jika belum ada */
   affiliateUrl: string | null;
-  /** Nama file gambar di /blog/assets/img/ — null jika belum ada */
+  /** Nama file gambar di /blog/assets/img/ atau URL eksternal — null jika belum ada */
   image?: string | null;
   /** Kategori fallback: tech atau living */
   category: ProductCategory;
+}
+
+/** Alias title → name (kompatibel dengan struktur { affiliateUrl, title, image, description }) */
+export function productTitle(p: Product): string {
+  return (p as Product & { title?: string }).title || p.name;
 }
 
 export const PRODUCTS: Record<string, Product> = {
