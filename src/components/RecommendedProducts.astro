@@ -1,6 +1,7 @@
 ---
 import type { Product } from '../lib/products';
 import { hasActiveAffiliate } from '../lib/products';
+import { cachedProductTitle, cachedProductImage } from '../lib/shopee-cache';
 
 interface Props {
   products: Product[];
@@ -25,62 +26,69 @@ const DISCLOSURE =
       <p class="mt-1.5 text-[15px] text-ink-faint">{subtitle}</p>
 
       <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => (
-          <article
-            class="group flex flex-col overflow-hidden rounded-[20px] border border-line bg-surface transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/30"
-            aria-label={p.name}
-          >
-            {/* Foto — elemen utama card */}
-            {p.image ? (
-              <a href={p.affiliateUrl ?? undefined} rel="sponsored nofollow" target="_blank" tabindex={p.affiliateUrl ? undefined : -1} aria-hidden={!p.affiliateUrl} class="block overflow-hidden">
-                <img
-                  src={p.image.startsWith('http') ? p.image : `/blog/assets/img/${p.image}`}
-                  alt={p.name}
-                  loading="lazy"
-                  width="640"
-                  height="480"
-                  class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              </a>
-            ) : (
-              <div
-                class="flex aspect-[4/3] w-full items-center justify-center bg-canvas dark:bg-canvas-dark"
-                aria-hidden="true"
-              >
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-ink-faint/50">
-                  <rect x="3" y="3" width="18" height="18" rx="4" />
-                  <circle cx="9" cy="9" r="2" />
-                  <path d="M21 15l-4.5-4.5L6 21" />
-                </svg>
-              </div>
-            )}
+        {products.map((p) => {
+          // Prioritas: judul & foto asli dari cache Shopee → fallback data manual → placeholder
+          const cacheTitle = cachedProductTitle(p.affiliateUrl ?? '');
+          const cacheImage = cachedProductImage(p.affiliateUrl ?? '');
+          const title = cacheTitle || p.name;
+          const image = cacheImage || p.image || null;
+          return (
+            <article
+              class="group flex flex-col overflow-hidden rounded-[20px] border border-line bg-surface transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 dark:border-line-dark dark:bg-surface-dark dark:hover:border-accent-dark/30"
+              aria-label={title}
+            >
+              {/* Foto — elemen utama card */}
+              {image ? (
+                <a href={p.affiliateUrl ?? undefined} rel="sponsored nofollow" target="_blank" tabindex={p.affiliateUrl ? undefined : -1} aria-hidden={!p.affiliateUrl} class="block overflow-hidden">
+                  <img
+                    src={image.startsWith('http') ? image : `/blog/assets/img/${image}`}
+                    alt={title}
+                    loading="lazy"
+                    width="640"
+                    height="480"
+                    class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </a>
+              ) : (
+                <div
+                  class="flex aspect-[4/3] w-full items-center justify-center bg-canvas dark:bg-canvas-dark"
+                  aria-hidden="true"
+                >
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="text-ink-faint/50">
+                    <rect x="3" y="3" width="18" height="18" rx="4" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="M21 15l-4.5-4.5L6 21" />
+                  </svg>
+                </div>
+              )}
 
-            {/* Konten */}
-            <div class="flex flex-1 flex-col p-5">
-              <h3 class="text-[16px] font-semibold leading-snug text-ink dark:text-ink-dark">
-                {p.name}
-              </h3>
+              {/* Konten */}
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="text-[16px] font-semibold leading-snug text-ink dark:text-ink-dark">
+                  {title}
+                </h3>
 
-              {/* CTA — jelas tapi tidak agresif */}
-              <div class="mt-auto pt-4">
-                {p.affiliateUrl ? (
-                  <a
-                    href={p.affiliateUrl}
-                    rel="sponsored nofollow"
-                    target="_blank"
-                    class="inline-flex w-full items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink transition hover:border-accent/50 hover:text-accent dark:border-line-dark dark:text-ink-dark dark:hover:border-accent-dark/50 dark:hover:text-accent-dark"
-                  >
-                    Lihat Produk
-                  </a>
-                ) : (
-                  <span class="inline-flex w-full items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink-faint dark:border-line-dark">
-                    Segera tersedia
-                  </span>
-                )}
+                {/* CTA — jelas tapi tidak agresif */}
+                <div class="mt-auto pt-4">
+                  {p.affiliateUrl ? (
+                    <a
+                      href={p.affiliateUrl}
+                      rel="sponsored nofollow"
+                      target="_blank"
+                      class="inline-flex w-full items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink transition hover:border-accent/50 hover:text-accent dark:border-line-dark dark:text-ink-dark dark:hover:border-accent-dark/50 dark:hover:text-accent-dark"
+                    >
+                      Lihat Produk
+                    </a>
+                  ) : (
+                    <span class="inline-flex w-full items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink-faint dark:border-line-dark">
+                      Segera tersedia
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
 
       {showDisclosure && (

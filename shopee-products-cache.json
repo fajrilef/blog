@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-08-08T11:11:19.610Z",
+  "products": {
+    "https://s.shopee.co.id/2BDuxZTDcv": {
+      "shortUrl": "https://s.shopee.co.id/2BDuxZTDcv",
+      "shopid": "920928141",
+      "itemid": "23311645306",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/2VqlMDDBdr": {
+      "shortUrl": "https://s.shopee.co.id/2VqlMDDBdr",
+      "shopid": "1261484920",
+      "itemid": "41617978463",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/19QNdm0k6": {
+      "shortUrl": "https://s.shopee.co.id/19QNdm0k6",
+      "shopid": "1027059765",
+      "itemid": "21082739518",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/19QNiAeik": {
+      "shortUrl": "https://s.shopee.co.id/19QNiAeik",
+      "shopid": "856332202",
+      "itemid": "40108733872",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/AKZcgjEuYU": {
+      "shortUrl": "https://s.shopee.co.id/AKZcgjEuYU",
+      "shopid": "1202036427",
+      "itemid": "28628386052",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/9ANfIbaXzX": {
+      "shortUrl": "https://s.shopee.co.id/9ANfIbaXzX",
+      "shopid": "230897713",
+      "itemid": "19647492346",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/2qTbl2K0FB": {
+      "shortUrl": "https://s.shopee.co.id/2qTbl2K0FB",
+      "shopid": "297050097",
+      "itemid": "27591546275",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/2gABYicEBR": {
+      "shortUrl": "https://s.shopee.co.id/2gABYicEBR",
+      "shopid": "14002696",
+      "itemid": "27151846902",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/60QdWsbitD": {
+      "shortUrl": "https://s.shopee.co.id/60QdWsbitD",
+      "shopid": "1589899658",
+      "itemid": "42710727729",
+      "error": true,
+      "reason": "HTTP 403"
+    }
+  }
+}
