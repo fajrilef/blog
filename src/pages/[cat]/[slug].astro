@@ -101,6 +101,8 @@ const breadcrumbLd = {
         src={`/blog/assets/img/${post.data.cover}`}
         alt={post.data.title}
         fetchpriority="high"
+        width="1600"
+        height="900"
         class="mt-10 aspect-[16/9] w-full rounded-[24px] object-cover"
       />
     )}
@@ -126,6 +128,16 @@ const breadcrumbLd = {
       <a class="flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-ink-soft transition hover:border-accent/50 hover:text-accent dark:border-line-dark dark:text-ink-soft-dark dark:hover:border-accent-dark/50 dark:hover:text-accent-dark" target="_blank" rel="noopener" href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(post.data.title)}`} aria-label="Bagikan ke X (Twitter)">𝕏 X</a>
       <a class="flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-ink-soft transition hover:border-accent/50 hover:text-accent dark:border-line-dark dark:text-ink-soft-dark dark:hover:border-accent-dark/50 dark:hover:text-accent-dark" target="_blank" rel="noopener" href={`https://t.me/share/url?url=${pageUrl}&text=${encodeURIComponent(post.data.title)}`} aria-label="Bagikan ke Telegram">📨 Telegram</a>
     </div>
+
+    <!-- Author block -->
+    <aside class="mt-12 flex items-start gap-4 rounded-[20px] border border-line bg-surface p-6 dark:border-line-dark dark:bg-surface-dark" aria-label="Tentang penulis">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink text-lg font-bold text-canvas dark:bg-ink-dark dark:text-canvas-dark" aria-hidden="true">L</span>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">Ditulis oleh</p>
+        <p class="mt-1 text-[15px] font-bold text-ink dark:text-ink-dark">{AUTHOR.name}</p>
+        <p class="mt-1.5 text-sm leading-relaxed text-ink-soft dark:text-ink-soft-dark">{AUTHOR.description}</p>
+      </div>
+    </aside>
   </article>
 
   <!-- Prev / Next -->
@@ -145,5 +157,5 @@ const breadcrumbLd = {
   </nav>
 
   <!-- Related -->
-  <RelatedArticles items={related} title="Baca juga" />
+  <RelatedArticles items={related} title="Artikel Terkait" />
 </Layout>
