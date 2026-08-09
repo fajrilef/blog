@@ -175,12 +175,84 @@ export const PRODUCTS: Record<string, Product> = {
     price: null, merchant: null,
     affiliateUrl: 'https://s.shopee.co.id/60QdWsbitD', image: 'affiliate-airtight-container.webp', category: 'living',
   },
+
+  // === Travel (living) — sync 2026-08-09 dari sheet Produk Affiliate ===
+  'koper-kabin': {
+    id: 'koper-kabin',
+    name: 'Koper Kabin',
+    description: 'Koper ukuran kabin yang praktis untuk liburan singkat — muat di bagasi pesawat tanpa check-in.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/3B6Tvcitjn', image: null, category: 'living',
+  },
+  'travel-organizer': {
+    id: 'travel-organizer',
+    name: 'Tas Travel Organizer',
+    description: 'Packing organizer untuk merapikan pakaian dan perlengkapan di dalam koper.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/9pdNrycXlg', image: null, category: 'living',
+  },
+  'power-bank': {
+    id: 'power-bank',
+    name: 'Power Bank',
+    description: 'Power bank kapasitas besar — baterai cadangan saat liburan jauh dari colokan listrik.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/9fJxfgzfMn', image: null, category: 'living',
+  },
+  'tote-bag-kanvas': {
+    id: 'tote-bag-kanvas',
+    name: 'Tote Bag Kanvas',
+    description: 'Tote bag kanvas yang kuat dan muat banyak — cocok untuk belanja oleh-oleh.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/111zLnRB27', image: null, category: 'living',
+  },
+  'botol-minum': {
+    id: 'botol-minum',
+    name: 'Botol Minum',
+    description: 'Botol minum yang praktis dibawa saat traveling agar tetap terhidrasi.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/W5ikwaXUV', image: null, category: 'living',
+  },
+  'travel-pouch': {
+    id: 'travel-pouch',
+    name: 'Travel Pouch',
+    description: 'Pouch kecil untuk menyimpan dokumen, kartu, dan barang kecil saat bepergian.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/4fvHid7hWl', image: null, category: 'living',
+  },
+  'tas-punggung-travel': {
+    id: 'tas-punggung-travel',
+    name: 'Tas Punggung Travel',
+    description: 'Backpack travel dengan banyak kompartemen — nyaman untuk perjalanan jauh.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/3VjKKVbiyp', image: null, category: 'living',
+  },
+  'kacamata-hitam': {
+    id: 'kacamata-hitam',
+    name: 'Kacamata Hitam',
+    description: 'Kacamata hitam untuk melindungi mata dari sinar matahari saat liburan pantai.',
+    price: null, merchant: null,
+    affiliateUrl: null, image: null, category: 'living',
+  },
+  'topi-lipat': {
+    id: 'topi-lipat',
+    name: 'Topi Lipat',
+    description: 'Topi lipat yang praktis dibawa traveling — melindungi dari panas matahari.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/30n3jcJmGt', image: null, category: 'living',
+  },
+  'tas-belanja-lipat': {
+    id: 'tas-belanja-lipat',
+    name: 'Tas Belanja Lipat',
+    description: 'Tas belanja lipat yang ringkas — hemat plastik dan muat banyak saat belanja oleh-oleh.',
+    price: null, merchant: null,
+    affiliateUrl: 'https://s.shopee.co.id/9V0XTaLiM3', image: null, category: 'living',
+  },
 };
 
 /** Produk default per kategori — dipakai saat artikel tidak punya produk spesifik yang cukup. */
 const CATEGORY_DEFAULTS: Record<ProductCategory, string[]> = {
   tech: ['keyboard-hotswap', 'keyboard-brown-switch', 'keyboard-mechanical-entry', 'switch-tester', 'keyboard-60', 'ssd-laptop', 'ram-laptop', 'wifi-adapter'],
-  living: ['food-storage-container', 'ziplock-bag', 'airtight-container', 'storage-box', 'microfiber-cloth', 'fridge-deodorizer'],
+  living: ['food-storage-container', 'ziplock-bag', 'airtight-container', 'storage-box', 'microfiber-cloth', 'fridge-deodorizer', 'koper-kabin', 'travel-organizer', 'power-bank', 'tote-bag-kanvas', 'botol-minum', 'travel-pouch', 'tas-punggung-travel', 'topi-lipat', 'tas-belanja-lipat'],
 };
 
 /**
