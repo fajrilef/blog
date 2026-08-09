@@ -1,16 +1,90 @@
 ---
 title: "Cara Mengecek Kesehatan SSD di Windows"
 description: "Cek kesehatan SSD penting agar data aman. Simak cara memeriksa kondisi SSD di Windows dengan tools bawaan dan pihak ketiga."
-pubDate: "2026-08-09"
-category: "tech"
+pubDate: 2026-08-09T10:16:23+07:00
+category: tech
 tags: ["ssd", "kesehatan", "windows", "storage"]
-cover: "cover-cara-mengecek-kesehatan-ssd-di-windows.jpg"
+cover: cover-cara-mengecek-kesehatan-ssd-di-windows.jpg
 recommendedProducts:
-  - ssd-laptop-nvme,
-  - ram-laptop-ddr4,
-  - windows-11-pro
+  - "ssd-laptop"
+  - "ram-laptop"
+  - "laptop-charger"
 ---
 
-Cek kesehatan SSD penting agar data aman. Simak cara memeriksa kondisi SSD di Windows dengan tools bawaan dan pihak ketiga.
+SSD itu kayak jantungnya laptop — diam-diam bekerja setiap detik, menyimpan semua data berharga, dari foto liburan sampai skripsi yang tinggal bab terakhir. Tapi bedanya dengan jantung, SSD nggak bisa bilang "aku mulai capek" secara langsung. Kalau tiba-tiba lemot, sering error, atau file korup, itu biasanya tanda SSD sudah mulai menua — dan kalau sudah begitu, datamu bisa hilang dalam sekejap.
 
-{/* Artikel akan diisi konten lengkap di sini */}
+Makanya, mengecek kesehatan SSD secara berkala itu penting banget, bukan cuma buat yang doyan main game atau edit video. Buat kamu yang cuma pakai laptop buat kerja dan nonton, cek rutin bisa menyelamatkan data dari musibah yang nggak terduga. Di artikel ini kita bakal bahas cara mengecek kesehatan SSD di Windows — mulai dari tools bawaan, sampai aplikasi pihak ketiga yang lebih detail.
+
+## Kenapa SSD bisa rusak?
+
+Berbeda dengan HDD yang rusak karena komponen mekanis, SSD rusak karena sel-sel memorinya kehabisan umur. Setiap kali kamu menulis data, sel memori SSD "terpakai" sedikit demi sedikit. SSD modern umumnya awet bertahun-tahun, tapi pemakaian berat — seperti terus-menerus download besar, render video, atau menjalankan sistem dari SSD 24 jam — mempercepat penuaannya.
+
+Kabar baiknya, SSD punya sistem SMART (Self-Monitoring, Analysis and Reporting Technology) yang mencatat kesehatan drive secara real-time. Kita tinggal baca datanya lewat tools yang tepat.
+
+## Langkah 1: Cek dengan tools bawaan Windows
+
+Windows sebenarnya sudah menyediakan cara untuk melihat status drive, walau informasinya terbatas:
+
+1. Buka **File Explorer** → klik kanan drive C: → **Properties**.
+2. Masuk ke tab **Tools** → klik **Check** di bagian error checking.
+3. Windows akan memberi tahu apakah ada masalah pada drive. Kalau muncul "You don't need to scan this drive", artinya secara sistem tidak ada error yang terdeteksi.
+
+Cara ini cuma mendeteksi error, belum menampilkan kesehatan SMART secara detail. Untuk itu kita butuh tools yang lebih spesifik.
+
+## Langkah 2: Cek lewat Command Prompt
+
+Windows punya perintah bawaan untuk membaca informasi SMART:
+
+1. Tekan **Win + S**, ketik **cmd**, lalu pilih **Run as administrator**.
+2. Ketik perintah berikut, lalu tekan Enter:
+
+```cmd
+wmic diskdrive get model,status
+```
+
+3. Perhatikan kolom **Status**. Kalau muncul **OK**, secara sistem drive dianggap sehat.
+
+Perintah ini cepat dan nggak perlu install apa-apa, tapi tetap belum memberikan detail seperti persentase kesehatan atau suhu.
+
+## Langkah 3: Gunakan aplikasi pihak ketiga yang detail
+
+Untuk informasi yang lebih lengkap, aplikasi pihak ketiga adalah pilihan terbaik. Dua yang paling populer:
+
+**CrystalDiskInfo** — aplikasi gratis dan ringan yang menjadi standar untuk cek kesehatan SSD:
+
+1. Download CrystalDiskInfo dari situs resminya, lalu install (pilih versi Standard Edition yang gratis).
+2. Jalankan aplikasinya — kamu langsung melihat status kesehatan besar di pojok atas: **Good**, **Caution**, atau **Bad**.
+3. Perhatikan kolom penting: **Health Status**, **Power On Hours** (berapa lama SSD menyala), dan **Total Host Writes** (total data yang pernah ditulis).
+
+**HWiNFO** — kalau mau informasi lebih teknis sekaligus cek komponen lain:
+
+1. Download dan jalankan HWiNFO dalam mode **Sensors-only**.
+2. Cari bagian **Storage** untuk melihat suhu dan atribut SMART SSD kamu.
+
+Dua aplikasi ini cukup untuk kebutuhan mayoritas pengguna. Yang penting: pastikan download dari situs resmi, bukan dari tautan iklan yang mencurigakan.
+
+## Langkah 4: Interpretasi hasilnya
+
+Setelah melihat data SMART, ini artinya:
+
+- **Good (100–80%)** → SSD sehat, nggak perlu khawatir. Lanjutkan pemakaian normal.
+- **Caution (80–60%)** → SSD mulai menua. Segera backup data penting dan mulai mempertimbangkan penggantian.
+- **Bad (di bawah 60%) atau muncul pesan error** → segera backup semua data dan ganti SSD sesegera mungkin. Jangan tunda-tunda.
+
+Selain persentase, perhatikan juga atribut seperti **Reallocated Sectors Count** — kalau nilainya naik terus, itu tanda SSD sedang struggle mengganti sel yang rusak.
+
+## Tips tambahan
+
+- **Backup rutin adalah prioritas nomor satu.** Sehat-sehatnya SSD, tetap bisa kena masalah tak terduga. Biasakan backup data penting ke cloud atau HDD eksternal minimal sebulan sekali.
+- **Cek suhu SSD.** SSD yang kepanasan (di atas 60°C terus-menerus) lebih cepat menua. Pastikan ventilasi laptop bersih dan pakai cooling pad kalau sering dipakai berat.
+- **Jangan isi SSD sampai penuh.** SSD yang hampir penuh bekerja lebih keras dan menua lebih cepat. Sisakan minimal 10–15% ruang kosong.
+- **Cek berkala, bukan cuma sekali.** Jadwalkan cek kesehatan setiap 3–6 bulan, apalagi kalau laptop sudah berumur di atas 2 tahun.
+- **Kalau SSD sudah Bad, jangan dipakai untuk data penting.** Bisa masih dipakai untuk data yang nggak krusial, tapi segera rencanakan penggantian.
+
+## Kesimpulan
+
+Mengecek kesehatan SSD di Windows itu gampang dan nggak butuh keahlian khusus. Mulai dari tools bawaan seperti File Explorer dan perintah `wmic` di Command Prompt, sampai aplikasi pihak ketiga seperti CrystalDiskInfo yang menampilkan detail lengkap status kesehatan. Yang paling penting bukan cuma mengeceknya, tapi juga memahami artinya dan segera bertindak — terutama backup data — kalau statusnya sudah mulai mengkhawatirkan.
+
+SSD yang sehat bikin laptop cepat dan nyaman dipakai; SSD yang dirawat dan dicek rutin bikin data kamu aman. Kalau laptop kamu terasa lemot padahal SSD masih sehat, mungkin ada masalah lain di sistem — cek artikel berikutnya untuk solusi lengkapnya.
+
+**Baca juga:** [Cara Mengatasi Laptop Lemot di Windows 11](/tech/cara-mengatasi-laptop-lemot-windows-11/)

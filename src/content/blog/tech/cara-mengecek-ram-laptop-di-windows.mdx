@@ -1,16 +1,87 @@
 ---
 title: "Cara Mengecek RAM Laptop di Windows"
 description: "Ingin tahu kapasitas dan pemakaian RAM laptop? Simak cara mengecek spesifikasi RAM di Windows dengan beberapa metode mudah."
-pubDate: "2026-08-09"
-category: "tech"
+pubDate: 2026-08-09T10:16:23+07:00
+category: tech
 tags: ["ram", "spesifikasi", "windows"]
-cover: "cover-cara-mengecek-ram-laptop-di-windows.jpg"
+cover: cover-cara-mengecek-ram-laptop-di-windows.jpg
 recommendedProducts:
-  - ssd-laptop-nvme,
-  - ram-laptop-ddr4,
-  - windows-11-pro
+  - "ram-laptop"
+  - "ssd-laptop"
+  - "cooling-pad"
 ---
 
-Ingin tahu kapasitas dan pemakaian RAM laptop? Simak cara mengecek spesifikasi RAM di Windows dengan beberapa metode mudah.
+Pernah nggak laptop tiba-tiba lemot parah pas lagi buka 20 tab Chrome, aplikasi chatting, dan editor dokumen sekaligus? Nah, kemungkinan besar yang menjerit saat itu adalah RAM laptop kamu. RAM adalah memori kerja laptop — semakin besar dan semakin cepat dia, semakin banyak aplikasi yang bisa dijalankan bersamaan tanpa tersendat.
 
-{/* Artikel akan diisi konten lengkap di sini */}
+Banyak orang nggak tahu berapa kapasitas RAM laptopnya sendiri, padahal informasi ini penting banget: buat tahu apakah laptop masih layak buat kebutuhan harian, buat pertimbangan upgrade, atau sekadar bahan ngobrol biar nggak salah beli saat mau nambah RAM. Kabar baiknya, mengecek RAM di Windows itu gampang banget — ada beberapa cara yang bisa dipilih, dari yang paling simpel sampai yang paling detail. Yuk kita bahas satu per satu.
+
+## Langkah 1: Cek lewat Settings (cara paling mudah)
+
+Ini cara tercepat dan paling ramah pemula:
+
+1. Tekan **Win + I** untuk membuka Settings.
+2. Masuk ke **System** → **About**.
+3. Cari bagian **Device specifications**. Di sana kamu bakal lihat **Installed RAM** beserta kapasitasnya (misalnya 8.00 GB).
+
+Cara ini menampilkan total RAM yang terpasang, tapi belum menunjukkan detail seperti tipe atau kecepatannya. Untuk info yang lebih lengkap, lanjut ke cara berikutnya.
+
+## Langkah 2: Cek lewat Task Manager
+
+Task Manager nggak cuma berguna buat mematikan aplikasi, tapi juga untuk melihat RAM secara detail:
+
+1. Tekan **Ctrl + Shift + Esc** untuk membuka Task Manager.
+2. Klik tab **Performance**, lalu pilih **Memory** di panel kiri.
+3. Di sini kamu bisa melihat: total RAM, RAM yang sedang terpakai, kecepatan (misalnya 3200 MHz), jumlah slot yang terpakai (Slots used), dan form factor (SODIMM untuk laptop).
+
+Tab Memory ini juga menampilkan grafik pemakaian waktu nyata — berguna banget buat tahu apakah RAM kamu cukup atau sering penuh.
+
+## Langkah 3: Cek lewat System Information
+
+Kalau mau informasi yang lebih lengkap dan terstruktur:
+
+1. Tekan **Win + S**, ketik **System Information**, lalu buka aplikasinya.
+2. Di panel kiri, klik **System Summary**.
+3. Cari baris **Installed Physical Memory (RAM)** dan **Total Physical Memory**.
+
+System Information juga menampilkan detail lain seperti tipe motherboard dan prosesor, jadi cocok buat kamu yang mau mencatat spesifikasi lengkap laptop.
+
+## Langkah 4: Cek lewat Command Prompt
+
+Buat yang lebih suka jalan ninja, Command Prompt bisa dipakai:
+
+1. Tekan **Win + S**, ketik **cmd**, lalu pilih **Run as administrator** (atau jalankan biasa juga bisa).
+2. Ketik perintah berikut, lalu tekan Enter:
+
+```cmd
+wmic memorychip get capacity,speed,manufacturer,partnumber
+```
+
+3. Hasilnya menampilkan detail tiap modul RAM yang terpasang: kapasitas per modul, kecepatan, merk, dan nomor part.
+
+Cara ini paling detail di antara yang lain — kamu bisa tahu persis modul RAM apa yang ada di laptopmu, yang sangat berguna kalau mau upgrade atau cari pengganti.
+
+## Cara membaca pemakaian RAM
+
+Mengecek kapasitas saja nggak cukup — kamu juga perlu tahu apakah RAM itu cukup untuk kebutuhanmu:
+
+- **Pemakaian di bawah 70% saat kerja normal** → RAM masih lega, nggak perlu khawatir.
+- **Pemakaian 70–90% saat buka aplikasi biasa** → RAM mulai sesak; coba kurangi aplikasi yang berjalan di latar belakang atau matikan startup apps.
+- **Pemakaian 90%+ atau sering penuh** → RAM kamu benar-benar jadi biang keladi lemot. Saatnya mempertimbangkan upgrade.
+
+Catatan: pemakaian RAM tinggi nggak selalu buruk. Windows memang dirancang memakai RAM sebanyak mungkin untuk cache — yang penting jangan sampai sistem "thrashing" (terus-terusan memindah data ke disk) karena RAM habis.
+
+## Tips tambahan
+
+- **Buka Task Manager saat laptop lemot.** Lihat tab Performance → Memory. Kalau grafiknya penuh terus, itu tanda RAM jadi masalah.
+- **Restart rutin.** Windows punya kebiasaan "menimbun" proses di latar belakang. Restart sekali sehari bisa mengosongkan RAM yang terpakai diam-diam.
+- **Kurangi aplikasi startup.** Aplikasi yang jalan otomatis ikut makan RAM sejak awal. Matikan yang nggak perlu — cara lengkapnya ada di artikel sebelumnya di blog ini.
+- **Kalau mau upgrade, cocokkan dulu tipe RAM-nya.** Jangan asal beli — cek tipe (DDR4/DDR5), kecepatan, dan jumlah slot kosong via Task Manager atau `wmic`. RAM yang salah tipe nggak akan terpasang atau nggak bekerja maksimal.
+- **8 GB masih oke buat kerja ringan, 16 GB nyaman untuk multitasking berat.** Kalau kamu sering buka banyak aplikasi sekaligus atau main game, 16 GB adalah titik manis.
+
+## Kesimpulan
+
+Mengecek RAM laptop di Windows itu gampang banget dan bisa dilakukan dengan empat cara: lewat Settings untuk angka cepat, Task Manager untuk detail dan pemakaian waktu nyata, System Information untuk catatan lengkap, dan Command Prompt untuk detail tiap modul RAM. Pilih cara yang paling nyaman — semuanya tanpa install aplikasi tambahan.
+
+Yang paling penting bukan cuma tahu kapasitasnya, tapi juga memahami apakah RAM-mu cukup untuk kebutuhan harian. Kalau laptop sering lemot karena RAM penuh, upgrade RAM adalah investasi yang sangat masuk akal. Dan kalau lemotnya bukan karena RAM, cek juga faktor lain seperti storage dan SSD — baca artikel berikut ini untuk solusi lengkapnya.
+
+**Baca juga:** [Cara Mengatasi Laptop Lemot di Windows 11](/tech/cara-mengatasi-laptop-lemot-windows-11/)

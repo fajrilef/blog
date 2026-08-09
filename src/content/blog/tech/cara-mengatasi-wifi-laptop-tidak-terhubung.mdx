@@ -11,28 +11,79 @@ recommendedProducts:
   - "keyboard-60"
 ---
 
-Cara Mengatasi WiFi Laptop Tidak Terhubung adalah topik yang banyak dicari. Dalam artikel ini kita akan membahas langkah-langkah praktis yang bisa langsung diterapkan.
+WiFi tiba-tiba tidak terhubung — ikon jaringan muncul tanda seru kuning, atau malah hilang sama sekali — adalah salah satu masalah laptop paling umum di Windows. Sebelum panik dan menganggap router rusak, coba langkah-langkah berikut secara berurutan. Sebagian besar kasus bisa selesai dalam 5 menit tanpa perlu install ulang atau beli hardware baru.
 
-## Pendahuluan
+## Langkah 1: Periksa hal paling dasar
 
-WiFi laptop tidak terhubung atau sering putus? Simak langkah diagnosis dan solusi yang bisa dicoba di Windows.
+Mulai dari yang paling sederhana, karena sering kali justru ini penyebabnya:
 
-## Langkah-Langkah Utama
+1. **Cek tombol fisik WiFi** di laptop (F2/F12 atau tombol saklar di samping) — pastikan tidak dalam posisi off.
+2. **Cek mode pesawat (Airplane Mode)** — buka Action Center (Win + A), pastikan mode pesawat **mati**.
+3. **Cek WiFi orang lain** — kalau HP bisa konek tapi laptop tidak, masalahnya di laptop. Kalau keduanya tidak bisa, kemungkinan besar di router/ISP.
 
-### 1. Persiapan
+## Langkah 2: Lupakan dan sambungkan ulang
 
-Sebelum memulai, pastikan Anda memiliki alat dan bahan yang diperlukan.
+Kadang Windows menyimpan profil jaringan yang rusak. Reset koneksinya:
 
-### 2. Pelaksanaan
+1. Klik ikon WiFi di taskbar → **Network & Internet settings**.
+2. Pilih **WiFi** → **Manage known networks**.
+3. Klik nama jaringan WiFi kamu → **Forget**.
+4. Sambungkan ulang dengan memasukkan password.
 
-Ikuti langkah-langkah berikut secara berurutan untuk hasil terbaik.
+Profil yang korup sering bikin Windows "mengira" sudah terhubung padahal tidak. Forget dan connect ulang menyelesaikan ini dalam kebanyakan kasus.
 
-### 3. Tips Tambahan
+## Langkah 3: Jalankan Network Troubleshooter bawaan Windows
 
-Beberapa tips tambahan untuk memastikan hasil optimal.
+Windows punya alat perbaikan otomatis yang cukup membantu:
+
+1. Buka **Settings** → **System** → **Troubleshoot** → **Other troubleshooters**.
+2. Klik **Run** di samping **Network Adapter** (atau Internet Connections).
+3. Ikuti petunjuknya — Windows akan mendeteksi dan mencoba memperbaiki masalah secara otomatis.
+
+Troubleshooter ini bisa mendeteksi masalah seperti IP conflict, DNS rusak, atau adapter mati.
+
+## Langkah 4: Restart adapter WiFi
+
+Kalau masih belum bisa, matikan dan nyalakan adapter WiFi:
+
+1. Buka **Device Manager** (klik kanan tombol Start → Device Manager).
+2. Perluas **Network adapters**.
+3. Klik kanan adapter WiFi (biasanya ada kata "Wireless" atau "Wi-Fi" di namanya) → **Disable device**.
+4. Tunggu 5 detik → **Enable device**.
+
+Cara ini me-reset driver adapter tanpa restart laptop — sering kali langsung menyambungkan kembali.
+
+## Langkah 5: Flush DNS dan reset jaringan
+
+Masalah DNS juga bisa bikin "terhubung tapi tidak ada internet". Buka **Command Prompt** sebagai administrator (klik kanan Start → Terminal (Admin)), lalu ketik perintah berikut satu per satu:
+
+```cmd
+ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+netsh winsock reset
+netsh int ip reset
+```
+
+Setelah selesai, **restart laptop**. Perintah-perintah ini me-reset konfigurasi jaringan dan membuang cache DNS yang mungkin korup.
+
+## Langkah 6: Update atau rollback driver WiFi
+
+Driver yang usang atau baru di-update kadang bermasalah:
+
+1. Buka **Device Manager** → **Network adapters**.
+2. Klik kanan adapter WiFi → **Update driver** → **Search automatically**.
+3. Kalau baru saja update dan masalah mulai setelah itu, pilih **Properties** → **Driver** → **Roll Back Driver**.
+
+## Kapan harus menghubungi ISP?
+
+Kalau semua langkah di atas sudah dicoba dan WiFi tetap tidak terhubung **di semua perangkat**, kemungkinan besar masalahnya di router atau koneksi internet:
+
+- Restart router (cabut listrik 30 detik, nyalakan lagi).
+- Cek lampu indikator router — kalau merah/kedip tidak normal, hubungi ISP.
 
 ## Kesimpulan
 
-Dengan mengikuti panduan di atas, Anda bisa mengatasi permasalahan ini dengan mudah dan efisien.
+Mulai dari hal paling sederhana (tombol fisik, mode pesawat), lalu forget jaringan, jalankan troubleshooter, restart adapter, flush DNS, dan update driver. Urutan ini mencakup 90% penyebab WiFi laptop tidak terhubung — dan semuanya bisa dilakukan sendiri tanpa alat tambahan.
 
-**Baca juga:** [Cara Mengatasi WiFi Laptop Tidak Terhubung](cara-mengatasi-laptop-lemot-windows-11)
+**Baca juga:** [Cara Mengatasi Laptop Lemot di Windows 11](/tech/cara-mengatasi-laptop-lemot-windows-11/)

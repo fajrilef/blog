@@ -1,16 +1,83 @@
 ---
 title: "Cara Membersihkan Storage Windows 11"
 description: "Storage penuh? Simak cara membersihkan file sampah, cache, dan file besar di Windows 11 tanpa aplikasi tambahan."
-pubDate: "2026-08-09"
-category: "tech"
+pubDate: 2026-08-09T10:16:23+07:00
+category: tech
 tags: ["windows 11", "storage", "disk cleanup"]
-cover: "cover-cara-membersihkan-storage-windows-11.jpg"
+cover: cover-cara-membersihkan-storage-windows-11.jpg
 recommendedProducts:
-  - ssd-laptop-nvme,
-  - ram-laptop-ddr4,
-  - windows-11-pro
+  - "ssd-laptop"
+  - "ram-laptop"
+  - "keyboard-cleaning-kit"
 ---
 
-Storage penuh? Simak cara membersihkan file sampah, cache, dan file besar di Windows 11 tanpa aplikasi tambahan.
+Ikon storage penuh di Windows 11 itu kayak tamu yang nggak diundang — muncul terus-terusan di jam-jam paling nggak pas, pas mau nyimpen file kerja atau pas mau install game. Padahal kamu ngerasa nggak nyimpen apa-apa. Kok bisa penuh, sih? Tenang, kamu nggak sendirian. File sampah, cache, file sementara, download yang nggak pernah dibuka, sampai aplikasi lama yang kebesaran — semuanya numpuk diam-diam tanpa kamu sadari.
 
-{/* Artikel akan diisi konten lengkap di sini */}
+Kabar baiknya, membersihkan storage di Windows 11 bisa dilakukan tanpa aplikasi tambahan sama sekali. Windows punya alat bawaan yang cukup mumpuni: Disk Cleanup, Storage Sense, dan halaman Storage yang lengkap. Di artikel ini kita bakal bersih-bersih storage bareng-bareng, dari yang paling ringan sampai yang paling dalam.
+
+## Langkah 1: Jalankan Disk Cleanup
+
+Disk Cleanup adalah tools legendaris yang sudah ada sejak zaman Windows 7 dulu dan masih bekerja dengan baik di Windows 11:
+
+1. Tekan **Win + S**, ketik **Disk Cleanup**, lalu buka aplikasinya.
+2. Pilih drive yang mau dibersihkan (biasanya **C:**), lalu klik OK.
+3. Windows akan menghitung berapa banyak ruang yang bisa dihemat.
+4. Centang semua item yang muncul — **Temporary files**, **Thumbnails**, **Recycle Bin**, **Windows Update Cleanup** — lalu klik **OK** → **Delete Files**.
+
+Kalau mau lebih maksimal, klik **Clean up system files** dan ulangi prosesnya. Bagian ini bisa mengosongkan beberapa GB dari file update Windows yang sudah nggak terpakai.
+
+## Langkah 2: Aktifkan Storage Sense
+
+Storage Sense adalah fitur pembersihan otomatis di Windows 11. Aktifkan sekali, dia akan merapikan file sampah secara berkala:
+
+1. Buka **Settings** (Win + I) → **System** → **Storage**.
+2. Aktifkan toggle **Storage Sense**.
+3. Klik **Storage Sense** untuk mengatur detailnya: seberapa sering menjalankan pembersihan (setiap hari/mingguan/saat storage rendah), berapa lama file di Recycle Bin dan folder Downloads disimpan sebelum dihapus otomatis.
+
+Dengan Storage Sense aktif, kamu nggak perlu lagi inget-inget buat bersih-bersih manual — Windows yang mengurusinya.
+
+## Langkah 3: Bersihkan file sementara lewat halaman Storage
+
+Masih di halaman **Settings → System → Storage**, kamu bisa membersihkan lebih detail:
+
+1. Klik **Temporary files**.
+2. Windows akan menampilkan rincian file sementara, termasuk cache aplikasi dan file update.
+3. Centang item yang mau dihapus (hindari **Downloads** kalau masih ada file yang kamu butuhkan), lalu klik **Remove files**.
+
+Halaman ini juga berguna buat ngecek apa saja yang makan storage paling besar — ada daftar aplikasi dan file di bagian bawahnya.
+
+## Langkah 4: Cari dan hapus file besar
+
+Kadang file besar yang bersembunyi jadi biang keladi storage penuh. Cari dengan cara ini:
+
+1. Buka **File Explorer**, lalu klik **This PC**.
+2. Gunakan kolom pencarian di kanan atas, ketik `size: huge` untuk menampilkan file di atas 128 MB (bisa juga pakai `size: >1GB`).
+3. Periksa satu per satu — kalau ada file video, installer, atau file backup yang nggak lagi dibutuhkan, pindahkan ke eksternal atau hapus.
+
+Jangan lupa juga kosongkan **Recycle Bin** (klik kanan ikonnya → **Empty Recycle Bin**) — banyak orang lupa bahwa file yang "dihapus" masih menyita ruang di sana.
+
+## Langkah 5: Copot aplikasi yang nggak terpakai
+
+Aplikasi yang jarang dibuka tapi kebesaran itu boros storage banget:
+
+1. Buka **Settings → Apps → Installed apps**.
+2. Klik **Sort by** → **Size** untuk menampilkan aplikasi dari yang paling besar.
+3. Untuk aplikasi yang nggak lagi dipakai, klik titik tiga di sampingnya → **Uninstall**.
+
+Perhatikan juga game dan aplikasi seperti editor video yang biasanya punya cache gede — uninstall dan install ulang sesekali bisa mengosongkan beberapa GB.
+
+## Tips tambahan
+
+- **Pindahkan file besar ke cloud atau HDD eksternal.** Foto, video, dan arsip yang jarang dibuka nggak harus tinggal di drive sistem.
+- **Bersihkan cache browser.** Cache Chrome/Edge bisa tumbuh sampai beberapa GB — bersihkan lewat pengaturan browser secara berkala.
+- **Jangan menghapus file sistem sembarangan.** Hanya hapus yang kamu yakin, dan hindari menyentuh folder Windows, Program Files, atau file di direktori System.
+- **Jaga storage di bawah 90%.** SSD yang penuh banget bisa memperlambat sistem dan memperpendek umurnya, jadi usahakan selalu ada ruang kosong.
+- **Kalau selalu penuh, pertimbangkan upgrade.** SSD 256 GB memang cepat penuh di zaman sekarang. Kalau budget memungkinkan, upgrade ke SSD yang lebih besar adalah solusi jangka panjang yang paling masuk akal.
+
+## Kesimpulan
+
+Storage penuh itu masalah yang sebenarnya gampang diatasi kalau tahu caranya. Mulai dari Disk Cleanup untuk file sampah, Storage Sense untuk pembersihan otomatis, hapus file sementara dan file besar, sampai uninstall aplikasi yang nggak terpakai — semua bisa dilakukan dengan fitur bawaan Windows 11 tanpa keluar uang sepeser pun.
+
+Rutinkan bersih-bersih ini satu atau dua bulan sekali, dan kamu nggak akan lagi panik lihat notifikasi storage penuh. Kalau laptop tetap terasa lemot setelah storage lega, mungkin saatnya cek kondisi hardware lainnya — baca artikel berikutnya biar laptop kamu kembali sehat dan ngebut.
+
+**Baca juga:** [Cara Mengatasi Laptop Lemot di Windows 11](/tech/cara-mengatasi-laptop-lemot-windows-11/)
