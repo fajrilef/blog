@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T05:09:22.538Z",
+  "generatedAt": "2026-08-09T12:38:36.814Z",
   "products": {
     "https://s.shopee.co.id/2BDuxZTDcv": {
       "shortUrl": "https://s.shopee.co.id/2BDuxZTDcv",
@@ -61,6 +61,69 @@
       "shortUrl": "https://s.shopee.co.id/60QdWsbitD",
       "shopid": "1589899658",
       "itemid": "42710727729",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/3B6Tvcitjn": {
+      "shortUrl": "https://s.shopee.co.id/3B6Tvcitjn",
+      "shopid": "275265659",
+      "itemid": "3695378646",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/9pdNrycXlg": {
+      "shortUrl": "https://s.shopee.co.id/9pdNrycXlg",
+      "shopid": "1285321770",
+      "itemid": "26853315875",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/9fJxfgzfMn": {
+      "shortUrl": "https://s.shopee.co.id/9fJxfgzfMn",
+      "shopid": "992151679",
+      "itemid": "22461073446",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/111zLnRB27": {
+      "shortUrl": "https://s.shopee.co.id/111zLnRB27",
+      "shopid": "1154302227",
+      "itemid": "24309564194",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/W5ikwaXUV": {
+      "shortUrl": "https://s.shopee.co.id/W5ikwaXUV",
+      "shopid": "168272721",
+      "itemid": "26814752024",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/4fvHid7hWl": {
+      "shortUrl": "https://s.shopee.co.id/4fvHid7hWl",
+      "shopid": "1049952347",
+      "itemid": "28788083362",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/3VjKKVbiyp": {
+      "shortUrl": "https://s.shopee.co.id/3VjKKVbiyp",
+      "shopid": "816385685",
+      "itemid": "28724146054",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/30n3jcJmGt": {
+      "shortUrl": "https://s.shopee.co.id/30n3jcJmGt",
+      "shopid": "1157885990",
+      "itemid": "28102549135",
+      "error": true,
+      "reason": "HTTP 403"
+    },
+    "https://s.shopee.co.id/9V0XTaLiM3": {
+      "shortUrl": "https://s.shopee.co.id/9V0XTaLiM3",
+      "shopid": "1048247846",
+      "itemid": "24231313111",
       "error": true,
       "reason": "HTTP 403"
     }

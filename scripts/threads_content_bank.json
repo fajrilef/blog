@@ -1,0 +1,716 @@
+[
+  {
+    "id": "tips-win-shift-s",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "windows 11 nih ada trik yang jarang orang tau:\n\nwin + shift + s = screenshot area langsung\nwin + v = riwayat clipboard\nwin + . = emoji\n\nsimpen aja, guna banget buat kerjaan sehari-hari"
+  },
+  {
+    "id": "tips-win-prtscn",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-mechanical-entry",
+      "ram-laptop"
+    ],
+    "text": "sering screenshot tapi hasilnya ilang-ilangan?\n\ncoba ini:\nwin + prtscn = langsung ke folder pictures > screenshots\n\nnggak perlu tempel ke paint lagi, langsung jadi file"
+  },
+  {
+    "id": "tips-ram-laptop",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "ram-laptop",
+      "keyboard-hotswap"
+    ],
+    "text": "laptop lemot pas buka banyak tab? cek dulu pemakaian ram:\n\nctrl + shift + esc > performance > memory\n\nkalau udah 80%+ terus, itu tandanya ram kepenuhan. bukan virus kok"
+  },
+  {
+    "id": "tips-kulkas-sayur",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "tips biar sayur awet di kulkas:\n\ncuci dulu, keringin, baru masuk wadah kedap udara. jangan langsung dibungkus plastik supern tipis\n\nyang paling penting: jangan campur sayur basah sama yang kering, cepet busuk"
+  },
+  {
+    "id": "tips-telur",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container"
+    ],
+    "text": "telur awet berbulan-bulan? bisa.\n\nsimpan di kulkas, jangan dicuci dulu (lapisan pelindungnya hilang). dan taruh di bagian dalam, bukan di pintu kulkas"
+  },
+  {
+    "id": "tips-bersihkan-keyboard",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-brown-switch"
+    ],
+    "text": "keyboard kotor itu sarang kuman, serius.\n\nmatiin dulu, balik keyboard, ketuk pelan biar remah jatoh. baru lap keycap pakai kain microfiber dikit basah"
+  },
+  {
+    "id": "tips-micofiber",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "microfiber-cloth"
+    ],
+    "text": "kenapa orang pake kain microfiber buat bersihin layar/gadget?\n\nkarena gak ninggalin serat dan gak baret. kain biasa malah bisa bikin layar lecet halus"
+  },
+  {
+    "id": "tips-storage-rumah",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "storage-box",
+      "ziplock-bag"
+    ],
+    "text": "rumah berantakan? coba sistem satu kotak satu kategori:\n\nkotak A = kabel & charger\nkotak B = obat\nkotak C = dokumen\n\nberes, tinggal cari gampang"
+  },
+  {
+    "id": "tips-ziplock",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "ziplock-bag",
+      "food-storage-container"
+    ],
+    "text": "plastik ziplock itu underrated banget:\n\nbisa buat nyimpen bumbu, camilan, bahkan es batu. dan bisa dipake ulang, gak harus dibuang tiap abis"
+  },
+  {
+    "id": "tips-keyboard-switch",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-brown-switch"
+    ],
+    "text": "bingung pilih keyboard mechanical? intinya gini:\n\nred = linear, senyep, enak buat game\nbrown = tactile, ada benjolan halus, enak buat ngetik\nblue = clicky, paling berisik, paling 'kerasa'\n\nmulai dari brown kalau masih ragu"
+  },
+  {
+    "id": "tips-hotswap",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap"
+    ],
+    "text": "beli keyboard mechanical, cari yang hot-swap.\n\nkenapa? karena switch-nya bisa dicabut dan ganti sendiri tanpa solder. switch mati? tinggal ganti, gak perlu beli keyboard baru"
+  },
+  {
+    "id": "tips-clipboard",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-mechanical-entry"
+    ],
+    "text": "salah copy, kehapus, terus harus ulang? jangan.\n\nwin + v itu riwayat clipboard. semua yang pernah kamu copy kesimpen di situ, tinggal pilih mau paste yang mana"
+  },
+  {
+    "id": "tips-buang-bau-kulkas",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "kulkas bau? cek yang paling sering bikin:\n\nbawang & buah yang udah overripe. simpen bahan yang berbau kuat di wadah kedap, jangan dibiarin terbuka"
+  },
+  {
+    "id": "tips-keyboard-mekanik-awet",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-brown-switch"
+    ],
+    "text": "keyboard mechanical bisa awet 5-10 tahun kalau dirawat:\n\n1. jangan makan/minum di deket keyboard\n2. bersihin 2 minggu sekali\n3. jangan dijemur\n\nitu aja cukup"
+  },
+  {
+    "id": "tips-snack-wadah",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "airtight-container",
+      "food-storage-container"
+    ],
+    "text": "camilan udah dibuka terus gak kering? pindahin ke wadah kedap udara.\n\nplastik bekas bungkusnya itu bocor udara diam-diam. wadah kedap bikin garingnya tahan"
+  },
+  {
+    "id": "q-keyboard-tim",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-brown-switch"
+    ],
+    "text": "tim keyboard: switch biru yang tek tek tek berisik, atau switch coklat yang senyep tapi kerasa? tim mana nih"
+  },
+  {
+    "id": "q-ram-laptop",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "ram-laptop"
+    ],
+    "text": "random question: laptop kalian ram-nya berapa? 8 gb masih cukup atau udah ngerasa kurang? aku 16 gb, kadang masih mikir mau naikin wkwk"
+  },
+  {
+    "id": "q-sayur-kulkas",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "sayur yang kalian simpen di kulkas tahan berapa hari sih biasanya? aku 2 hari udah layu duluan padahal udah tak taruh di laci bawah"
+  },
+  {
+    "id": "q-kamar-berantakan",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "storage-box"
+    ],
+    "text": "jujur: kamar kalian hari ini beres atau berantakan? aku lagi fase males beres-beres, butuh motivasi wkwk"
+  },
+  {
+    "id": "q-kerja-dari-mana",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-mechanical-entry",
+      "ram-laptop"
+    ],
+    "text": "buat yang kerja/ngoding dari rumah: kerja dari meja atau dari kasur? jujur aja. aku masih fase kasur, punggung mulai protes"
+  },
+  {
+    "id": "tips-cara-screenshot-di-windows-11",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Screenshot di Windows 11.\n\nButuh screenshot di Windows 11? Simak semua cara praktis: tombol Print Screen, Snipping Tool, sampai...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-screenshot-di-windows-11",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara screenshot di windows 11? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-mengatasi-keyboard-mechanical-double-input",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Mengatasi Keyboard Mechanical Double Input.\n\nTombol keyboard mekanik tiba-tiba mengetik dua huruf? Simak penyebab umum double input dan cara meng...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-mengatasi-keyboard-mechanical-double-input",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara mengatasi keyboard mechanical double input? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-seberapa-sering-keyboard-mechanical-dibersihkan",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Seberapa Sering Keyboard Mechanical Harus Dibersihkan?.\n\nSeberapa sering keyboard mechanical perlu dibersihkan? Simak panduan jadwal perawatan berdasarkan in...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-seberapa-sering-keyboard-mechanical-dibersihkan",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: seberapa sering keyboard mechanical harus dibersihkan?? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-mengatasi-wifi-laptop-tidak-terhubung",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Mengatasi WiFi Laptop Tidak Terhubung.\n\nWiFi laptop tidak terhubung atau sering putus? Simak langkah diagnosis dan solusi yang bisa dicoba d...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-mengatasi-wifi-laptop-tidak-terhubung",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara mengatasi wifi laptop tidak terhubung? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-mengecek-kesehatan-ssd-di-windows",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Mengecek Kesehatan SSD di Windows.\n\nCek kesehatan SSD penting agar data aman. Simak cara memeriksa kondisi SSD di Windows dengan tools b...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-mengecek-kesehatan-ssd-di-windows",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara mengecek kesehatan ssd di windows? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-keyboard-tidak-terdeteksi-di-windows",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Keyboard Tidak Terdeteksi di Windows? Ini Cara Mengatasinya.\n\nKeyboard tidak terdeteksi di Windows bisa bikin panik. Simak langkah diagnosis dan solusi untuk memb...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-keyboard-tidak-terdeteksi-di-windows",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: keyboard tidak terdeteksi di windows? ini cara mengatasinya? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-membersihkan-storage-windows-11",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Membersihkan Storage Windows 11.\n\nStorage penuh? Simak cara membersihkan file sampah, cache, dan file besar di Windows 11 tanpa aplika...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-membersihkan-storage-windows-11",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara membersihkan storage windows 11? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-mematikan-startup-apps-windows-11",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Mematikan Startup Apps di Windows 11.\n\nLaptop terasa lambat saat menyala? Matikan aplikasi startup yang tidak perlu di Windows 11 dengan la...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-mematikan-startup-apps-windows-11",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara mematikan startup apps di windows 11? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-apa-itu-keyboard-mechanical",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Apa Itu Keyboard Mechanical? Panduan Lengkap untuk Pemula.\n\nKeyboard mechanical memakai saklar fisik di bawah tiap tombol, berbeda dari keyboard membrane. Simak...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-apa-itu-keyboard-mechanical",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: apa itu keyboard mechanical? panduan lengkap untuk pemula? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-mechanical-keyboard-vs-membrane",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Mechanical Keyboard vs Membrane: Mana yang Lebih Baik?.\n\nKeyboard mechanical vs membrane: bandingkan rasa mengetik, ketahanan, harga, suara, dan perawatan un...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-mechanical-keyboard-vs-membrane",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: mechanical keyboard vs membrane: mana yang lebih baik?? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-bolehkah-membersihkan-keyboard-mechanical-dengan-alkohol",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Bolehkah Membersihkan Keyboard Mechanical dengan Alkohol?.\n\nMembersihkan keyboard dengan alkohol bisa merusak switch dan keycap jika salah. Simak apa yang aman ...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-bolehkah-membersihkan-keyboard-mechanical-dengan-alkohol",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: bolehkah membersihkan keyboard mechanical dengan alkohol?? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-memilih-keyboard-mechanical-pemula",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Memilih Keyboard Mechanical untuk Pemula.\n\nBingung memilih keyboard mechanical pertama? Simak panduan praktis: tentukan switch, layout, fitur p...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-memilih-keyboard-mechanical-pemula",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara memilih keyboard mechanical untuk pemula? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-pilih-keyboard-mechanical",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Pilih Keyboard Mechanical (Panduan Pemula).\n\nKeyboard mekanik beda banget dari keyboard biasa — awet, enak diketik, dan switch-nya bisa disesuaik...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-pilih-keyboard-mechanical",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara pilih keyboard mechanical (panduan pemula)? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-apa-itu-hot-swap-keyboard-mechanical",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Apa Itu Hot-Swap pada Keyboard Mechanical?.\n\nHot-swap memungkinkan mengganti switch keyboard tanpa solder. Simak cara kerjanya, kelebihannya, dan...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-apa-itu-hot-swap-keyboard-mechanical",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: apa itu hot-swap pada keyboard mechanical?? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-mengecek-ram-laptop-di-windows",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Mengecek RAM Laptop di Windows.\n\nIngin tahu kapasitas dan pemakaian RAM laptop? Simak cara mengecek spesifikasi RAM di Windows dengan...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-mengecek-ram-laptop-di-windows",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara mengecek ram laptop di windows? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-perbedaan-red-switch-brown-switch-blue-switch",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Perbedaan Red Switch, Brown Switch, dan Blue Switch.\n\nRed switch linear, brown switch tactile, blue switch clicky — apa bedanya dan mana yang cocok untukm...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-perbedaan-red-switch-brown-switch-blue-switch",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: perbedaan red switch, brown switch, dan blue switch? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-membersihkan-keyboard-mekanik-yang-benar",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Membersihkan Keyboard Mekanik dengan Benar, Dijamin Awet!.\n\nPunya keyboard mekanik yang mulai kotor dan lengket? Yuk, ikuti langkah-langkah praktis membersihkan...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-membersihkan-keyboard-mekanik-yang-benar",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara membersihkan keyboard mekanik dengan benar, dijamin awet!? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-mengatasi-tombol-keyboard-mechanical-tidak-berfungsi",
+    "category": "tech",
+    "type": "tips",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "Cara Mengatasi Tombol Keyboard Mechanical Tidak Berfungsi.\n\nSatu atau beberapa tombol keyboard mechanical tidak merespons? Simak penyebab umum dan langkah perba...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-mengatasi-tombol-keyboard-mechanical-tidak-berfungsi",
+    "category": "tech",
+    "type": "question",
+    "product_ids": [
+      "keyboard-hotswap",
+      "keyboard-mechanical-entry"
+    ],
+    "text": "random question: cara mengatasi tombol keyboard mechanical tidak berfungsi? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-menghilangkan-bau-lembap-kamar-mandi",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Menghilangkan Bau Lembap di Kamar Mandi.\n\nBau lembap di kamar mandi bisa muncul karena sirkulasi udara buruk dan jamur. Ini penyebabnya dan ca...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-menghilangkan-bau-lembap-kamar-mandi",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara menghilangkan bau lembap di kamar mandi? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-menyimpan-barang-di-rumah-agar-lebih-rapi",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Menyimpan Barang di Rumah agar Lebih Rapi.\n\nTrik menyimpan barang di rumah agar rapi: zonasi, kotak penyimpanan, dan kebiasaan harian....\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-menyimpan-barang-di-rumah-agar-lebih-rapi",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara menyimpan barang di rumah agar lebih rapi? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-mengusir-kecoa-dan-semut",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Mengusir Kecoa dan Semut dari Dapur.\n\nKecoa dan semut datang karena ada sumber makanan dan air. Ini cara mengusirnya tanpa bahan kimia ber...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-mengusir-kecoa-dan-semut",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara mengusir kecoa dan semut dari dapur? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-menyimpan-kentang-agar-tidak-bertunas",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Menyimpan Kentang agar Tidak Cepat Tumbuh Tunas.\n\nKentang cepat bertunas kalau disimpan salah. Hindari kulkas, jaga gelap dan kering — ini cara menyim...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-menyimpan-kentang-agar-tidak-bertunas",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara menyimpan kentang agar tidak cepat tumbuh tunas? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-menghilangkan-bau-tidak-sedap-di-kulkas",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Menghilangkan Bau Tidak Sedap di Kulkas.\n\nKulkas bau biasanya karena sisa makanan, tumpahan, atau makanan busuk yang terlewat. Ini cara menghi...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-menghilangkan-bau-tidak-sedap-di-kulkas",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara menghilangkan bau tidak sedap di kulkas? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-menyimpan-telur-agar-tahan-lama",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Menyimpan Telur agar Tahan Lama di Kulkas.\n\nTelur bisa bertahan berminggu-minggu kalau disimpan dengan cara yang benar. Simak tips menyimpan tel...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-menyimpan-telur-agar-tahan-lama",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara menyimpan telur agar tahan lama di kulkas? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-membersihkan-wastafel-dan-keran",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Membersihkan Wastafel dan Keran agar Kinclong.\n\nWastafel dan keran gampang kelihatan kusam karena kerak air dan sabun. Ini cara membersihkannya deng...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-membersihkan-wastafel-dan-keran",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara membersihkan wastafel dan keran agar kinclong? ada yang udah pernah nyobain? sharing dong"
+  },
+  {
+    "id": "tips-cara-menyimpan-sayuran-agar-tetap-segar-lebih-lama",
+    "category": "living",
+    "type": "tips",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "Cara Menyimpan Sayuran agar Tetap Segar Lebih Lama di Kulkas.\n\nPernah gak sih beli sayur tapi baru dua hari di kulkas sudah layu dan menguning? Yuk, simak tips pra...\n\nsimpen aja, guna banget."
+  },
+  {
+    "id": "q-cara-menyimpan-sayuran-agar-tetap-segar-lebih-lama",
+    "category": "living",
+    "type": "question",
+    "product_ids": [
+      "food-storage-container",
+      "ziplock-bag"
+    ],
+    "text": "random question: cara menyimpan sayuran agar tetap segar lebih lama di kulkas? ada yang udah pernah nyobain? sharing dong"
+  }
+]
