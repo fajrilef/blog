@@ -670,7 +670,8 @@ def post_article_with_comments(article: dict, article_content: str, dry_run: boo
 
 
 def post_to_threads(text: str, image_path: str | None = None) -> dict:
-    """Post to Threads via Threads API (graph.threads.net)."""
+    """Post to Threads via Threads API (graph.threads.net). Dengan retry + jeda."""
+    import time
     if not THREADS_ACCESS_TOKEN or not THREADS_USER_ID:
         return {
             "success": False,
@@ -678,8 +679,6 @@ def post_to_threads(text: str, image_path: str | None = None) -> dict:
         }
     
     # Step 1: Create media container
-    # Text-only: media_type=TEXT (Threads API)
-    # Note: image posting via Threads API needs media_type=IMAGE + image_url (must be public URL)
     create_data = {
         "access_token": THREADS_ACCESS_TOKEN,
         "media_type": "TEXT",
@@ -694,17 +693,23 @@ def post_to_threads(text: str, image_path: str | None = None) -> dict:
     if not creation_id:
         return {"success": False, "error": f"No creation_id: {resp}"}
     
-    # Step 2: Publish the container
+    # Jeda singkat biar container siap di server (hindari error 24 "media not found")
+    time.sleep(5)
+    
+    # Step 2: Publish the container (dengan retry 3x — error 24/transient sering hilang setelah jeda)
     publish_data = {
         "access_token": THREADS_ACCESS_TOKEN,
         "creation_id": creation_id,
     }
-    resp = api_call("POST", f"/{THREADS_USER_ID}/threads_publish", publish_data)
+    for attempt in range(1, 4):
+        resp = api_call("POST", f"/{THREADS_USER_ID}/threads_publish", publish_data)
+        if "error" not in resp:
+            return {"success": True, "post_id": resp.get("id")}
+        err = str(resp.get("error", ""))
+        print(f"   ⏳ Publish attempt {attempt} gagal ({err[:80]}...), retry...")
+        time.sleep(8 * attempt)
     
-    if "error" in resp:
-        return {"success": False, "error": f"Publish failed: {resp.get('error', resp)}"}
-    
-    return {"success": True, "post_id": resp.get("id")}
+    return {"success": False, "error": f"Publish failed after retries: {resp}"}
 
 
 def main():
