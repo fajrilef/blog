@@ -1,17 +1,18 @@
 {
   "used_products": [
-    "keyboard-brown-switch",
-    "ram-laptop",
-    "travel-organizer",
-    "ziplock-bag",
-    "storage-box",
-    "keyboard-hotswap",
-    "airtight-container",
     "food-storage-container",
-    "microfiber-cloth",
+    "travel-organizer",
+    "keyboard-brown-switch",
+    "storage-box",
     "keyboard-mechanical-entry",
+    "ziplock-bag",
+    "microfiber-cloth",
+    "airtight-container",
+    "power-bank",
     "koper-kabin",
-    "power-bank"
+    "ram-laptop",
+    "keyboard-hotswap",
+    "tote-bag-kanvas"
   ],
   "post_18020447219704357": 1,
   "posted_articles": [
@@ -21,6 +22,7 @@
     "cara-mengatasi-keyboard-mechanical-double-input",
     "cara-mengatasi-laptop-lemot-windows-11",
     "cara-mengatasi-wifi-laptop-tidak-terhubung",
+    "cara-mengecek-kesehatan-baterai-laptop",
     "cara-mengecek-kesehatan-ssd-di-windows",
     "cara-menyimpan-tempe-dan-tahu-agar-tahan-lama",
     "cara-screenshot-di-windows-11",
@@ -39,5 +41,6 @@
   "post_17928065076142762": 1,
   "post_18074234747707045": 1,
   "post_17877239559528566": 1,
-  "post_17968268052069289": 1
+  "post_17968268052069289": 1,
+  "post_17895884907589733": 1
 }
