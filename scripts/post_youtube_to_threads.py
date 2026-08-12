@@ -90,6 +90,8 @@ def get_latest_video() -> dict | None:
 
 
 def api_call(method: str, path: str, data: dict | None = None) -> dict:
+    """Call Threads API — dengan retry jaringan (3x) untuk error koneksi/network."""
+    import time
     url = f"{THREADS_API_BASE}{path}"
     if method == "GET":
         url += "?" + urllib.parse.urlencode(data or {})
@@ -98,11 +100,17 @@ def api_call(method: str, path: str, data: dict | None = None) -> dict:
         encoded = urllib.parse.urlencode(data or {}).encode("utf-8")
         req = urllib.request.Request(url, data=encoded, method="POST")
         req.add_header("Content-Type", "application/x-www-form-urlencoded")
-    try:
-        with urllib.request.urlopen(req, timeout=30) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        return {"error": e.read().decode("utf-8"), "status": e.code}
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(req, timeout=45) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            return {"error": e.read().decode("utf-8"), "status": e.code}
+        except (urllib.error.URLError, OSError, TimeoutError, ConnectionError) as e:
+            print(f"   ⏳ Network error attempt {attempt}: {e}... retry")
+            if attempt < 3:
+                time.sleep(15 * attempt)
+    return {"error": "Network unreachable after 3 attempts", "status": -1}
 
 
 def post_to_threads(text: str) -> dict:
@@ -222,22 +230,28 @@ def main():
         sys.exit(1)
     
     # 1) Ambil video terbaru
-    video = get_latest_video()
+    try:
+        video = get_latest_video()
+    except Exception as e:
+        # Error jaringan/feed → DIAM saja (jangan kirim alert tiap 30 menit).
+        # Cron no_agent: stdout kosong = tidak dikirim ke Telegram.
+        sys.exit(0)
     if not video:
-        print("❌ Gagal ambil RSS feed YouTube")
-        sys.exit(1)
+        sys.exit(0)
     
-    print(f"📺 Video terbaru: {video['title'][:60]}...")
-    print(f"   Link: {video['url']}")
-    
-    # 2) Cek sudah dipost?
+    # 2) Cek sudah dipost? — cek DULU sebelum print apa pun
     state = load_state()
     posted = set(state.get("posted_videos", []))
     if video["id"] in posted:
-        print("ℹ️ Video sudah pernah dipost ke Threads. Tidak ada video baru.")
-        return
+        # JANGAN print apa pun — cron no_agent mengirim stdout ke Telegram.
+        # Kalau tidak ada video baru, harus DIAM (output kosong = tidak dikirim).
+        sys.exit(0)
     
-    # 3) Post ke Threads
+    # 3) Baru print & post (hanya kalau ada video BARU)
+    print(f"📺 Video terbaru: {video['title'][:60]}...")
+    print(f"   Link: {video['url']}")
+    
+    # 4) Post ke Threads
     post_text = f"Baru nih di channel! 🎬\n\n{video['title']}\n\n👇 Tonton videonya di sini:\n{video['url']}"
     print("\n--- POST PREVIEW ---")
     print(post_text)

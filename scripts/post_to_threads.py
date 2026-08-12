@@ -227,11 +227,26 @@ def build_threads_post(article: dict, article_content: str = "", include_url: bo
     if tags_clean:
         hook += " " + " ".join(tags_clean) + " ✨"
     
+    # Threads API: text maks 500 karakter. Potong otomatis biar tidak error.
+    MAX_CHARS = 500
+    if len(hook) > MAX_CHARS:
+        # Potong dari tengah (bagian langkah), pertahankan judul + deskripsi + CTA + link
+        header = f"{cat_emoji} {title}\n\n{description}\n\n"
+        footer_start = hook.rfind("👇")
+        footer = hook[footer_start:] if footer_start != -1 else ""
+        # Sisakan ruang untuk footer + elipsis
+        budget = MAX_CHARS - len(footer) - 3
+        if budget > len(header):
+            hook = header[:budget].rstrip() + "...\n\n" + footer
+        else:
+            hook = hook[:MAX_CHARS - 3].rstrip() + "..."
+    
     return hook
 
 
 def api_call(method: str, path: str, data: dict | None = None) -> dict:
-    """Call Threads API."""
+    """Call Threads API — dengan retry jaringan (3x) untuk error koneksi/network."""
+    import time
     url = f"{THREADS_API_BASE}{path}"
     if method == "GET":
         url += "?" + urllib.parse.urlencode(data or {})
@@ -241,11 +256,19 @@ def api_call(method: str, path: str, data: dict | None = None) -> dict:
         req = urllib.request.Request(url, data=encoded, method="POST")
         req.add_header("Content-Type", "application/x-www-form-urlencoded")
     
-    try:
-        with urllib.request.urlopen(req) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        return {"error": e.read().decode("utf-8"), "status": e.code}
+    # Retry 3x khusus error jaringan (Network unreachable, timeout, DNS, dll)
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(req, timeout=45) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            # Error HTTP = respon API valid (bukan masalah jaringan) → langsung balik
+            return {"error": e.read().decode("utf-8"), "status": e.code}
+        except (urllib.error.URLError, OSError, TimeoutError, ConnectionError) as e:
+            print(f"   ⏳ Network error attempt {attempt}: {e}... retry")
+            if attempt < 3:
+                time.sleep(15 * attempt)  # 15s, 30s
+    return {"error": f"Network unreachable after 3 attempts", "status": -1}
 
 
 # --- State tracking komen (maks 3 per post) ---
@@ -491,37 +514,28 @@ def refill_bank(auto_generate: bool = True) -> list:
                 "tags": fm.get("tags", ""),
             })
     
-    # Buat tips + pertanyaan dari artikel (versi santai)
+    # Buat tips + pertanyaan dari artikel (versi santai, TANPA frasa kaku)
     for art in articles:
         slug = art["slug"]
         title = art["title"].strip()
         desc = art["description"].strip()
         cat = art["category"]
         
-        # Produk terkait: ambil dari bank lama yang cocok kategori, atau kosong (fallback di post)
-        product_ids = []
-        for old in bank:
-            if old.get("category") == cat and old.get("product_ids"):
-                product_ids = list(old["product_ids"])[:2]
-                break
-        
-        # Tips: judul + inti
-        tips_text = f"{title}.\n\n{desc[:100]}...\n\nsimpen aja, guna banget."
+        # Tips: judul + inti (dari description artikel)
+        tips_text = f"{title}\n\n{desc[:120]}\n\nbuat yang belum tau, semoga ngebantu ya"
         new_items.append({
             "id": f"tips-{slug}",
             "category": cat,
             "type": "tips",
-            "product_ids": product_ids,
             "text": tips_text,
         })
         
-        # Pertanyaan: pakai judul sebagai hook
-        q_text = f"random question: {title.lower()}? ada yang udah pernah nyobain? sharing dong"
+        # Pertanyaan: hook dari judul, gaya ngobrol
+        q_text = f"penasaran sih, ada yang pernah nyoba {title.lower()}? share pengalamannya dong"
         new_items.append({
             "id": f"q-{slug}",
             "category": cat,
             "type": "question",
-            "product_ids": product_ids,
             "text": q_text,
         })
     
@@ -536,12 +550,12 @@ def refill_bank(auto_generate: bool = True) -> list:
 
 
 def post_bank_item(dry_run: bool = False) -> dict:
-    """Post 1 item random dari bank konten (tips/question) + komen affiliate terkait.
+    """Post 1 item random dari bank konten (tips/question) — TANPA komen affiliate.
     
-    Alur: pilih item yang belum dipost → post teks → komen link (jeda) → komen affiliate (jeda).
+    Alur: pilih item yang belum dipost → post teks → selesai.
     Kalau bank habis, generate otomatis batch baru dari artikel blog.
     """
-    import random, time, json as _json
+    import random, json as _json
     
     bank_path = Path("/opt/data/web-blog-astro/scripts/threads_content_bank.json")
     if not bank_path.exists():
@@ -568,7 +582,7 @@ def post_bank_item(dry_run: bool = False) -> dict:
     if dry_run:
         return {"success": True, "dry_run": True, "item": item}
     
-    # 1) Post teks (tanpa URL → tanpa preview card)
+    # Post teks (tanpa URL → tanpa preview card, TANPA komen affiliate)
     post_result = post_to_threads(item["text"])
     if not post_result["success"]:
         return {"success": False, "error": f"Post gagal: {post_result['error']}"}
@@ -580,41 +594,7 @@ def post_bank_item(dry_run: bool = False) -> dict:
     state["posted_bank"] = sorted(used)
     save_state(state)
     
-    # 2) Jeda 30-90 detik
-    delay1 = random.randint(30, 90)
-    print(f"⏳ Jeda {delay1} detik sebelum komen affiliate...")
-    time.sleep(delay1)
-    
-    # 3) Komen affiliate (produk sesuai item)
-    results = []
-    product_ids = item.get("product_ids", [])
-    products = get_affiliate_products()
-    by_id = {p["id"]: p for p in products}
-    
-    # Pilih produk dari daftar item yang punya affiliateUrl (fallback ke produk kategori)
-    candidates = [by_id[pid] for pid in product_ids if pid in by_id and by_id[pid].get("url")]
-    if not candidates:
-        candidates = [p for p in products if p.get("url") and p.get("category") == item["category"]]
-    if not candidates:
-        candidates = [p for p in products if p.get("url")]
-    
-    if candidates:
-        product = random.choice(candidates)
-        comment_text = build_comment_text(product)
-        print(f"💬 Komen affiliate ({product['id']}): {comment_text[:60]}...")
-        r = post_comment(post_id, comment_text)
-        results.append(r)
-        if r.get("success"):
-            print(f"   ✅ Komen affiliate OK: {r['comment_id']}")
-            # Rotasi produk
-            used_products = set(state.get("used_products", []))
-            used_products.add(product["id"])
-            state["used_products"] = sorted(used_products)
-            save_state(state)
-        else:
-            print(f"   ❌ Komen affiliate GAGAL: {r.get('error', r)}")
-    
-    return {"success": True, "post_id": post_id, "item_id": item["id"], "comments": results}
+    return {"success": True, "post_id": post_id, "item_id": item["id"]}
 
 
 def post_article_with_comments(article: dict, article_content: str, dry_run: bool = False) -> dict:
