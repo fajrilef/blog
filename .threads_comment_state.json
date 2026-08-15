@@ -1,23 +1,23 @@
 {
   "used_products": [
-    "topi-lipat",
-    "airtight-container",
-    "travel-pouch",
-    "keyboard-hotswap",
-    "storage-box",
-    "ziplock-bag",
-    "power-bank",
-    "botol-minum",
-    "koper-kabin",
-    "ram-laptop",
-    "tote-bag-kanvas",
     "microfiber-cloth",
-    "keyboard-brown-switch",
+    "travel-pouch",
+    "ziplock-bag",
+    "koper-kabin",
+    "botol-minum",
     "keyboard-mechanical-entry",
     "tas-punggung-travel",
-    "travel-organizer",
-    "food-storage-container",
+    "tote-bag-kanvas",
+    "keyboard-brown-switch",
     "tas-belanja-lipat",
+    "keyboard-hotswap",
+    "power-bank",
+    "ram-laptop",
+    "topi-lipat",
+    "airtight-container",
+    "storage-box",
+    "food-storage-container",
+    "travel-organizer",
     "keyboard-hotswap"
   ],
   "post_18020447219704357": 1,
@@ -48,6 +48,7 @@
     "cara-menyimpan-cabai-agar-tidak-cepat-busuk",
     "cara-menyimpan-kentang-agar-tidak-bertunas",
     "cara-menyimpan-sayuran-agar-tetap-segar-lebih-lama",
+    "cara-menyimpan-sayuran-daun",
     "cara-menyimpan-telur-agar-tahan-lama",
     "cara-menyimpan-tempe-dan-tahu-agar-tahan-lama",
     "cara-merawat-baterai-laptop-agar-tidak-cepat-rusak",
@@ -65,7 +66,8 @@
   "posted_bank": [
     "q-dengerin-apa",
     "q-tidur-jam",
-    "tips-win-shift-s"
+    "tips-win-shift-s",
+    "tips-ziplock"
   ],
   "post_17929278681382206": 1,
   "post_18194473402375912": 1,
@@ -102,5 +104,6 @@
   "post_17930022900379616": 1,
   "post_17957992254191126": 1,
   "post_17869439502594872": 1,
-  "post_18161857810482754": 1
+  "post_18161857810482754": 1,
+  "post_18106795100152497": 1
 }
