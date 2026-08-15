@@ -1,23 +1,23 @@
 {
   "used_products": [
-    "travel-organizer",
-    "botol-minum",
-    "microfiber-cloth",
-    "travel-pouch",
     "topi-lipat",
-    "power-bank",
-    "storage-box",
-    "koper-kabin",
-    "keyboard-hotswap",
     "airtight-container",
-    "ram-laptop",
-    "keyboard-brown-switch",
+    "travel-pouch",
+    "keyboard-hotswap",
+    "storage-box",
     "ziplock-bag",
-    "tas-belanja-lipat",
+    "power-bank",
+    "botol-minum",
+    "koper-kabin",
+    "ram-laptop",
     "tote-bag-kanvas",
+    "microfiber-cloth",
+    "keyboard-brown-switch",
     "keyboard-mechanical-entry",
     "tas-punggung-travel",
+    "travel-organizer",
     "food-storage-container",
+    "tas-belanja-lipat",
     "keyboard-hotswap"
   ],
   "post_18020447219704357": 1,
@@ -58,7 +58,8 @@
     "mechanical-keyboard-vs-membrane",
     "perbedaan-red-switch-brown-switch-blue-switch",
     "perkembangan-game-terbaru-2026",
-    "seberapa-sering-keyboard-mechanical-dibersihkan"
+    "seberapa-sering-keyboard-mechanical-dibersihkan",
+    "tips-trik-game-pc-pemula"
   ],
   "post_18034233404643755": 1,
   "posted_bank": [
@@ -100,5 +101,6 @@
   "post_17959484465984698": 1,
   "post_17930022900379616": 1,
   "post_17957992254191126": 1,
-  "post_17869439502594872": 1
+  "post_17869439502594872": 1,
+  "post_18161857810482754": 1
 }
