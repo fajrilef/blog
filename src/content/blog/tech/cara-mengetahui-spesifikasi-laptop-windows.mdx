@@ -1,0 +1,112 @@
+---
+title: "Cara Mengetahui Spesifikasi Laptop Windows"
+description: "Ingin tahu spesifikasi lengkap laptop? Simak cara melihat CPU, RAM, GPU, dan spesifikasi lainnya di Windows tanpa aplikasi."
+pubDate: 2026-08-16T19:00:00+07:00
+category: tech
+tags: ["spesifikasi", "laptop", "windows"]
+cover: cover-cara-mengetahui-spesifikasi-laptop-windows.jpg
+recommendedProducts:
+  - "ram-laptop"
+  - "ssd-laptop"
+---
+
+Pernah nggak kamu ditanya "laptopmu RAM-nya berapa, prosesornya apa?" tapi malah bengong karena nggak tahu jawabannya? Santai, kamu nggak sendirian. Banyak orang pakai laptop bertahun-tahun tanpa pernah tahu isi perutnya, padahal info ini gampang banget dicek dan penting buat banyak urusan: mau upgrade RAM, pasang game baru, jual laptop bekas, atau sekadar memastikan aplikasi tertentu bisa jalan.
+
+Kabar baiknya, Windows udah menyediakan beberapa alat bawaan yang bisa menampilkan spesifikasi lengkap — dari prosesor, RAM, penyimpanan, sampai versi sistem — tanpa perlu install aplikasi tambahan apa pun. Di artikel ini aku bakal tunjukkan caranya satu per satu, dari yang paling simpel sampai yang paling detail. Kamu tinggal pilih mana yang paling pas buat kebutuhanmu.
+
+## Cara paling cepat: lewat Settings
+
+Ini jalur yang paling gampang dan paling sering dipakai. Cukup buka aplikasi Settings.
+
+1. Tekan **Windows + I** untuk membuka Settings.
+2. Pilih **System** di panel kiri, lalu scroll ke bawah dan klik **About**.
+3. Di bagian **Device specifications**, kamu bakal lihat nama perangkat, prosesor, RAM terpasang, dan tipe sistem (32-bit atau 64-bit).
+
+Scroll sedikit lagi ke bawah, ada bagian **Windows specifications** yang menampilkan edisi Windows (Home atau Pro), versi, tanggal instalasi, dan nomor build OS. Dua bagian ini sering ketuker — tipe sistem (64-bit) itu bukan nama edisi Windows, jadi jangan salah baca. Kalau kamu cuma butuh angka cepat buat ngobrol atau sekadar tahu spek dasar, cara ini udah cukup.
+
+## Info paling lengkap: System Information (msinfo32)
+
+Kalau kamu butuh inventaris hardware yang lebih rinci — termasuk model motherboard, versi BIOS, sampai status Secure Boot — buka **System Information**. Ini aplikasi bawaan Windows yang isinya jauh lebih dalam daripada halaman About.
+
+1. Tekan **Windows + R**, ketik `msinfo32`, lalu tekan Enter.
+2. Di **System Summary**, kamu bisa lihat pabrikan sistem, model, prosesor, memori fisik terpasang, mode BIOS, dan versinya.
+
+Di panel kiri ada kategori **Components** yang bisa dibuka untuk melihat detail lebih jauh: Display, Sound Device, Storage, dan Network. Ada juga **Software Environment** buat melihat driver, task yang sedang berjalan, dan service sistem. Yang menarik, laporan ini bisa diekspor — klik **File → Export** dan simpan sebagai file teks. Berguna banget kalau kamu mau kirim spek lengkap ke teknisi atau calon pembeli. Tapi hati-hati, file itu bisa memuat nama komputer dan identifier hardware, jadi jangan dibagikan sembarangan.
+
+## Cek GPU dan DirectX: dxdiag
+
+Buat kamu yang suka main game atau kerja desain, info kartu grafis itu penting. Alat terbaiknya adalah **DirectX Diagnostic Tool**, atau yang sering disingkat dxdiag.
+
+1. Tekan **Windows + R**, ketik `dxdiag`, lalu Enter.
+2. Tunggu sebentar sampai alatnya selesai memuat (kadang ada dialog soal verifikasi driver, klik saja sesuai pilihan).
+3. Di tab **System**, kamu lihat versi DirectX, prosesor, dan memori secara umum.
+
+Yang paling berguna ada di tab **Display** (atau **Render** di beberapa versi): di sana tercantum nama GPU, memori tampilan, versi driver, dan resolusi yang didukung. Kalau game melaporkan masalah driver grafis, tab ini jadi tempat pertama yang dicek. Tab **Sound** dan **Input** juga ada kalau kamu penasaran soal perangkat audio dan input. Tombol **Save All Information** bisa menyimpan semuanya jadi satu file teks buat dilampirkan saat minta bantuan.
+
+## Pantau spek sambil lihat kinerjanya: Task Manager
+
+Task Manager bukan cuma buat mematikan aplikasi yang nge-hang. Tab Performance-nya justru tempat terbaik buat lihat spek sekaligus aktivitas hardware secara real-time.
+
+1. Tekan **Ctrl + Shift + Esc** untuk membuka Task Manager.
+2. Kalau tampilannya kecil, klik **More details** di pojok kiri bawah.
+3. Buka tab **Performance**.
+
+Di panel kiri ada daftar komponen: CPU, Memory, Disk, Wi-Fi/Ethernet, dan GPU. Klik masing-masing buat lihat detailnya. CPU menampilkan nama prosesor, kecepatan dasar, jumlah core dan logical processor. Memory menunjukkan RAM terpasang, yang sedang dipakai, kecepatan, dan jumlah slot yang terpakai — sangat membantu buat tahu apakah masih ada slot kosong buat upgrade. Disk menampilkan tipe drive dan kapasitasnya. GPU menampilkan nama kartu grafis, penggunaan, dan memori dedicated-nya. Karena Task Manager menampilkan grafik yang berubah-ubah, kamu nggak cuma tahu spek-nya, tapi juga apakah komponen itu lagi bekerja keras atau santai.
+
+## Jalur teknis: Command Prompt dan PowerShell
+
+Buat yang suka jalan ninja atau perlu ngumpulin spek dari beberapa komputer sekaligus, command line bisa jadi andalan. Buka **Terminal** atau **PowerShell** dari menu Start — kebanyakan perintah ini nggak butuh akses administrator.
+
+Buat lihat prosesor:
+
+```powershell
+Get-CimInstance Win32_Processor | Select-Object Name,NumberOfCores,NumberOfLogicalProcessors
+```
+
+Buat lihat modul RAM yang terpasang (kapasitasnya dalam byte):
+
+```powershell
+Get-CimInstance Win32_PhysicalMemory | Select-Object Manufacturer,PartNumber,Capacity,Speed
+```
+
+Buat lihat total RAM dalam gigabyte:
+
+```powershell
+[math]::Round((Get-CimInstance Win32_PhysicalMemory | Measure-Object Capacity -Sum).Sum / 1GB, 2)
+```
+
+Buat lihat kapasitas dan sisa ruang tiap drive:
+
+```powershell
+Get-Volume | Select-Object DriveLetter,FileSystem,Size,SizeRemaining
+```
+
+Buat lihat kartu grafis:
+
+```powershell
+Get-CimInstance Win32_VideoController | Select-Object Name,AdapterRAM,DriverVersion
+```
+
+Di Command Prompt, ada juga perintah `systeminfo` yang menampilkan ringkasan spek sekaligus, meski hasilnya agak panjang. Cara-cara ini mungkin terlihat ribet, tapi sekali hafal, kamu bisa cek spek dalam hitungan detik dan hasilnya gampang disalin untuk dokumentasi.
+
+## Kesalahan umum yang sering terjadi
+
+Saat membaca spek, ada beberapa jebakan yang bikin orang salah paham. Pertama, **mengira sisa ruang kosong sebagai kapasitas drive**. Di File Explorer, angka yang tampil besar di bawah drive itu adalah ruang tersisa, bukan kapasitas totalnya. Cek lewat Properties drive atau Settings → System → Storage kalau mau angka yang benar.
+
+Kedua, **mencari nama edisi Windows di bagian System type**. Seperti yang tadi kubahas, edisi (Home/Pro) dan versi ada di Windows specifications, terpisah dari tipe sistem. Ketiga, **menganggap nilai memori GPU yang tampil selalu akurat**. GPU terintegrasi sering memakai RAM sistem secara bersama, jadi angka yang dilaporkan bisa bervariasi — silang-cek lewat tab Display di dxdiag atau GPU di Task Manager. Keempat, **mengira nama model laptop sudah menjelaskan semua komponennya**. Satu model laptop bisa dijual dengan beberapa pilihan CPU, RAM, atau storage, jadi selalu cek langsung di perangkatnya.
+
+## FAQ singkat
+
+**Bisakah cek spek tanpa install aplikasi?** Bisa. Settings, System Information, dxdiag, Task Manager, dan PowerShell semuanya bawaan Windows dan sudah lebih dari cukup untuk kebutuhan umum.
+
+**Bagaimana cara cepat lihat kartu grafis?** Buka Task Manager dengan Ctrl + Shift + Esc, lalu ke tab Performance dan pilih GPU. Buat detail driver dan DirectX, jalankan dxdiag.
+
+**Apakah perlu akses administrator?** Sebagian besar cara di atas tidak. Hanya beberapa perintah PowerShell tertentu yang butuh hak admin, dan itu pun jarang diperlukan untuk sekadar melihat spek.
+
+## Penutup
+
+Nggak ada alasan lagi buat nggak tahu isi laptop sendiri. Buat kebutuhan harian, cukup buka Settings → System → About. Mau yang lebih lengkap, pakai msinfo32. Lagi cek masalah game, jalankan dxdiag. Dan kalau mau lihat spek sekaligus kinerjanya, Task Manager jawabannya.
+
+Sekarang coba deh praktikkan salah satu cara di atas di laptopmu — gampang kok, nggak sampai lima menit. Setelah tahu spek-nya, kamu bakal lebih pede kalau mau upgrade, install aplikasi, atau sekadar jawab pertanyaan teman. Kalau ternyata spek-nya masih mumpuni tapi laptop terasa berat, masalahnya mungkin bukan di hardware — coba baca artikel soal mengecek RAM dan kesehatan SSD di blog ini buat langkah lanjutannya.
+
+**Baca juga:** [Cara Mengecek RAM Laptop di Windows](/tech/cara-mengecek-ram-laptop-di-windows/) dan [Cara Mengecek Kesehatan SSD di Windows](/tech/cara-mengecek-kesehatan-ssd-di-windows/)
