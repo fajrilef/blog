@@ -1,6 +1,7 @@
 
 export default new Map([
 ["src/content/blog/living/berapa-lama-sayuran-bisa-disimpan-di-kulkas.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fliving%2Fberapa-lama-sayuran-bisa-disimpan-di-kulkas.mdx&astroContentModuleFlag=true")],
+["src/content/blog/living/cara-membersihkan-lantai-kayu.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fliving%2Fcara-membersihkan-lantai-kayu.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/living/cara-membersihkan-wastafel-dan-keran.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fliving%2Fcara-membersihkan-wastafel-dan-keran.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/living/cara-menghilangkan-bau-lembap-kamar-mandi.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fliving%2Fcara-menghilangkan-bau-lembap-kamar-mandi.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/living/cara-menghilangkan-bau-tidak-sedap-di-kulkas.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Fliving%2Fcara-menghilangkan-bau-tidak-sedap-di-kulkas.mdx&astroContentModuleFlag=true")],

@@ -1,23 +1,23 @@
 {
   "used_products": [
-    "power-bank",
-    "tas-punggung-travel",
+    "botol-minum",
+    "microfiber-cloth",
     "keyboard-hotswap",
-    "storage-box",
-    "ram-laptop",
     "ziplock-bag",
+    "tas-punggung-travel",
     "airtight-container",
     "keyboard-mechanical-entry",
-    "tas-belanja-lipat",
-    "travel-organizer",
-    "microfiber-cloth",
-    "keyboard-brown-switch",
+    "food-storage-container",
     "tote-bag-kanvas",
+    "travel-organizer",
+    "keyboard-brown-switch",
+    "tas-belanja-lipat",
     "koper-kabin",
+    "storage-box",
     "travel-pouch",
     "topi-lipat",
-    "botol-minum",
-    "food-storage-container",
+    "power-bank",
+    "ram-laptop",
     "keyboard-hotswap"
   ],
   "post_18020447219704357": 1,
@@ -31,6 +31,7 @@
     "cara-membersihkan-storage-windows-11",
     "cara-membersihkan-wastafel-dan-keran",
     "cara-membuat-windows-11-lebih-ringan",
+    "cara-memilih-gpu-gaming-nvidia-vs-amd",
     "cara-memilih-keyboard-mechanical-pemula",
     "cara-mengatasi-keyboard-mechanical-double-input",
     "cara-mengatasi-laptop-lemot-windows-11",
@@ -67,9 +68,11 @@
   ],
   "post_18034233404643755": 1,
   "posted_bank": [
+    "q-blog-masih-main",
     "q-dengerin-apa",
     "q-online-shop",
     "q-tidur-jam",
+    "tips-ram-laptop",
     "tips-win-shift-s",
     "tips-ziplock"
   ],
@@ -112,5 +115,6 @@
   "post_18106795100152497": 1,
   "post_18347022424223227": 1,
   "post_18119843477504360": 1,
-  "post_18112629424992472": 1
+  "post_18112629424992472": 1,
+  "post_18424355278148842": 1
 }

@@ -313,7 +313,7 @@ def update_sheet_live_tech(art, cover_file):
 
 
 def deploy_blog():
-    """Build dan deploy ke GitHub Pages."""
+    """Build dan deploy ke Cloudflare Pages (lofa.web.id)."""
     print("  📦 Building blog...")
     out = subprocess.run(
         ["npm", "run", "build"],
@@ -322,51 +322,39 @@ def deploy_blog():
     if out.returncode != 0:
         raise RuntimeError(f"Build gagal: {out.stderr[-500:]}")
 
-    print("  📤 Deploying to GitHub Pages...")
-    import shutil
-    temp_dir = "/tmp/mainroot"
-    if os.path.exists(temp_dir):
-        shutil.rmtree(temp_dir)
-    os.makedirs(temp_dir)
+    print("  📤 Deploying to Cloudflare Pages...")
 
-    github_token = os.environ.get("GITHUB_TOKEN")
-    if not github_token:
+    # Baca kredensial Cloudflare dari /opt/data/.env
+    cf_token = os.environ.get("CLOUDFLARE_API_TOKEN")
+    cf_account = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+    if not cf_token or not cf_account:
         env_path = os.path.join(os.path.dirname(ROOT), ".env")
         if os.path.exists(env_path):
             with open(env_path) as f:
                 for line in f:
-                    if line.startswith("GITHUB_TOKEN="):
-                        github_token = line.split("=", 1)[1].strip()
-                        break
+                    if line.startswith("CLOUDFLARE_API_TOKEN="):
+                        cf_token = line.split("=", 1)[1].strip()
+                    elif line.startswith("CLOUDFLARE_ACCOUNT_ID="):
+                        cf_account = line.split("=", 1)[1].strip()
 
-    repo_url = f"https://{github_token}@github.com/fajrilef/blog.git" if github_token else "https://github.com/fajrilef/blog.git"
-    subprocess.run(["git", "clone", "--branch", "main", "--depth", "1", repo_url, temp_dir], check=True)
+    if not cf_token or not cf_account:
+        raise RuntimeError("CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID tidak ditemukan di .env")
 
-    for item in os.listdir(temp_dir):
-        if item != ".git":
-            p = os.path.join(temp_dir, item)
-            if os.path.isdir(p):
-                shutil.rmtree(p)
-            else:
-                os.remove(p)
+    # Lokasi wrangler (npm global di /opt/data/.npm-global/bin)
+    wrangler_bin = "/opt/data/.npm-global/bin/wrangler"
+    if not os.path.exists(wrangler_bin):
+        wrangler_bin = "wrangler"  # fallback ke PATH
 
-    for item in os.listdir(os.path.join(ROOT, "dist")):
-        src = os.path.join(ROOT, "dist", item)
-        dst = os.path.join(temp_dir, item)
-        if os.path.isdir(src):
-            shutil.copytree(src, dst)
-        else:
-            shutil.copy2(src, dst)
+    deploy_cmd = [
+        wrangler_bin, "pages", "deploy", os.path.join(ROOT, "dist"),
+        "--project-name", "lofa-blog",
+    ]
+    env = {**os.environ, "CLOUDFLARE_API_TOKEN": cf_token, "CLOUDFLARE_ACCOUNT_ID": cf_account}
+    out = subprocess.run(deploy_cmd, capture_output=True, text=True, timeout=300, env=env)
+    if out.returncode != 0:
+        raise RuntimeError(f"Cloudflare deploy gagal: {out.stderr[-500:]}")
 
-    open(os.path.join(temp_dir, ".nojekyll"), "w").close()
-    with open(os.path.join(temp_dir, "CNAME"), "w") as f:
-        f.write("lofa.web.id")
-
-    subprocess.run(["git", "add", "-A"], cwd=temp_dir, check=True)
-    subprocess.run(["git", "commit", "-m", f"Deploy {datetime.now(WIB).strftime('%Y-%m-%d %H:%M WIB')} - auto post tech"], cwd=temp_dir, check=True)
-    subprocess.run(["git", "push", "origin", "main"], cwd=temp_dir, check=True)
-
-    print("  ✓ Deployed to GitHub Pages")
+    print("  ✓ Deployed to Cloudflare Pages (lofa.web.id)")
 
 
 def check_and_generate_new_articles(pending_count):
