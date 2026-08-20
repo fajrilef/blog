@@ -43,5 +43,6 @@ export default new Map([
 ["src/content/blog/tech/perbedaan-red-switch-brown-switch-blue-switch.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ftech%2Fperbedaan-red-switch-brown-switch-blue-switch.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/tech/perkembangan-game-terbaru-2026.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ftech%2Fperkembangan-game-terbaru-2026.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/tech/seberapa-sering-keyboard-mechanical-dibersihkan.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ftech%2Fseberapa-sering-keyboard-mechanical-dibersihkan.mdx&astroContentModuleFlag=true")],
+["src/content/blog/tech/ssd-vs-hdd-gaming.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ftech%2Fssd-vs-hdd-gaming.mdx&astroContentModuleFlag=true")],
 ["src/content/blog/tech/tips-trik-game-pc-pemula.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fblog%2Ftech%2Ftips-trik-game-pc-pemula.mdx&astroContentModuleFlag=true")]]);
 		
