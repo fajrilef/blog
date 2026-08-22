@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import RecommendedProducts from '../../components/RecommendedProducts.astro';
+import AdSlot from '../../components/AdSlot.astro';
 import { getCollection, render } from 'astro:content';
 import { AUTHOR, authorLd } from '../../lib/author';
 import { slugOf, readTimeOf, fmtDate, CAT_LABELS, findRelated } from '../../lib/article';
@@ -143,6 +144,9 @@ const breadcrumbLd = {
       </div>
     </aside>
   </article>
+
+  <!-- Ad: bawah konten artikel -->
+  <AdSlot position="article-bottom" />
 
   <!-- Recommended products -->
   <RecommendedProducts products={recommended} />

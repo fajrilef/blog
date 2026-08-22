@@ -4,7 +4,34 @@ interface Props {
   position?: 'article-top' | 'article-middle' | 'article-bottom' | 'homepage';
 }
 const { position = 'article-bottom' } = Astro.props;
+
+// Publisher ID AdSense Lofa
+const PUBLISHER_ID = 'ca-pub-2172263552604719';
+// Label unit untuk pelaporan per posisi (bisa dipecah jadi unit berbeda di AdSense)
+const labels: Record<string, string> = {
+  'article-top': 'article-top',
+  'article-middle': 'article-middle',
+  'article-bottom': 'article-bottom',
+  'homepage': 'homepage',
+};
+const dataAdSlot = `2968190237`; // unit display responsive utama
 ---
-<!-- AdSlot: placeholder pengembangan. Tidak menampilkan apa pun ke pengunjung.
-     Aktifkan saat integrasi AdSense: ganti konten dengan unit iklan. -->
-{/* sengaja kosong — jangan tampilkan iklan palsu */}
+
+<div class="my-6 flex justify-center" data-ad-position={position}>
+  <ins
+    class="adsbygoogle"
+    style="display:block"
+    data-ad-client={PUBLISHER_ID}
+    data-ad-slot={dataAdSlot}
+    data-ad-format="auto"
+    data-full-width-responsive="true"
+  ></ins>
+</div>
+<script>
+  // Dorong render unit AdSense (adsbygoogle sudah dimuat di <head> Layout)
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (e) {
+    // noop — iklan gagal render tidak boleh merusak halaman
+  }
+</script>
